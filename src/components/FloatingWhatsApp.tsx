@@ -27,16 +27,8 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onOpenTriage
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: 20 }}
           transition={{ duration: 0.3 }}
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-3"
+          className="fixed bottom-5 right-5 z-40"
         >
-          {/* Tooltip prompt (visible on sm+) */}
-          <div
-            onClick={onOpenTriage}
-            className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-[#05070B]/90 backdrop-blur-md shadow-xl border border-amber-500/20 text-xs font-bold text-white cursor-pointer hover:bg-slate-900 transition-all transform hover:-translate-x-1"
-          >
-            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-            <span>Enviar caso para análise</span>
-          </div>
 
           {/* Floating Button with gold ping effect */}
           <button
