@@ -348,11 +348,6 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 0 && (
             <div className="space-y-6 py-2 animate-fade-in">
               <div className="text-center max-w-xl mx-auto">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider mb-4">
-                  <Clock className="w-3.5 h-3.5 text-teal-600" />
-                  <span>Triagem Clínica Express</span>
-                </div>
-
                 <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
                   Vamos entender seu caso em menos de 1 minuto.
                 </h4>
@@ -813,10 +808,6 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 8 && (
             <div className="space-y-5 animate-fade-in">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Triagem Concluída com Sucesso</span>
-                </div>
                 <h4 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
                   Tudo pronto, {formData.name || 'Doutor(a)'}!
                 </h4>

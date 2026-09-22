@@ -146,14 +146,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTriage }) => {
                   ))}
                 </div>
 
-                {/* Live Status + Primary CTA */}
+                {/* Primary CTA */}
                 <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-                  {/* Live Status Pill: visible on xl+ to maintain generous spacing on 1024px-1279px */}
-                  <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 text-teal-300 text-xs font-medium border border-teal-500/30 whitespace-nowrap">
-                    <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse shrink-0" />
-                    <span>Coleta Ativa na Região</span>
-                  </div>
-
                   {/* Primary CTA button with button-in-button icon architecture */}
                   <button
                     type="button"
@@ -207,9 +201,6 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTriage }) => {
                   <span>{LAB_CONFIG.coletaHorario}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-xs font-medium text-teal-300 bg-teal-950/60 border border-teal-500/30 px-2.5 py-0.5 rounded-full">
-                    Atendimento Ativo
-                  </span>
                   <button
                     type="button"
                     onClick={() => setMobileMenuOpen(false)}

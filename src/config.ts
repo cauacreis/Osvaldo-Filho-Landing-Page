@@ -82,7 +82,6 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
   {
     id: 'review-1',
     image: '/assets/review-1.webp',
-    badge: 'Feedback no WhatsApp',
     dentistType: 'Cirurgião-Dentista Parceiro',
     clinicCity: 'São Paulo - SP',
     highlight: 'Instalação imediata sem nenhum retrabalho',
@@ -93,7 +92,6 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
   {
     id: 'review-2',
     image: '/assets/review-2.webp',
-    badge: 'Feedback Verificado',
     dentistType: 'Cirurgiã-Dentista Parceira',
     clinicCity: 'São Paulo - SP',
     highlight: 'Superou expectativas e entrega no prazo certo',

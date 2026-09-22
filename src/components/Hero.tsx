@@ -41,9 +41,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
           
           {/* Left Column: High Impact Headline & Action Area */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-6 sm:pt-0">
-            
-
-            {/* 2. Editorial Headline */}
+            {/* Primary Editorial Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}

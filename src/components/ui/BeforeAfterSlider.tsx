@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react'
-import { Sparkles, MoveHorizontal } from 'lucide-react'
+import { MoveHorizontal } from 'lucide-react'
 
 interface BeforeAfterSliderProps {
   beforeImage: string
@@ -110,15 +110,14 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         />
       </div>
 
-      {/* Badges / Labels */}
+      {/* Subtle Minimal Labels */}
       <div className="absolute top-4 left-4 z-20 pointer-events-none">
-        <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-bold text-teal-300 uppercase tracking-wider shadow-md">
+        <span className="px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 text-[11px] font-medium text-slate-300 shadow-sm">
           {beforeLabel}
         </span>
       </div>
       <div className="absolute top-4 right-4 z-20 pointer-events-none">
-        <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-bold text-amber-300 uppercase tracking-wider shadow-md flex items-center gap-1.5">
-          <Sparkles className="w-3 h-3 text-amber-400" />
+        <span className="px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 text-[11px] font-medium text-slate-300 shadow-sm">
           {afterLabel}
         </span>
       </div>

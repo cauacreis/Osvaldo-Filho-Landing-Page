@@ -60,7 +60,6 @@ export interface CaseStudy {
   materials: string[]
   technicalHighlights: string[]
   image: string
-  badge?: string
 }
 
 export interface FeedbackReview {
@@ -68,7 +67,6 @@ export interface FeedbackReview {
   image: string
   dentistType?: string
   clinicCity?: string
-  badge?: string
   highlight?: string
   quote?: string
   topics?: string[]

@@ -20,8 +20,6 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        
-
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
