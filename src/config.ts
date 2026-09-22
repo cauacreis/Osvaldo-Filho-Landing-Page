@@ -86,7 +86,6 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
     clinicCity: 'São Paulo - SP',
     highlight: 'Instalação imediata sem nenhum retrabalho',
     quote: '“Já entregou e eu já instalei. Parabéns pelo seu trabalho! Gostei bastante! Vamos alinhar pra eu poder mandar mais trabalhos pra você...”',
-    topics: ['Entregue no prazo', 'Instalação sem ajuste', 'Parceria contínua'],
     stars: 5,
   },
   {
@@ -96,7 +95,6 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
     clinicCity: 'São Paulo - SP',
     highlight: 'Superou expectativas e entrega no prazo certo',
     quote: '“Quero deixar meu agradecimento a toda a equipe do laboratório Lourenço pelo excelente atendimento! Fiquei muito satisfeita com todo o processo, desde o atendimento até a qualidade final. As peças ficaram excelentes e superou as expectativas. Destaco principalmente a agilidade na execução e na entrega...”',
-    topics: ['Atendimento direto', 'Peças acima da média', 'Agilidade e cuidado'],
     stars: 5,
   },
 ]
