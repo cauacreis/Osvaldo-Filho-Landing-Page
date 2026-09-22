@@ -149,12 +149,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
           {/* Right Column: Floating Micro-Proof Badges overlaying the Osvaldo Studio visual */}
           <div className="lg:col-span-5 relative mt-6 lg:mt-0 flex flex-col justify-end lg:h-[580px] pointer-events-none">
             
-            {/* Floating Card 1: Coroa Cerâmica E.max */}
+            {/* Floating Card 1: Coroa Cerâmica E.max (Desktop overlay) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:absolute lg:top-8 lg:right-4 pointer-events-auto mb-4 lg:mb-0"
+              className="hidden lg:block lg:absolute lg:top-8 lg:right-4 pointer-events-auto"
             >
               <motion.div
                 animate={{ y: [-5, 5, -5] }}
@@ -177,12 +177,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               </motion.div>
             </motion.div>
 
-            {/* Floating Card 2: Carga Imediata */}
+            {/* Floating Card 2: Carga Imediata (Desktop overlay) */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="lg:absolute lg:bottom-28 lg:left-0 pointer-events-auto mb-4 lg:mb-0"
+              className="hidden lg:block lg:absolute lg:bottom-28 lg:left-0 pointer-events-auto"
             >
               <motion.div
                 animate={{ y: [5, -5, 5] }}
@@ -210,8 +210,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="lg:absolute lg:bottom-4 lg:right-6 pointer-events-auto"
+              className="mt-6 lg:mt-0 lg:absolute lg:bottom-4 lg:right-6 pointer-events-auto"
             >
+
               <div className="bg-slate-950/90 backdrop-blur-xl border border-white/15 px-4 py-3 rounded-2xl shadow-[0_12px_36px_rgba(0,0,0,0.7)] flex items-center gap-3">
                 <div className="relative w-9 h-9 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center shrink-0">
                   <img

@@ -95,41 +95,20 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
               </p>
 
               <p>
-                O objetivo é simples: próteses que entram passivas na boca, sem retrabalho e com entrega pontual para a sua consulta de instalação.
+                O compromisso é direto: peças com assentamento passivo na primeira prova, entrega no dia certo e suporte técnico rápido sempre que você precisar.
               </p>
             </div>
 
-            {/* 3 Core Commitments */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full mb-8">
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
-                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Contato Direto</h4>
-                  <p className="text-xs text-slate-400 mt-1">Converse com quem faz a peça, sem intermediários.</p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
-                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Rigor em Troquel</h4>
-                  <p className="text-xs text-slate-400 mt-1">Vedamento e passividade testados sob aumento.</p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
-                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Logística Pontual</h4>
-                  <p className="text-xs text-slate-400 mt-1">Coleta e entrega alinhadas à sua agenda clínica.</p>
-                </div>
-              </div>
+            {/* Direct Trust Proof Line */}
+            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-teal-300 mb-8">
+              <span className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
+                <ShieldCheck className="w-4 h-4 text-teal-400" />
+                Responsabilidade técnica direta
+              </span>
+              <span className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
+                <CheckCircle2 className="w-4 h-4 text-teal-400" />
+                Atendimento em São Paulo e região
+              </span>
             </div>
 
             {/* CTA */}
@@ -138,9 +117,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
               onClick={onOpenTriage}
               className="inline-flex items-center gap-3 px-8 py-4 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(20,184,166,0.35)] active:scale-95 transition-all"
             >
-              <span>Enviar caso para análise</span>
+              <span>Enviar caso para análise com o Osvaldo</span>
               <Send className="w-4 h-4 text-slate-950" />
             </button>
+
 
           </motion.div>
 

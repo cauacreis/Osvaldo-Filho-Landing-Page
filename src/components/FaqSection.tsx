@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, HelpCircle, Send } from 'lucide-react'
+import { ChevronDown, HelpCircle } from 'lucide-react'
 import { FaqItem } from '../types'
 
 interface FaqSectionProps {
-  onOpenTriage: () => void
+  onOpenTriage?: () => void
 }
 
-export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
+export const FaqSection: React.FC<FaqSectionProps> = () => {
+
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const faqs: FaqItem[] = [
@@ -135,29 +136,8 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
             )
           })}
         </div>
-
-        {/* Prompt to contact if still has questions */}
-        <div className="mt-12 text-center bg-slate-900/70 rounded-3xl p-6 sm:p-8 border border-slate-800/80 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <h3 className="text-base font-bold text-white">
-              Tem alguma dúvida clínica específica sobre seu caso?
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-              Converse diretamente com o responsável técnico do laboratório.
-            </p>
-          </div>
-
-          <button
-            type="button"
-            onClick={onOpenTriage}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(20,184,166,0.3)] transition-all active:scale-95 whitespace-nowrap"
-          >
-            <span>Enviar caso para análise</span>
-            <Send className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
       </div>
     </section>
   )
 }
+

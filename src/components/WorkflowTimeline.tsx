@@ -81,55 +81,6 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
           </p>
         </motion.div>
 
-        {/* CAD/CAM Digital Integration Showcase with Generated Asset */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 bg-[#080d17] text-white rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
-              <img
-                src="/assets/digital-cad-mesh.jpg"
-                alt="Fluxo digital CAD/CAM com escaneamento 3D e planejamento de precisão"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#080d17] via-transparent to-transparent opacity-80" />
-              <div className="absolute top-4 left-4">
-                <span className="px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md text-[11px] font-bold text-teal-300 border border-teal-500/30">
-                  Compatibilidade STL / PLY
-                </span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 p-6 sm:p-10 flex flex-col justify-center text-left">
-              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-2">
-                Conectividade Total
-              </span>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-tight">
-                Integração Direta com Seu Scanner Intraoral
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed mb-6 font-normal">
-                Aceitamos arquivos digitais de escâneres das principais marcas (iTero, 3Shape, Medit, Carestream, Shining 3D).
-                Caso trabalhe no convencional, nossa equipe retira os moldes físicos no seu consultório com pontualidade rigorosa.
-              </p>
-              <div className="space-y-2 text-xs text-teal-200">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Recepção ágil via nuvem ou WhatsApp</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-teal-400 shrink-0" />
-                  <span>Auditoria imediata de preparo antes da usinagem</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Animated Timeline Grid */}
         <div className="relative">
           {/* Smooth Animated Connecting Line (Desktop) */}
