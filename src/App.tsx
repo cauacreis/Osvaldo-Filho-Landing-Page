@@ -1,4 +1,7 @@
-import { useState } from 'react'
+'use client'
+
+import { useState, useEffect } from 'react'
+import { AnimatePresence } from 'framer-motion'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { PainPoints } from './components/PainPoints'
@@ -13,10 +16,20 @@ import { FinalCta } from './components/FinalCta'
 import { Footer } from './components/Footer'
 import { TriageModal } from './components/TriageModal'
 import { FloatingWhatsApp } from './components/FloatingWhatsApp'
+import { PageSkeleton } from './components/PageSkeleton'
 
 export function App() {
+  const [isLoading, setIsLoading] = useState(true)
   const [triageOpen, setTriageOpen] = useState(false)
   const [preselectedService, setPreselectedService] = useState<string | undefined>(undefined)
+
+  // Initial skeleton shimmer effect on page mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 600)
+    return () => clearTimeout(timer)
+  }, [])
 
   const handleOpenTriage = (serviceName?: string) => {
     setPreselectedService(serviceName)
@@ -29,7 +42,12 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#06090e] text-slate-100 flex flex-col font-sans selection:bg-teal-400 selection:text-slate-950">
+    <div className="min-h-screen bg-[#05070B] text-slate-100 flex flex-col font-sans selection:bg-amber-400 selection:text-slate-950">
+      {/* Initial Skeleton Shimmer Loading Screen */}
+      <AnimatePresence>
+        {isLoading && <PageSkeleton key="page-skeleton-loader" />}
+      </AnimatePresence>
+
       {/* Navigation */}
       <Navbar onOpenTriage={() => handleOpenTriage()} />
 
@@ -47,7 +65,7 @@ export function App() {
         {/* 4. Serviços & Soluções Protéticas */}
         <ServicesSection onSelectService={(service) => handleOpenTriage(service)} />
 
-        {/* 5. Como Funciona (Linha do Tempo) */}
+        {/* 5. Como Funciona (Linha do Tempo com Ícones 3D) */}
         <WorkflowTimeline onOpenTriage={() => handleOpenTriage()} />
 
         {/* 6. Cases Reais & Protocolo Carga Imediata */}
@@ -59,17 +77,17 @@ export function App() {
         {/* 8. Sobre o Laboratório & Osvaldo Lourenço */}
         <AboutSection onOpenTriage={() => handleOpenTriage()} />
 
-        {/* 10. Perguntas Frequentes (FAQ) */}
+        {/* 9. Perguntas Frequentes (FAQ) */}
         <FaqSection onOpenTriage={() => handleOpenTriage()} />
 
-        {/* 11. CTA Final */}
+        {/* 10. CTA Final */}
         <FinalCta onOpenTriage={() => handleOpenTriage()} />
       </main>
 
       {/* Footer */}
       <Footer onOpenTriage={() => handleOpenTriage()} />
 
-      {/* 9. Totem Interativo em Modal (Triagem Técnica de Caso) */}
+      {/* Totem Interativo em Modal (Triagem Técnica de Caso) */}
       <TriageModal
         isOpen={triageOpen}
         onClose={handleCloseTriage}

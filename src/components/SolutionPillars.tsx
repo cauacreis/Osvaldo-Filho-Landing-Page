@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import { PhoneCall, Cpu, CheckCheck, Compass } from 'lucide-react'
@@ -36,15 +38,15 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
   ]
 
   return (
-    <section id="solucao" className="py-20 sm:py-28 bg-[#06090e] text-white relative overflow-hidden">
+    <section id="solucao" className="py-20 sm:py-28 bg-[#05070B] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-0 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute -top-40 right-0 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-yellow-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -79,15 +81,15 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <TiltCard
-                  glowColor="rgba(20, 184, 166, 0.2)"
-                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
+                  glowColor="rgba(245, 158, 11, 0.2)"
+                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-teal-400/40 transition-all mb-5">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-amber-400/40 transition-all mb-5">
                       <Icon className="w-6 h-6" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-white mb-2.5 tracking-tight group-hover:text-teal-200 transition-colors">
+                    <h3 className="text-lg font-bold text-white mb-2.5 tracking-tight group-hover:text-amber-200 transition-colors">
                       {pillar.title}
                     </h3>
 
@@ -104,4 +106,3 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
     </section>
   )
 }
-

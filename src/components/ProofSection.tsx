@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -87,15 +89,15 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
   const currentReview = reviews[currentIndex] || reviews[0]
 
   return (
-    <section id="avaliacoes" className="py-20 sm:py-28 bg-[#06090e] text-white relative overflow-hidden">
+    <section id="avaliacoes" className="py-20 sm:py-28 bg-[#05070B] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-20 -left-20 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute -top-20 -left-20 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute bottom-10 right-0 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -117,7 +119,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
         </motion.div>
 
         {/* ============================================================ */}
-        {/* AUTO-ROTATING FEEDBACK CAROUSEL                              */}
+        {/* AUTO-ROTATING FEEDBACK CAROUSEL (STANDARDIZED LOCKED SIZE)   */}
         {/* ============================================================ */}
         <div
           className="relative mb-12"
@@ -131,7 +133,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
             <button
               type="button"
               onClick={prevSlide}
-              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer"
+              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/40 flex items-center justify-center text-slate-300 hover:text-amber-300 transition-colors focus:outline-none cursor-pointer"
               aria-label="Depoimento anterior"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -148,7 +150,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                     setCurrentIndex(idx)
                   }}
                   className={`h-2 rounded-full transition-all cursor-pointer ${
-                    idx === currentIndex ? 'w-6 bg-teal-400' : 'w-2 bg-slate-700 hover:bg-slate-500'
+                    idx === currentIndex ? 'w-6 bg-gradient-to-r from-amber-400 to-amber-500 shadow-gold-glow' : 'w-2 bg-slate-700 hover:bg-slate-500'
                   }`}
                   aria-label={`Ir para print ${idx + 1}`}
                 />
@@ -158,15 +160,15 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
             <button
               type="button"
               onClick={nextSlide}
-              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer"
+              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-amber-500/40 flex items-center justify-center text-slate-300 hover:text-amber-300 transition-colors focus:outline-none cursor-pointer"
               aria-label="Próximo depoimento"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Active Carousel Card */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-[#0b141a] border border-teal-500/30 p-6 sm:p-8 shadow-2xl min-h-[850px] sm:min-h-[740px] lg:min-h-[480px] lg:h-[480px] flex flex-col justify-center">
+          {/* Active Carousel Card (Strict Standard Fixed Height on Desktop and Mobile) */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-[#0b141a] border border-amber-500/30 p-6 sm:p-8 shadow-2xl h-[780px] sm:h-[760px] lg:h-[480px] flex flex-col justify-center">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={currentReview.id}
@@ -177,13 +179,13 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                 transition={{ duration: 0.35, ease: 'easeInOut' }}
                 className="w-full h-full flex items-center"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 items-center w-full">
                   
-                  {/* WhatsApp Screenshot Showcase (Clean aspect ratio, uncropped) */}
+                  {/* WhatsApp Screenshot Showcase (Standardized Fixed Dimension Box) */}
                   <div className="lg:col-span-6 flex flex-col items-center justify-center">
                     <div
                       onClick={() => setActiveZoomImage(currentReview.image)}
-                      className="group/print relative w-full max-w-sm rounded-2xl overflow-hidden bg-[#0b141a] border border-teal-500/30 shadow-2xl cursor-pointer transition-transform hover:scale-[1.02]"
+                      className="group/print relative w-full max-w-sm rounded-2xl overflow-hidden bg-[#0b141a] border border-amber-500/30 shadow-2xl cursor-pointer transition-transform hover:scale-[1.02]"
                     >
                       {/* WhatsApp Window Header Bar */}
                       <div className="bg-[#1f2c34] px-3.5 py-2 flex items-center justify-between border-b border-[#2a3942] text-[11px] text-slate-300 shrink-0">
@@ -191,14 +193,14 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                           <span className="font-semibold text-white">WhatsApp</span>
                         </div>
-                        <span className="text-slate-400 text-[10px] flex items-center gap-1">
-                          <ZoomIn className="w-3 h-3 text-teal-400" />
+                        <span className="text-amber-400 text-[10px] flex items-center gap-1">
+                          <ZoomIn className="w-3 h-3 text-amber-400" />
                           Toque p/ ampliar
                         </span>
                       </div>
 
-                      {/* Image container displaying full print without harsh crop in standardized frame */}
-                      <div className="relative p-2 bg-[#0b141a] flex items-center justify-center h-[340px] sm:h-[380px] w-full shrink-0">
+                      {/* Image container with locked height preventing vertical layout shifts */}
+                      <div className="relative p-2 bg-[#0b141a] flex items-center justify-center h-[300px] sm:h-[320px] w-full shrink-0 overflow-hidden">
                         <img
                           src={currentReview.image}
                           alt="Print da conversa real no WhatsApp"
@@ -208,7 +210,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                         
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/print:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
-                          <span className="px-3.5 py-1.5 rounded-full bg-teal-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg">
+                          <span className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg">
                             <ZoomIn className="w-4 h-4" />
                             Ver print em tamanho real
                           </span>
@@ -222,10 +224,10 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                     </div>
                   </div>
 
-                  {/* Review Details & Clinical Takeaways (Standardized consistent height) */}
-                  <div className="lg:col-span-6 flex flex-col justify-between text-left h-full min-h-[370px] sm:min-h-[300px] lg:h-[415px] lg:min-h-[415px]">
+                  {/* Review Details & Clinical Takeaways (Locked Height & Flex Standard) */}
+                  <div className="lg:col-span-6 flex flex-col justify-between text-left h-full lg:h-[360px]">
                     
-                    <div className="flex flex-col gap-3 sm:gap-4">
+                    <div className="flex flex-col gap-2.5 sm:gap-3">
                       {/* Stars */}
                       <div className="flex items-center gap-1 text-amber-400 shrink-0">
                         {[...Array(currentReview.stars || 5)].map((_, i) => (
@@ -235,14 +237,14 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
 
                       {/* Highlight */}
                       {currentReview.highlight && (
-                        <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug min-h-[3rem] sm:min-h-[2rem] flex items-center shrink-0">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-snug min-h-[3rem] sm:min-h-[2.5rem] flex items-center shrink-0">
                           {currentReview.highlight}
                         </h3>
                       )}
 
                       {/* Excerpt quote */}
                       {currentReview.quote && (
-                        <blockquote className="text-sm sm:text-base text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-800 h-[220px] sm:h-[150px] lg:h-[185px] flex items-center overflow-y-auto">
+                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800 h-[170px] sm:h-[150px] lg:h-[160px] flex items-center overflow-y-auto scrollbar-none">
                           <p className="w-full">{currentReview.quote}</p>
                         </blockquote>
                       )}
@@ -262,7 +264,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                       <button
                         type="button"
                         onClick={() => setActiveZoomImage(currentReview.image)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-teal-300 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer"
                       >
                         <span>Ver original</span>
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -276,7 +278,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
             </AnimatePresence>
           </div>
 
-          {/* Thumbnail Selector Strip (Shows all prints rotating and easily expandable) */}
+          {/* Thumbnail Selector Strip */}
           <div className="mt-5 flex items-center justify-center gap-3 overflow-x-auto pb-2 scrollbar-none">
             {reviews.map((rev, idx) => {
               const isActive = idx === currentIndex
@@ -290,7 +292,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                   }}
                   className={`relative shrink-0 rounded-xl overflow-hidden border-2 transition-all p-1 bg-slate-900 ${
                     isActive
-                      ? 'border-teal-400 scale-105 shadow-[0_0_15px_rgba(20,184,166,0.4)]'
+                      ? 'border-amber-400 scale-105 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                       : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-600'
                   }`}
                   aria-label={`Ver print ${idx + 1}`}
@@ -301,7 +303,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                     className="w-16 h-12 object-cover object-top rounded-lg"
                   />
                   {isActive && (
-                    <span className="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-teal-400" />
+                    <span className="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-amber-400" />
                   )}
                 </button>
               )
@@ -319,7 +321,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           <button
             type="button"
             onClick={onOpenTriage}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(20,184,166,0.35)] active:scale-95 transition-all"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(245,158,11,0.35)] active:scale-95 transition-all"
           >
             <span>Enviar caso para análise com o Osvaldo</span>
             <Send className="w-4 h-4 text-slate-950" />
@@ -347,13 +349,13 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
               <button
                 type="button"
                 onClick={() => setActiveZoomImage(null)}
-                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-amber-400 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 aria-label="Fechar"
               >
                 <X className="w-6 h-6" />
               </button>
               
-              <div className="bg-[#0b141a] p-2 rounded-2xl border border-teal-500/40 shadow-2xl overflow-hidden max-h-[80vh] flex items-center justify-center">
+              <div className="bg-[#0b141a] p-2 rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden max-h-[80vh] flex items-center justify-center">
                 <img
                   src={activeZoomImage}
                   alt="Print completo da conversa no WhatsApp"

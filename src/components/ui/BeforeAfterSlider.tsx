@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef, useCallback } from 'react'
 import { MoveHorizontal } from 'lucide-react'
 
@@ -84,7 +86,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
       onKeyDown={handleKeyDown}
-      className={`relative select-none overflow-hidden rounded-2xl bg-black shadow-2xl cursor-ew-resize group focus:outline-none focus:ring-2 focus:ring-teal-400 ${className}`}
+      className={`relative select-none overflow-hidden rounded-2xl bg-black shadow-2xl cursor-ew-resize group focus:outline-none focus:ring-2 focus:ring-amber-400 ${className}`}
       style={{ touchAction: 'none' }}
     >
       {/* Background (After / Finished Image) */}
@@ -115,15 +117,14 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex items-center justify-center will-change-[left]"
         style={{ left: `${sliderPosition}%` }}
       >
-        {/* Vertical divider line */}
-        <div className="w-[2px] h-full bg-white shadow-[0_0_14px_rgba(255,255,255,0.9)]" />
+        {/* Vertical divider line with gold specular */}
+        <div className="w-[2px] h-full bg-gradient-to-b from-amber-200 via-white to-amber-300 shadow-[0_0_14px_rgba(245,158,11,0.9)]" />
 
         {/* Circular handle knob */}
-        <div className="absolute w-10 h-10 rounded-full bg-slate-950 border-2 border-teal-400 text-white shadow-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-active:scale-95 transition-transform">
-          <MoveHorizontal className="w-5 h-5 text-teal-300" />
+        <div className="absolute w-10 h-10 rounded-full bg-slate-950 border-2 border-amber-400 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-active:scale-95 transition-transform">
+          <MoveHorizontal className="w-5 h-5 text-amber-300" />
         </div>
       </div>
     </div>
   )
 }
-

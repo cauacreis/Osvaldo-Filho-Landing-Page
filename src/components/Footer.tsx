@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { LAB_CONFIG } from '../config'
 import { MapPin, Phone, Clock, Send } from 'lucide-react'
@@ -8,7 +10,7 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
   return (
-    <footer className="bg-slate-950 text-slate-400 py-16 border-t border-slate-800 text-xs sm:text-sm">
+    <footer className="bg-[#040609] text-slate-400 py-16 border-t border-slate-800 text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800/80">
@@ -16,16 +18,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
           {/* Col 1: Brand & Identity */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-amber-500/30 p-1 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.15)]">
                 <img
-                  src="/assets/logo.webp"
+                  src="/assets/logo-gold.png"
                   alt="Laboratório Lourenço"
                   className="w-full h-full object-contain filter drop-shadow-sm"
                 />
               </div>
               <div>
                 <p className="text-white font-bold text-base leading-tight">Laboratório Lourenço</p>
-                <p className="text-[11px] font-semibold text-teal-400 uppercase tracking-wider">
+                <p className="text-[11px] font-semibold text-amber-400 uppercase tracking-wider">
                   Prótese Dental
                 </p>
               </div>
@@ -39,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
               <span className="text-[11px] font-semibold text-slate-300 block">
                 Responsável Técnico:
               </span>
-              <span className="text-xs text-amber-300 font-bold">
+              <span className="text-xs text-amber-400 font-bold">
                 {LAB_CONFIG.founder}
               </span>
             </div>
@@ -52,42 +54,42 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#dores" className="hover:text-teal-400 transition-colors">
+                <a href="#dores" className="hover:text-amber-400 transition-colors">
                   Diferenciais Clínicos
                 </a>
               </li>
               <li>
-                <a href="#solucao" className="hover:text-teal-400 transition-colors">
+                <a href="#solucao" className="hover:text-amber-400 transition-colors">
                   Nosso Padrão
                 </a>
               </li>
               <li>
-                <a href="#servicos" className="hover:text-teal-400 transition-colors">
+                <a href="#servicos" className="hover:text-amber-400 transition-colors">
                   Catálogo de Próteses
                 </a>
               </li>
               <li>
-                <a href="#fluxo" className="hover:text-teal-400 transition-colors">
+                <a href="#fluxo" className="hover:text-amber-400 transition-colors">
                   Como Funciona o Fluxo
                 </a>
               </li>
               <li>
-                <a href="#cases" className="hover:text-teal-400 transition-colors">
+                <a href="#cases" className="hover:text-amber-400 transition-colors">
                   Casos Clínicos & Protocolos
                 </a>
               </li>
               <li>
-                <a href="#avaliacoes" className="hover:text-teal-400 transition-colors">
+                <a href="#avaliacoes" className="hover:text-amber-400 transition-colors">
                   Depoimentos no WhatsApp
                 </a>
               </li>
               <li>
-                <a href="#sobre" className="hover:text-teal-400 transition-colors">
+                <a href="#sobre" className="hover:text-amber-400 transition-colors">
                   Sobre o Laboratório
                 </a>
               </li>
               <li>
-                <a href="#faq" className="hover:text-teal-400 transition-colors">
+                <a href="#faq" className="hover:text-amber-400 transition-colors">
                   Perguntas Frequentes
                 </a>
               </li>
@@ -101,15 +103,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
             </h4>
             <ul className="space-y-3 text-xs">
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <span>{LAB_CONFIG.location}</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-teal-400 shrink-0" />
+                <Clock className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>{LAB_CONFIG.coletaHorario}</span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-teal-400 shrink-0" />
+                <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                 <span className="font-semibold text-white">{LAB_CONFIG.whatsappDisplay}</span>
               </li>
             </ul>
@@ -126,10 +128,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
             <button
               type="button"
               onClick={onOpenTriage}
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-teal-800 hover:bg-teal-700 text-white font-semibold text-xs transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all"
             >
               <span>Enviar caso para análise</span>
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-3.5 h-3.5 text-slate-950" />
             </button>
           </div>
 

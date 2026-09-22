@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle2, ShieldCheck, ArrowDownRight } from 'lucide-react'
@@ -8,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
   return (
-    <section id="hero" className="relative min-h-[92vh] sm:min-h-screen flex items-center bg-[#06090e] overflow-hidden pt-20 sm:pt-24 pb-16 sm:pb-20">
+    <section id="hero" className="relative min-h-[92vh] sm:min-h-screen flex items-center bg-[#05070B] overflow-hidden pt-20 sm:pt-24 pb-16 sm:pb-20">
       {/* ========================================================================= */}
       {/* Full Width Edge-to-Edge Studio Background with Osvaldo on the right       */}
       {/* ========================================================================= */}
@@ -21,18 +23,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
         />
 
         {/* Sophisticated Dark Gradient Overlays for Flawless Contrast */}
-        {/* Responsive gradient: On mobile top-to-bottom protects text; on desktop left-to-right protects text while highlighting Osvaldo */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#06090e]/95 via-[#06090e]/85 to-[#06090e]/95 lg:bg-gradient-to-r lg:from-[#06090e] lg:via-[#06090e]/85 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05070B]/95 via-[#05070B]/85 to-[#05070B]/95 lg:bg-gradient-to-r lg:from-[#05070B] lg:via-[#05070B]/85 lg:to-transparent" />
         
         {/* Top gradient for navbar transition */}
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#06090e] via-[#06090e]/80 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#05070B] via-[#05070B]/80 to-transparent" />
         
         {/* Bottom gradient transitioning into PainPoints section */}
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#06090e] via-[#06090e]/70 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#05070B] via-[#05070B]/70 to-transparent" />
 
-        {/* Ambient colored lighting glows */}
-        <div className="absolute top-1/4 left-1/12 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-amber-500/10 rounded-full blur-[140px]" />
+        {/* Ambient luxury gold lighting glows */}
+        <div className="absolute top-1/4 left-1/12 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[450px] h-[450px] bg-yellow-500/10 rounded-full blur-[140px]" />
       </div>
 
       {/* Hero Content Container */}
@@ -49,12 +50,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] mb-6 text-balance"
             >
               Seu planejamento merece uma prótese{' '}
-              <span className="bg-gradient-to-r from-teal-300 via-cyan-200 to-teal-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-300 bg-clip-text text-transparent">
                 à altura do caso.
               </span>
             </motion.h1>
 
-            {/* 3. Subheadline com a promessa principal */}
+            {/* Subheadline com a promessa principal */}
             <motion.p
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -64,7 +65,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               Sem ajuste exaustivo na cadeira e sem atraso na entrega. Próteses fixas, cerâmicas e protocolos com alinhamento direto no WhatsApp do responsável técnico.
             </motion.p>
 
-            {/* 4. Action Area: Primary Button-in-Button + Secondary Link */}
+            {/* Action Area: Primary Button-in-Button + Secondary Link */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,7 +75,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               <button
                 type="button"
                 onClick={onOpenTriage}
-                className="group relative inline-flex items-center justify-between sm:justify-start gap-4 px-6 py-4 bg-teal-500 hover:bg-teal-400 active:scale-[0.98] text-slate-950 font-bold text-base sm:text-lg rounded-2xl shadow-[0_0_30px_rgba(20,184,166,0.35)] hover:shadow-[0_0_40px_rgba(20,184,166,0.5)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-4 px-6 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-bold text-base sm:text-lg rounded-2xl shadow-[0_0_30px_rgba(245,158,11,0.35)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <span>Enviar caso para análise</span>
                 <span className="w-9 h-9 rounded-xl bg-slate-950/15 flex items-center justify-center transition-transform group-hover:translate-x-1">
@@ -84,14 +85,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
 
               <a
                 href="#cases"
-                className="inline-flex items-center justify-center gap-2 px-5 py-4 text-sm font-semibold text-slate-200 hover:text-white bg-slate-900/60 hover:bg-slate-800/80 border border-slate-700/80 backdrop-blur-md rounded-2xl shadow-xs transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-5 py-4 text-sm font-semibold text-slate-200 hover:text-amber-300 bg-slate-900/60 hover:bg-slate-800/80 border border-amber-500/20 backdrop-blur-md rounded-2xl shadow-xs transition-colors"
               >
                 <span>Ver casos clínicos reais</span>
-                <ArrowDownRight className="w-4 h-4 text-teal-400" />
+                <ArrowDownRight className="w-4 h-4 text-amber-400" />
               </a>
             </motion.div>
 
-            {/* 5. Microprova & Trust Metrics Bar */}
+            {/* Microprova & Trust Metrics Bar */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -100,13 +101,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
             >
               <div className="flex items-center gap-2.5">
                 <div className="flex -space-x-1.5 overflow-hidden">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-800 text-teal-300 text-[11px] font-bold border border-teal-500/40">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-800 text-amber-300 text-[11px] font-bold border border-amber-500/40">
                     OL
                   </span>
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-teal-900 text-white text-[11px] font-bold border border-teal-500/40">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-950 text-amber-200 text-[11px] font-bold border border-amber-500/40">
                     LL
                   </span>
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500 text-slate-950 text-[11px] font-bold">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-slate-950 text-[11px] font-bold">
                     ★
                   </span>
                 </div>
@@ -117,11 +118,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
 
               <div className="flex items-center gap-4 text-slate-400">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-teal-400" />
+                  <ShieldCheck className="w-4 h-4 text-amber-400" />
                   Fluxo Digital & Convencional
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-teal-400" />
+                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
                   Coleta e Entrega na Região
                 </span>
               </div>

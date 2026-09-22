@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useEffect, useRef } from 'react'
 import {
   X,
@@ -75,7 +77,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           particleCount: 80,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#0d9488', '#d4af37', '#0f766e', '#1e293b'],
+          colors: ['#d4af37', '#f59e0b', '#fef08a', '#1e293b'],
         })
       } catch {
         // Fallback silently if canvas-confetti is not supported
@@ -205,7 +207,6 @@ export const TriageModal: React.FC<TriageModalProps> = ({
     progressPercent = 100
   }
 
-
   const workTypesList = [
     'Coroa / Unitário',
     'Zircônia',
@@ -271,27 +272,27 @@ export const TriageModal: React.FC<TriageModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl bg-white rounded-3xl sm:rounded-[2rem] shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[92vh] animate-fade-in"
+        className="relative w-full max-w-2xl bg-slate-900 rounded-3xl sm:rounded-[2rem] shadow-2xl border border-amber-500/30 overflow-hidden flex flex-col max-h-[92vh] animate-fade-in text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* ============================================================ */}
         {/* MODAL HEADER WITH PROGRESS BAR                               */}
         {/* ============================================================ */}
-        <div className="p-5 sm:p-6 pb-4 border-b border-slate-100 bg-slate-50/70">
+        <div className="p-5 sm:p-6 pb-4 border-b border-slate-800 bg-slate-950/70">
           <div className="flex items-center justify-between gap-4 mb-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-teal-800 text-white flex items-center justify-center shadow-xs">
-                <Sparkles className="w-5 h-5 text-amber-300" />
+              <div className="w-9 h-9 rounded-xl bg-slate-900 border border-amber-500/40 text-amber-400 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                <Sparkles className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
                   Triagem Técnica de Caso
                 </h3>
-                <p className="text-xs text-teal-700 font-medium">
+                <p className="text-xs text-amber-400 font-medium">
                   Laboratório Lourenço • Prótese Dental
                 </p>
               </div>
@@ -300,7 +301,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors focus:outline-none"
+              className="p-2 rounded-full text-slate-400 hover:text-white hover:bg-slate-800 transition-colors focus:outline-none cursor-pointer"
               aria-label="Fechar triagem"
             >
               <X className="w-5 h-5" />
@@ -308,8 +309,8 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           </div>
 
           {/* Prompt banner & step counter */}
-          <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
-            <span className="text-teal-900 font-bold">
+          <div className="flex items-center justify-between text-xs font-semibold text-slate-400 mb-2">
+            <span className="text-amber-300 font-bold">
               {currentStep === 0 && 'Vamos entender seu caso em menos de 1 minuto.'}
               {currentStep >= 1 && currentStep <= 7 && `Pergunta ${currentStep} de ${totalQuestions}`}
               {currentStep === 8 && 'Resumo do Caso Pronto'}
@@ -322,9 +323,9 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           </div>
 
           {/* Progress Bar */}
-          <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+          <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 transition-all duration-300 rounded-full"
+              className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 transition-all duration-300 rounded-full shadow-[0_0_8px_rgba(245,158,11,0.5)]"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -336,8 +337,8 @@ export const TriageModal: React.FC<TriageModalProps> = ({
         <div ref={scrollContainerRef} className="p-5 sm:p-8 overflow-y-auto flex-1">
           {/* Error Message */}
           {errorMsg && (
-            <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5 animate-fade-in">
-              <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
+            <div className="mb-5 p-3.5 rounded-2xl bg-red-950/60 border border-red-500/40 text-red-300 text-xs sm:text-sm font-medium flex items-center gap-2.5 animate-fade-in">
+              <AlertCircle className="w-4 h-4 text-red-400 shrink-0" />
               <span>{errorMsg}</span>
             </div>
           )}
@@ -348,48 +349,48 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 0 && (
             <div className="space-y-6 py-2 animate-fade-in">
               <div className="text-center max-w-xl mx-auto">
-                <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
+                <h4 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-snug mb-3">
                   Vamos entender seu caso em menos de 1 minuto.
                 </h4>
 
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed">
                   Responda a 7 etapas objetivas para que a equipe técnica do{' '}
-                  <strong className="text-slate-900 font-semibold">Laboratório Lourenço</strong>{' '}
+                  <strong className="text-white font-semibold">Laboratório Lourenço</strong>{' '}
                   possa alinhar biomateriais, logística de coleta e prazos diretamente pelo WhatsApp.
                 </p>
 
                 {formData.workType && (
-                  <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-teal-50 border border-teal-200/80 text-teal-900 text-xs font-bold">
+                  <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold">
                     <span>Trabalho pré-selecionado:</span>
-                    <span className="text-teal-700 underline">{formData.workType}</span>
+                    <span className="text-amber-400 underline">{formData.workType}</span>
                   </div>
                 )}
               </div>
 
               {/* Guarantees Box */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
-                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-2.5">
                     <Clock className="w-4 h-4" />
                   </div>
-                  <h5 className="text-xs font-bold text-slate-900">Menos de 1 Minuto</h5>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Fluxo otimizado para a rotina dinâmica do consultório.</p>
+                  <h5 className="text-xs font-bold text-white">Menos de 1 Minuto</h5>
+                  <p className="text-[11px] text-slate-400 mt-0.5">Fluxo otimizado para a rotina dinâmica do consultório.</p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
-                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-2.5">
                     <ShieldCheck className="w-4 h-4" />
                   </div>
-                  <h5 className="text-xs font-bold text-slate-900">Sem Compromisso</h5>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Alinhamento e orientação técnica inicial sem custos.</p>
+                  <h5 className="text-xs font-bold text-white">Sem Compromisso</h5>
+                  <p className="text-[11px] text-slate-400 mt-0.5">Alinhamento e orientação técnica inicial sem custos.</p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
-                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center mb-2.5">
                     <FileText className="w-4 h-4" />
                   </div>
-                  <h5 className="text-xs font-bold text-slate-900">Direto no WhatsApp</h5>
-                  <p className="text-[11px] text-slate-500 mt-0.5">Mensagem gerada e organizada pronta para envio com fotos.</p>
+                  <h5 className="text-xs font-bold text-white">Direto no WhatsApp</h5>
+                  <p className="text-[11px] text-slate-400 mt-0.5">Mensagem gerada e organizada pronta para envio com fotos.</p>
                 </div>
               </div>
 
@@ -398,10 +399,10 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setCurrentStep(1)}
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-teal-800 hover:bg-teal-900 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-teal-900/20 transition-all duration-200"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(245,158,11,0.35)] transition-all duration-200 cursor-pointer"
                 >
                   <span>Iniciar Triagem de Caso</span>
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5 text-slate-950" />
                 </button>
               </div>
             </div>
@@ -413,13 +414,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 01 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Você já é parceiro do Laboratório Lourenço?
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Isso nos ajuda a direcionar seu caso para o canal adequado de atendimento e cadastro.
                 </p>
               </div>
@@ -437,24 +438,24 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       setFormData((p) => ({ ...p, isPartner: opt.value as PartnerStatus }))
                       setErrorMsg('')
                     }}
-                    className={`w-full text-left p-4 sm:p-5 rounded-2xl border-2 transition-all flex items-center justify-between ${
+                    className={`w-full text-left p-4 sm:p-5 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer ${
                       formData.isPartner === opt.value
-                        ? 'border-teal-700 bg-teal-50/50 shadow-sm'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                        ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                        : 'border-slate-800 hover:border-slate-700 bg-slate-950/60'
                     }`}
                   >
                     <div>
-                      <p className="text-sm sm:text-base font-bold text-slate-900">{opt.label}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{opt.desc}</p>
+                      <p className="text-sm sm:text-base font-bold text-white">{opt.label}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{opt.desc}</p>
                     </div>
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 ${
                         formData.isPartner === opt.value
-                          ? 'border-teal-700 bg-teal-700 text-white'
-                          : 'border-slate-300'
+                          ? 'border-amber-400 bg-amber-400 text-slate-950'
+                          : 'border-slate-600'
                       }`}
                     >
-                      {formData.isPartner === opt.value && <div className="w-2 h-2 rounded-full bg-white" />}
+                      {formData.isPartner === opt.value && <div className="w-2 h-2 rounded-full bg-slate-950" />}
                     </div>
                   </button>
                 ))}
@@ -468,24 +469,24 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 2 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 02 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Dados do Cirurgião-Dentista
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Para identificarmos seu consultório e organizarmos o contato técnico e logística de coleta.
                 </p>
               </div>
 
               <div className="space-y-4 pt-2">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                     Seu Nome Completo (Dr. / Dra.) *
                   </label>
                   <div className="relative">
-                    <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <User className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="Ex: Dr. Marcelo Andrade"
@@ -493,59 +494,59 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       autoFocus
                       autoComplete="name"
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-3 bg-slate-950 rounded-xl border border-slate-800 text-sm text-white focus:bg-slate-900 focus:border-amber-400 focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                     Nome da Clínica ou Consultório
                   </label>
                   <div className="relative">
-                    <Building2 className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <Building2 className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       placeholder="Ex: Andrade Odontologia Integrada"
                       value={formData.clinic}
                       autoComplete="organization"
                       onChange={(e) => setFormData({ ...formData, clinic: e.target.value })}
-                      className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
+                      className="w-full pl-10 pr-4 py-3 bg-slate-950 rounded-xl border border-slate-800 text-sm text-white focus:bg-slate-900 focus:border-amber-400 focus:outline-none transition-colors"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                       Cidade / Bairro
                     </label>
                     <div className="relative">
-                      <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <MapPin className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
                         placeholder="Ex: São Paulo - Moema"
                         value={formData.city}
                         autoComplete="address-level2"
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-950 rounded-xl border border-slate-800 text-sm text-white focus:bg-slate-900 focus:border-amber-400 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                       WhatsApp com DDD *
                     </label>
                     <div className="relative">
-                      <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <Phone className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="tel"
                         placeholder="(11) 98765-4321"
                         value={formData.whatsapp}
                         autoComplete="tel"
                         onChange={handlePhoneChange}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-950 rounded-xl border border-slate-800 text-sm text-white focus:bg-slate-900 focus:border-amber-400 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
@@ -560,13 +561,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 3 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 03 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Qual é o tipo de trabalho protético?
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Selecione a indicação principal. Se for um caso múltiplo, escolha a principal ou 'Outro'.
                 </p>
               </div>
@@ -580,15 +581,15 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       setFormData({ ...formData, workType: type })
                       setErrorMsg('')
                     }}
-                    className={`p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-center justify-between ${
+                    className={`p-3.5 rounded-xl border text-left text-xs sm:text-sm font-semibold transition-all flex items-center justify-between cursor-pointer ${
                       formData.workType === type
-                        ? 'border-teal-700 bg-teal-50/70 text-teal-950 ring-1 ring-teal-700'
-                        : 'border-slate-200 hover:border-slate-300 text-slate-700 bg-white'
+                        ? 'border-amber-400 bg-amber-500/15 text-amber-300 ring-1 ring-amber-400'
+                        : 'border-slate-800 hover:border-slate-700 text-slate-300 bg-slate-950/60'
                     }`}
                   >
                     <span>{type}</span>
                     {formData.workType === type && (
-                      <CheckCircle className="w-4 h-4 text-teal-700 shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-amber-400 shrink-0" />
                     )}
                   </button>
                 ))}
@@ -602,13 +603,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 4 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 04 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Qual o formato do fluxo de envio?
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Trabalhamos de forma integrada com fluxos digitais e moldagens convencionais.
                 </p>
               </div>
@@ -622,24 +623,24 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       setFormData({ ...formData, workflow: opt.id })
                       setErrorMsg('')
                     }}
-                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer ${
                       formData.workflow === opt.id
-                        ? 'border-teal-700 bg-teal-50/50'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                        ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                        : 'border-slate-800 hover:border-slate-700 bg-slate-950/60'
                     }`}
                   >
                     <div>
-                      <p className="text-sm sm:text-base font-bold text-slate-900">{opt.title}</p>
-                      <p className="text-xs text-slate-500 mt-0.5">{opt.desc}</p>
+                      <p className="text-sm sm:text-base font-bold text-white">{opt.title}</p>
+                      <p className="text-xs text-slate-400 mt-0.5">{opt.desc}</p>
                     </div>
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 ${
                         formData.workflow === opt.id
-                          ? 'border-teal-700 bg-teal-700 text-white'
-                          : 'border-slate-300'
+                          ? 'border-amber-400 bg-amber-400 text-slate-950'
+                          : 'border-slate-600'
                       }`}
                     >
-                      {formData.workflow === opt.id && <div className="w-2 h-2 rounded-full bg-white" />}
+                      {formData.workflow === opt.id && <div className="w-2 h-2 rounded-full bg-slate-950" />}
                     </div>
                   </button>
                 ))}
@@ -653,13 +654,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 5 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 05 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Em qual etapa clínica o caso se encontra?
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Ajuda a definir se você precisa de alinhamento prévio ou se já podemos agendar a coleta/usinagem.
                 </p>
               </div>
@@ -673,21 +674,21 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       setFormData({ ...formData, stage: opt.id })
                       setErrorMsg('')
                     }}
-                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer ${
                       formData.stage === opt.id
-                        ? 'border-teal-700 bg-teal-50/50'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                        ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                        : 'border-slate-800 hover:border-slate-700 bg-slate-950/60'
                     }`}
                   >
-                    <span className="text-sm font-semibold text-slate-900">{opt.label}</span>
+                    <span className="text-sm font-semibold text-white">{opt.label}</span>
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 ${
                         formData.stage === opt.id
-                          ? 'border-teal-700 bg-teal-700 text-white'
-                          : 'border-slate-300'
+                          ? 'border-amber-400 bg-amber-400 text-slate-950'
+                          : 'border-slate-600'
                       }`}
                     >
-                      {formData.stage === opt.id && <div className="w-2 h-2 rounded-full bg-white" />}
+                      {formData.stage === opt.id && <div className="w-2 h-2 rounded-full bg-slate-950" />}
                     </div>
                   </button>
                 ))}
@@ -701,13 +702,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 6 && (
             <div className="space-y-4">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 06 de 07
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Qual a expectativa de prazo para a instalação?
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Planejamento e pontualidade são compromissos inegociáveis no Laboratório Lourenço.
                 </p>
               </div>
@@ -721,21 +722,21 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       setFormData({ ...formData, deadline: opt.id })
                       setErrorMsg('')
                     }}
-                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between ${
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-all flex items-center justify-between cursor-pointer ${
                       formData.deadline === opt.id
-                        ? 'border-teal-700 bg-teal-50/50'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
+                        ? 'border-amber-400 bg-amber-500/10 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
+                        : 'border-slate-800 hover:border-slate-700 bg-slate-950/60'
                     }`}
                   >
-                    <span className="text-sm font-semibold text-slate-900">{opt.label}</span>
+                    <span className="text-sm font-semibold text-white">{opt.label}</span>
                     <div
                       className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ml-3 ${
                         formData.deadline === opt.id
-                          ? 'border-teal-700 bg-teal-700 text-white'
-                          : 'border-slate-300'
+                          ? 'border-amber-400 bg-amber-400 text-slate-950'
+                          : 'border-slate-600'
                       }`}
                     >
-                      {formData.deadline === opt.id && <div className="w-2 h-2 rounded-full bg-white" />}
+                      {formData.deadline === opt.id && <div className="w-2 h-2 rounded-full bg-slate-950" />}
                     </div>
                   </button>
                 ))}
@@ -749,13 +750,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 7 && (
             <div className="space-y-5 animate-fade-in">
               <div>
-                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                <span className="text-xs font-bold text-amber-400 uppercase tracking-wider">
                   Etapa 07 de 07 (Opcional)
                 </span>
-                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                <h4 className="text-xl sm:text-2xl font-bold text-white mt-1 mb-2">
                   Observações e Detalhes Clínicos
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Deseja adiantar alguma informação técnica sobre o caso? (Substrato, cor desejada, fotos ou arquivos).
                 </p>
               </div>
@@ -771,7 +772,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       key={chip}
                       type="button"
                       onClick={() => handleToggleNoteChip(chip)}
-                      className="text-xs px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-900 hover:border-teal-300 border border-slate-200 text-slate-700 font-medium transition-colors"
+                      className="text-xs px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-amber-500/20 hover:text-amber-300 hover:border-amber-400/50 border border-slate-700 text-slate-300 font-medium transition-colors cursor-pointer"
                     >
                       + {chip}
                     </button>
@@ -781,7 +782,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
 
               {/* Text Area */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">
                   Campo de Observações
                 </label>
                 <textarea
@@ -789,12 +790,12 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                   placeholder="Ex: Substrato 3M2, cor desejada BL3, antagonista com restauração metálica, paciente tem bruxismo..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors resize-none"
+                  className="w-full p-3.5 bg-slate-950 rounded-xl border border-slate-800 text-sm text-white focus:bg-slate-900 focus:border-amber-400 focus:outline-none transition-colors resize-none"
                 />
               </div>
 
-              <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200/80 flex items-start gap-2.5 text-xs text-teal-900">
-                <HelpCircle className="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
+              <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-2.5 text-xs text-amber-200">
+                <HelpCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                 <span>
                   Você poderá anexar fotos clínicas, radiografias e arquivos STL diretamente pelo WhatsApp na próxima tela.
                 </span>
@@ -808,55 +809,55 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 8 && (
             <div className="space-y-5 animate-fade-in">
               <div>
-                <h4 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                   Tudo pronto, {formData.name || 'Doutor(a)'}!
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-xs sm:text-sm text-slate-300">
                   Confira o resumo das informações antes de abrir o WhatsApp direto com o laboratório:
                 </p>
               </div>
 
               {/* Visual Summary Card */}
-              <div className="bg-slate-50 rounded-2xl p-4 sm:p-5 border border-slate-200/90 text-xs sm:text-sm space-y-3">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-3 border-b border-slate-200/60">
+              <div className="bg-slate-950 rounded-2xl p-4 sm:p-5 border border-amber-500/30 text-xs sm:text-sm space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-3 border-b border-slate-800">
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Cirurgião-Dentista:</span>
-                    <strong className="text-slate-900 font-bold text-sm">{formData.name || '-'}</strong>
-                    {formData.clinic && <span className="block text-slate-500 text-xs">{formData.clinic}</span>}
+                    <strong className="text-white font-bold text-sm">{formData.name || '-'}</strong>
+                    {formData.clinic && <span className="block text-slate-400 text-xs">{formData.clinic}</span>}
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Cidade & WhatsApp:</span>
-                    <strong className="text-slate-900 font-bold text-sm">{formData.city || '-'}</strong>
-                    <span className="block text-slate-600 text-xs font-medium">{formData.whatsapp || '-'}</span>
+                    <strong className="text-white font-bold text-sm">{formData.city || '-'}</strong>
+                    <span className="block text-amber-400 text-xs font-medium">{formData.whatsapp || '-'}</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Tipo de Trabalho:</span>
-                    <strong className="text-teal-900 font-bold text-sm">{formData.workType || '-'}</strong>
+                    <strong className="text-amber-300 font-bold text-sm">{formData.workType || '-'}</strong>
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Fluxo de Trabalho:</span>
-                    <strong className="text-slate-900 font-semibold">{formData.workflow || '-'}</strong>
+                    <strong className="text-white font-semibold">{formData.workflow || '-'}</strong>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-200/60">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-800">
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Etapa Atual:</span>
-                    <span className="text-slate-700 font-medium">{formData.stage || '-'}</span>
+                    <span className="text-slate-300 font-medium">{formData.stage || '-'}</span>
                   </div>
                   <div>
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Expectativa de Prazo:</span>
-                    <span className="text-slate-700 font-medium">{formData.deadline || '-'}</span>
+                    <span className="text-slate-300 font-medium">{formData.deadline || '-'}</span>
                   </div>
                 </div>
 
                 {formData.notes && (
-                  <div className="pt-2 border-t border-slate-200/60">
+                  <div className="pt-2 border-t border-slate-800">
                     <span className="text-slate-400 block text-[11px] font-semibold uppercase">Observações:</span>
-                    <p className="text-slate-700 text-xs italic mt-0.5 bg-white p-2.5 rounded-xl border border-slate-200/80">
+                    <p className="text-slate-200 text-xs italic mt-0.5 bg-slate-900 p-2.5 rounded-xl border border-slate-800">
                       {formData.notes}
                     </p>
                   </div>
@@ -869,13 +870,13 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/25 transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/30 transition-all text-center"
                 >
                   <Send className="w-5 h-5 text-white" />
                   <span>Falar com o Laboratório no WhatsApp</span>
                 </a>
 
-                <p className="mt-3 text-[11px] text-center text-slate-500 leading-relaxed">
+                <p className="mt-3 text-[11px] text-center text-slate-400 leading-relaxed">
                   🔒 Ao clicar, abriremos sua conversa com o Laboratório Lourenço com os dados organizados. Você poderá anexar fotos do preparo, escaneamentos ou radiografias direto no WhatsApp.
                 </p>
               </div>
@@ -884,7 +885,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setCurrentStep(1)}
-                  className="text-xs text-slate-400 hover:text-teal-700 transition-colors underline"
+                  className="text-xs text-amber-400 hover:text-amber-300 transition-colors underline cursor-pointer"
                 >
                   Editar dados da triagem
                 </button>
@@ -897,11 +898,11 @@ export const TriageModal: React.FC<TriageModalProps> = ({
         {/* FOOTER NAVIGATION (Back / Next)                              */}
         {/* ============================================================ */}
         {currentStep >= 1 && currentStep <= 7 && (
-          <div className="p-4 sm:p-6 pt-3 border-t border-slate-100 bg-white flex items-center justify-between gap-3">
+          <div className="p-4 sm:p-6 pt-3 border-t border-slate-800 bg-slate-950 flex items-center justify-between gap-3">
             <button
               type="button"
               onClick={handleBack}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-700 text-xs sm:text-sm font-semibold text-slate-300 hover:bg-slate-800 transition-colors cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Voltar</span>
@@ -910,10 +911,10 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             <button
               type="button"
               onClick={handleNext}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95 cursor-pointer"
             >
               <span>{currentStep === 7 ? 'Ver Resumo' : 'Continuar'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-slate-950" />
             </button>
           </div>
         )}
@@ -921,4 +922,3 @@ export const TriageModal: React.FC<TriageModalProps> = ({
     </div>
   )
 }
-

@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
@@ -8,7 +10,6 @@ interface FaqSectionProps {
 }
 
 export const FaqSection: React.FC<FaqSectionProps> = () => {
-
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   const faqs: FaqItem[] = [
@@ -49,15 +50,15 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
   }
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
+    <section id="faq" className="py-24 sm:py-32 bg-[#05070B] text-white relative overflow-hidden">
       {/* Background subtle ambient lights */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 -right-20 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute top-1/4 -right-20 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-0 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute bottom-10 left-0 w-[450px] h-[450px] bg-yellow-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -89,7 +90,7 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-slate-900/60 hover:bg-slate-900/90 rounded-2xl border border-slate-800/80 hover:border-teal-500/40 overflow-hidden shadow-lg transition-all"
+                className="bg-slate-900/60 hover:bg-slate-900/90 rounded-2xl border border-slate-800/80 hover:border-amber-500/40 overflow-hidden shadow-lg transition-all"
               >
                 <button
                   type="button"
@@ -97,12 +98,12 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
                   className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-teal-200 transition-colors">
+                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-amber-200 transition-colors">
                     {faq.question}
                   </span>
                   <div
                     className={`w-8 h-8 rounded-full bg-slate-800 border border-slate-700/60 flex items-center justify-center shrink-0 text-slate-300 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-teal-500/20 text-teal-300 border-teal-500/40' : ''
+                      isOpen ? 'rotate-180 bg-amber-500/20 text-amber-300 border-amber-500/40' : ''
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -136,4 +137,3 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
     </section>
   )
 }
-

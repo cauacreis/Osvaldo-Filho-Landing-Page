@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ZoomIn, X, CheckCircle2, Send } from 'lucide-react'
@@ -112,15 +114,15 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
   const filteredCases = activeTab === 'todos' ? cases : cases.filter((c) => c.category === activeTab)
 
   return (
-    <section id="cases" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
+    <section id="cases" className="py-24 sm:py-32 bg-[#05070B] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute top-1/4 right-0 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute bottom-10 left-0 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -150,7 +152,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="mb-20 bg-gradient-to-br from-slate-900/90 via-slate-900 to-slate-950 border border-teal-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_rgba(20,184,166,0.1)] relative overflow-hidden"
+          className="mb-20 bg-gradient-to-br from-slate-900/90 via-slate-900 to-slate-950 border border-amber-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_rgba(245,158,11,0.15)] relative overflow-hidden"
         >
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
             
@@ -179,21 +181,21 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 {/* Technical Points */}
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                     <div>
                       <strong className="text-white">Barra Interna Rígida:</strong> Distribuição uniforme de carga durante a osseointegração.
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                     <div>
                       <strong className="text-white">Gengiva Caracterizada:</strong> Estética facial harmônica e zênite gengival natural.
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 text-sm text-slate-200">
-                    <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                     <div>
                       <strong className="text-white">Oclusão Balanceada:</strong> Contatos posteriores bilaterais para proteção dos componentes.
                     </div>
@@ -205,7 +207,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 <button
                   type="button"
                   onClick={onOpenTriage}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] active:scale-95"
                 >
                   <span>Enviar caso para análise</span>
                   <Send className="w-4 h-4 text-slate-950" />
@@ -238,7 +240,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   activeTab === tab.id
-                    ? 'bg-teal-400 text-slate-950 shadow-md font-bold'
+                    ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-slate-950 shadow-md font-bold'
                     : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
                 }`}
               >
@@ -261,8 +263,8 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 transition={{ duration: 0.3 }}
               >
                 <TiltCard
-                  glowColor="rgba(20, 184, 166, 0.15)"
-                  className="h-full bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-teal-500/40 rounded-3xl overflow-hidden flex flex-col justify-between group shadow-xl"
+                  glowColor="rgba(245, 158, 11, 0.15)"
+                  className="h-full bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-amber-500/40 rounded-3xl overflow-hidden flex flex-col justify-between group shadow-xl"
                 >
                   <div>
                     {/* Image Container with click to zoom */}
@@ -276,18 +278,18 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="px-3 py-1.5 rounded-full bg-slate-950/90 text-white text-xs font-semibold flex items-center gap-1.5 border border-white/10">
-                          <ZoomIn className="w-3.5 h-3.5 text-teal-400" />
+                        <span className="px-3 py-1.5 rounded-full bg-slate-950/90 text-white text-xs font-semibold flex items-center gap-1.5 border border-amber-500/30">
+                          <ZoomIn className="w-3.5 h-3.5 text-amber-400" />
                           Ampliar Detalhes
                         </span>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <h4 className="text-base sm:text-lg font-bold text-white mb-1.5 group-hover:text-teal-300 transition-colors">
+                      <h4 className="text-base sm:text-lg font-bold text-white mb-1.5 group-hover:text-amber-300 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs font-medium text-teal-400 mb-3">
+                      <p className="text-xs font-medium text-amber-400 mb-3">
                         {item.caption}
                       </p>
                       <p className="text-xs text-slate-400 leading-relaxed mb-5 font-normal">
@@ -297,7 +299,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                       <div className="space-y-1.5 pt-4 border-t border-slate-800">
                         {item.technicalNotes.map((note, i) => (
                           <div key={i} className="flex items-center gap-2 text-[11px] text-slate-300">
-                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
                             <span>{note}</span>
                           </div>
                         ))}
@@ -309,7 +311,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                     <button
                       type="button"
                       onClick={onOpenTriage}
-                      className="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-teal-500 hover:text-slate-950 text-white text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+                      className="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-slate-950 text-white text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
                     >
                       <span>Enviar caso para análise</span>
                     </button>
@@ -329,7 +331,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
             onClick={() => setActiveImage(null)}
           >
             <motion.div
@@ -343,7 +345,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
               <button
                 type="button"
                 onClick={() => setActiveImage(null)}
-                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-amber-400 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 aria-label="Fechar visualização"
               >
                 <X className="w-6 h-6" />
@@ -351,7 +353,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
               <img
                 src={activeImage}
                 alt="Ampliação do caso clínico"
-                className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700"
+                className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-amber-500/30"
               />
               <div className="mt-4 text-center">
                 <button
@@ -360,7 +362,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                     setActiveImage(null)
                     onOpenTriage()
                   }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
                 >
                   <span>Enviar caso para análise</span>
                   <Send className="w-3.5 h-3.5" />

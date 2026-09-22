@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useRef, useState, useEffect } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
@@ -12,7 +14,7 @@ interface TiltCardProps {
 export const TiltCard: React.FC<TiltCardProps> = ({
   children,
   className = '',
-  glowColor = 'rgba(20, 184, 166, 0.15)',
+  glowColor = 'rgba(245, 158, 11, 0.15)',
   onClick,
   tiltStrength = 6,
 }) => {
@@ -89,4 +91,3 @@ export const TiltCard: React.FC<TiltCardProps> = ({
     </div>
   )
 }
-

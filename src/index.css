@@ -10,24 +10,25 @@
   }
   
   body {
-    @apply bg-[#F8FAFC] text-slate-900 antialiased;
+    @apply bg-[#05070B] text-slate-100 antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  /* Custom subtle scrollbar */
+  /* Custom subtle dark & gold scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #06090e;
   }
   ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #1e293b;
     border-radius: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+    background: #d4af37;
   }
 }
 
@@ -36,29 +37,43 @@
     text-wrap: balance;
   }
 
-  /* Double-Bezel nested architecture */
+  /* Double-Bezel nested luxury architecture */
   .double-bezel {
-    @apply ring-1 ring-slate-900/5 bg-white/70 backdrop-blur-md p-1.5 md:p-2 rounded-3xl shadow-soft-depth;
+    @apply ring-1 ring-amber-500/20 bg-slate-900/70 backdrop-blur-md p-1.5 md:p-2 rounded-3xl shadow-soft-depth;
   }
   
   .double-bezel-inner {
-    @apply bg-white rounded-[calc(1.5rem-0.375rem)] shadow-inner-bezel border border-slate-100/80;
+    @apply bg-slate-950 rounded-[calc(1.5rem-0.375rem)] shadow-inner-bezel border border-amber-500/20;
   }
 
-  /* Refined clinical glow */
-  .clinical-gradient {
-    background: radial-gradient(circle at 50% 0%, rgba(8, 131, 149, 0.08) 0%, rgba(248, 250, 252, 0) 70%);
+  /* Refined Gold Glow Gradient */
+  .gold-gradient-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.15) 0%, rgba(5, 7, 11, 0) 70%);
   }
 
   .gold-gradient-text {
-    background: linear-gradient(135deg, #b45309 0%, #d4af37 50%, #78350f 100%);
+    background: linear-gradient(135deg, #fef08a 0%, #d4af37 45%, #b45309 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .teal-gradient-text {
-    background: linear-gradient(135deg, #0a4d68 0%, #088395 60%, #05bfdb 100%);
+  .gold-gradient-text-bright {
+    background: linear-gradient(135deg, #ffffff 0%, #fef08a 30%, #f59e0b 80%, #d4af37 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .gold-shimmer-bg {
+    background: linear-gradient(90deg, rgba(212,175,55,0.05) 0%, rgba(212,175,55,0.2) 50%, rgba(212,175,55,0.05) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

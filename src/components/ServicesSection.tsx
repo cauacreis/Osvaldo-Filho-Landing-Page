@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, Shield, Layers, Gem, Cpu, Activity, CircleDot } from 'lucide-react'
@@ -135,15 +137,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   }
 
   return (
-    <section id="servicos" className="py-20 sm:py-28 bg-[#070c18] text-white relative overflow-hidden">
+    <section id="servicos" className="py-20 sm:py-28 bg-[#06090e] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-10 right-0 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute top-10 right-0 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute bottom-0 left-10 w-[500px] h-[500px] bg-yellow-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -170,7 +172,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('left')}
-              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-white transition-colors"
+              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-amber-400 transition-colors"
               aria-label="Rolar para a esquerda"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -178,7 +180,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('right')}
-              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-white transition-colors"
+              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-amber-400 transition-colors"
               aria-label="Rolar para a direita"
             >
               <ChevronRight className="w-5 h-5" />
@@ -197,7 +199,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
-                    ? 'bg-teal-400 text-slate-950 font-bold shadow-[0_0_20px_rgba(20,184,166,0.35)]'
+                    ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(245,158,11,0.35)]'
                     : 'bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800/80'
                 }`}
               >
@@ -226,20 +228,20 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   className="w-[85vw] sm:w-auto shrink-0 snap-start"
                 >
                   <TiltCard
-                    glowColor="rgba(20, 184, 166, 0.2)"
-                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
+                    glowColor="rgba(245, 158, 11, 0.2)"
+                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
                   >
                     <div>
                       {/* Top Header with Icon */}
-                      <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all mb-4">
+                      <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all mb-4">
                         <Icon className="w-5 h-5" />
                       </div>
 
-                      <h3 className="text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-teal-200 transition-colors">
+                      <h3 className="text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-amber-200 transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-xs font-medium text-teal-300 mb-2.5 leading-snug">
+                      <p className="text-xs font-medium text-amber-400 mb-2.5 leading-snug">
                         {service.tagline}
                       </p>
 
@@ -251,7 +253,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                       <div className="space-y-1.5 mb-5">
                         {service.highlights.map((h, i) => (
                           <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                             <span>{h}</span>
                           </div>
                         ))}
@@ -263,7 +265,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                       <button
                         type="button"
                         onClick={() => onSelectService(service.title)}
-                        className="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-teal-400 text-slate-200 hover:text-slate-950 font-bold text-xs border border-slate-700/60 hover:border-teal-400 transition-all duration-200"
+                        className="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 text-slate-200 hover:text-slate-950 font-bold text-xs border border-slate-700/60 hover:border-amber-400 transition-all duration-200"
                       >
                         <span>Enviar este tipo de caso</span>
                         <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Clock, MessageSquareOff, SlidersHorizontal, ArrowRight, ShieldCheck } from 'lucide-react'
@@ -33,11 +35,11 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
   ]
 
   return (
-    <section id="dores" className="py-20 sm:py-28 bg-[#080d17] text-white relative overflow-hidden">
+    <section id="dores" className="py-20 sm:py-28 bg-[#06090e] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-40 -left-40 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute -bottom-40 -left-40 w-[550px] h-[550px] bg-amber-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
@@ -109,14 +111,14 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="rounded-3xl bg-gradient-to-r from-teal-950/80 via-slate-900 to-teal-950/80 border border-teal-500/35 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+          className="rounded-3xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-amber-950/30 border border-amber-500/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
         >
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center text-teal-300 shrink-0 mt-1">
+            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 mt-1 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">
                 A Alternativa Definitiva
               </span>
               <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -131,7 +133,7 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
           <button
             type="button"
             onClick={onOpenTriage}
-            className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95 whitespace-nowrap"
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(245,158,11,0.35)] active:scale-95 whitespace-nowrap"
           >
             <span>Enviar caso para análise</span>
             <ArrowRight className="w-4 h-4" />
