@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle2, ShieldCheck, ArrowDownRight, Sparkles, Award } from 'lucide-react'
+import { Send, CheckCircle2, ShieldCheck, ArrowDownRight } from 'lucide-react'
 
 interface HeroProps {
   onOpenTriage: () => void
@@ -8,7 +8,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
   return (
-    <section className="relative min-h-[92vh] sm:min-h-screen flex items-center bg-[#06090e] overflow-hidden pt-24 sm:pt-28 pb-16 sm:pb-20">
+    <section id="hero" className="relative min-h-[92vh] sm:min-h-screen flex items-center bg-[#06090e] overflow-hidden pt-20 sm:pt-24 pb-16 sm:pb-20">
       {/* ========================================================================= */}
       {/* Full Width Edge-to-Edge Studio Background with Osvaldo on the right       */}
       {/* ========================================================================= */}
@@ -146,89 +146,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
 
           </div>
 
-          {/* Right Column: Floating Micro-Proof Badges overlaying the Osvaldo Studio visual */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0 flex flex-col justify-end lg:h-[580px] pointer-events-none">
-            
-            {/* Floating Card 1: Coroa Cerâmica E.max (Desktop overlay) */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="hidden lg:block lg:absolute lg:top-8 lg:right-4 pointer-events-auto"
-            >
-              <motion.div
-                animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="bg-slate-900/85 backdrop-blur-xl border border-teal-500/30 p-3 rounded-2xl shadow-[0_12px_36px_rgba(0,0,0,0.6)] flex items-center gap-3 max-w-[240px]"
-              >
-                <img
-                  src="/assets/case-coroa-estetica.webp"
-                  alt="Coroa Cerâmica E.max"
-                  className="w-12 h-12 rounded-xl object-cover border border-teal-500/40 shrink-0"
-                />
-                <div>
-                  <div className="flex items-center gap-1 text-[10px] font-bold text-teal-300 uppercase tracking-wider">
-                    <Sparkles className="w-3 h-3 text-teal-400" />
-                    <span>Cerâmica Pura</span>
-                  </div>
-                  <p className="text-xs font-bold text-white leading-snug">Selamento Marginal Passivo</p>
-                  <p className="text-[10px] text-slate-400">Adaptação em Troquel</p>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Floating Card 2: Carga Imediata (Desktop overlay) */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="hidden lg:block lg:absolute lg:bottom-28 lg:left-0 pointer-events-auto"
-            >
-              <motion.div
-                animate={{ y: [5, -5, 5] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
-                className="bg-slate-900/85 backdrop-blur-xl border border-amber-500/30 p-3 rounded-2xl shadow-[0_12px_36px_rgba(0,0,0,0.6)] flex items-center gap-3 max-w-[260px]"
-              >
-                <img
-                  src="/assets/case-protocolo-finalizado.webp"
-                  alt="Protocolo de Carga Imediata"
-                  className="w-12 h-12 rounded-xl object-cover border border-amber-500/40 shrink-0"
-                />
-                <div>
-                  <div className="flex items-center gap-1 text-[10px] font-bold text-amber-400 uppercase tracking-wider">
-                    <Award className="w-3 h-3 text-amber-400" />
-                    <span>Carga Imediata</span>
-                  </div>
-                  <p className="text-xs font-bold text-white leading-snug">Passividade Biomecânica</p>
-                  <p className="text-[10px] text-slate-400">Reforço com Barra Metálica</p>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Floating Card 3: Responsável Técnico Direct Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-6 lg:mt-0 lg:absolute lg:bottom-4 lg:right-6 pointer-events-auto"
-            >
-
-              <div className="bg-slate-950/90 backdrop-blur-xl border border-white/15 px-4 py-3 rounded-2xl shadow-[0_12px_36px_rgba(0,0,0,0.7)] flex items-center gap-3">
-                <div className="relative w-9 h-9 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center shrink-0">
-                  <img
-                    src="/assets/logo.webp"
-                    alt="Laboratório Lourenço"
-                    className="w-6 h-6 object-contain"
-                  />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-white">Osvaldo Lourenço Filho</p>
-                  <p className="text-[10px] text-teal-400 font-medium">Responsável Técnico • Contato Direto</p>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
+          {/* Right Column: Clean area showcasing Osvaldo's studio portrait without badge obstructions */}
+          <div className="hidden lg:block lg:col-span-5 pointer-events-none" aria-hidden="true" />
 
         </div>
       </div>
