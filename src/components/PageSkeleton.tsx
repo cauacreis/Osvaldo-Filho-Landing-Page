@@ -14,8 +14,14 @@ export const PageSkeleton: React.FC = () => {
       {/* Top Navbar Skeleton */}
       <div className="max-w-7xl mx-auto w-full flex items-center justify-between py-3 px-6 rounded-full bg-slate-900/60 border border-amber-500/20 shadow-lg">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-400/30 animate-pulse flex items-center justify-center p-1.5">
-            <div className="w-5 h-5 rounded-full bg-amber-400/40" />
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-amber-500/30 flex items-center justify-center p-1 shrink-0 shadow-[0_0_10px_rgba(212,175,55,0.15)] animate-pulse">
+            <img
+              src="/assets/logo-gold.png"
+              alt="Laboratório Lourenço"
+              className="w-full h-full object-contain opacity-70"
+              width="36"
+              height="36"
+            />
           </div>
           <div className="space-y-1.5">
             <div className="w-32 h-3.5 rounded-full bg-slate-800 gold-shimmer-bg" />

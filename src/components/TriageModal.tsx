@@ -11,7 +11,6 @@ import {
   MapPin,
   Phone,
   User,
-  Sparkles,
   AlertCircle,
   Clock,
   ShieldCheck,
@@ -285,8 +284,14 @@ export const TriageModal: React.FC<TriageModalProps> = ({
         <div className="p-5 sm:p-6 pb-4 border-b border-slate-800 bg-slate-950/70">
           <div className="flex items-center justify-between gap-4 mb-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-slate-900 border border-amber-500/40 text-amber-400 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.2)]">
-                <Sparkles className="w-5 h-5 text-amber-400" />
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-amber-500/40 p-1 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                <img
+                  src="/assets/logo-gold.png"
+                  alt="Laboratório Lourenço"
+                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  width="36"
+                  height="36"
+                />
               </div>
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-white leading-tight">

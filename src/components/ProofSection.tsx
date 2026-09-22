@@ -244,8 +244,8 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
 
                       {/* Excerpt quote */}
                       {currentReview.quote && (
-                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800 h-[170px] sm:h-[150px] lg:h-[160px] flex items-center overflow-y-auto scrollbar-none">
-                          <p className="w-full">{currentReview.quote}</p>
+                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800 h-[170px] sm:h-[150px] lg:h-[160px] flex flex-col overflow-y-auto scrollbar-none">
+                          <p className="w-full my-auto">{currentReview.quote}</p>
                         </blockquote>
                       )}
                     </div>
