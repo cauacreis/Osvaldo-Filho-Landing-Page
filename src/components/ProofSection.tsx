@@ -5,9 +5,6 @@ import {
   ZoomIn,
   X,
   Send,
-  Award,
-  Users,
-  MessageSquare,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -108,7 +105,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-8"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             A prova real de quem instala nossas peças no consultório.
@@ -117,30 +114,6 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           <p className="mt-3 text-base sm:text-lg text-slate-300 font-normal">
             Sem depoimentos fabricados: veja o que cirurgiões parceiros mandam no nosso WhatsApp após a cimentação.
           </p>
-        </motion.div>
-
-        {/* Compact Trust Stats Bar (Replaces 4 bulky cards with 1 sleek inline strip) */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 py-3 px-6 rounded-2xl bg-slate-900/70 border border-slate-800 max-w-2xl mx-auto mb-12 text-xs sm:text-sm shadow-md"
-        >
-          <span className="flex items-center gap-2 text-slate-300">
-            <Award className="w-4 h-4 text-teal-400 shrink-0" />
-            <span><strong className="text-white font-bold">+1.000</strong> próteses entregues</span>
-          </span>
-          <span className="hidden sm:inline text-slate-700">•</span>
-          <span className="flex items-center gap-2 text-slate-300">
-            <Users className="w-4 h-4 text-teal-400 shrink-0" />
-            <span><strong className="text-white font-bold">+30</strong> dentistas parceiros</span>
-          </span>
-          <span className="hidden sm:inline text-slate-700">•</span>
-          <span className="flex items-center gap-2 text-slate-300">
-            <MessageSquare className="w-4 h-4 text-teal-400 shrink-0" />
-            <span><strong className="text-white font-bold">100%</strong> contato direto</span>
-          </span>
         </motion.div>
 
         {/* ============================================================ */}
@@ -154,54 +127,42 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           onTouchEnd={handleTouchEnd}
         >
           {/* Controls bar */}
-          <div className="flex items-center justify-between gap-4 mb-5 px-2">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-              <span className="text-xs font-semibold text-teal-300">
-                Print {currentIndex + 1} de {reviews.length}
-              </span>
-              <span className="text-xs text-slate-400 hidden sm:inline">
-                {isPaused ? '(Pausado)' : '(Rotação automática)'}
-              </span>
+          <div className="flex items-center justify-center gap-3 mb-6 px-2">
+            <button
+              type="button"
+              onClick={prevSlide}
+              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer"
+              aria-label="Depoimento anterior"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Progress / indicator dots */}
+            <div className="flex items-center gap-1.5 px-2">
+              {reviews.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => {
+                    setDirection(idx > currentIndex ? 1 : -1)
+                    setCurrentIndex(idx)
+                  }}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${
+                    idx === currentIndex ? 'w-6 bg-teal-400' : 'w-2 bg-slate-700 hover:bg-slate-500'
+                  }`}
+                  aria-label={`Ir para print ${idx + 1}`}
+                />
+              ))}
             </div>
 
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={prevSlide}
-                className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none"
-                aria-label="Depoimento anterior"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-
-              {/* Progress / indicator dots */}
-              <div className="flex items-center gap-1.5 px-2">
-                {reviews.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => {
-                      setDirection(idx > currentIndex ? 1 : -1)
-                      setCurrentIndex(idx)
-                    }}
-                    className={`h-2 rounded-full transition-all ${
-                      idx === currentIndex ? 'w-6 bg-teal-400' : 'w-2 bg-slate-700 hover:bg-slate-500'
-                    }`}
-                    aria-label={`Ir para print ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-              <button
-                type="button"
-                onClick={nextSlide}
-                className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none"
-                aria-label="Próximo depoimento"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+            <button
+              type="button"
+              onClick={nextSlide}
+              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 hover:text-white transition-colors focus:outline-none cursor-pointer"
+              aria-label="Próximo depoimento"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
 
           {/* Active Carousel Card */}
@@ -229,9 +190,6 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                         <div className="flex items-center gap-2">
                           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                           <span className="font-semibold text-white">WhatsApp</span>
-                          <span className="text-emerald-400 text-[10px] bg-emerald-950/80 px-1.5 py-0.5 rounded border border-emerald-500/30">
-                            Verificado
-                          </span>
                         </div>
                         <span className="text-slate-400 text-[10px] flex items-center gap-1">
                           <ZoomIn className="w-3 h-3 text-teal-400" />
