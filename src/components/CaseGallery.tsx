@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ZoomIn, X, CheckCircle2, Eye, Send, MoveHorizontal } from 'lucide-react'
+import { ZoomIn, X, CheckCircle2, Send } from 'lucide-react'
 import { BeforeAfterSlider } from './ui/BeforeAfterSlider'
 import { TiltCard } from './ui/TiltCard'
 
@@ -155,8 +155,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
             
             {/* Left Column: Interactive Before/After Comparison */}
-            <div className="w-full lg:w-1/2 flex flex-col gap-4">
-              
+            <div className="w-full lg:w-1/2">
               <BeforeAfterSlider
                 beforeImage="/assets/case-protocolo-barra.webp"
                 afterImage="/assets/case-protocolo-finalizado.webp"
@@ -164,21 +163,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 afterLabel="Protocolo Finalizado"
                 className="aspect-[4/3] sm:aspect-[16/11] border border-slate-700/80"
               />
-
-              <div className="flex items-center justify-between text-xs text-slate-400 px-2 pt-1">
-                <button
-                  type="button"
-                  onClick={() => setActiveImage('/assets/case-protocolo-finalizado.webp')}
-                  className="flex items-center gap-1.5 hover:text-teal-300 transition-colors cursor-pointer"
-                >
-                  <Eye className="w-3.5 h-3.5 text-teal-400" />
-                  <span>Clique para ampliar imagem completa</span>
-                </button>
-                <span className="text-teal-400 font-semibold flex items-center gap-1">
-                  <MoveHorizontal className="w-3.5 h-3.5" />
-                  Slider Interativo
-                </span>
-              </div>
             </div>
 
             {/* Right Column: Responsible, Simple Technical Analysis */}
@@ -217,7 +201,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center">
                 <button
                   type="button"
                   onClick={onOpenTriage}
@@ -226,9 +210,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                   <span>Enviar caso para análise</span>
                   <Send className="w-4 h-4 text-slate-950" />
                 </button>
-                <span className="text-xs text-slate-400 text-center sm:text-left">
-                  Planejamento conjunto com o técnico antes da cirurgia
-                </span>
               </div>
 
             </div>

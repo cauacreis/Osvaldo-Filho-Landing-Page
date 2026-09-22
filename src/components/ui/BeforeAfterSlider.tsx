@@ -110,18 +110,6 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         />
       </div>
 
-      {/* Subtle Minimal Labels */}
-      <div className="absolute top-4 left-4 z-20 pointer-events-none">
-        <span className="px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 text-[11px] font-medium text-slate-300 shadow-sm">
-          {beforeLabel}
-        </span>
-      </div>
-      <div className="absolute top-4 right-4 z-20 pointer-events-none">
-        <span className="px-2.5 py-1 rounded-lg bg-slate-950/70 backdrop-blur-md border border-white/10 text-[11px] font-medium text-slate-300 shadow-sm">
-          {afterLabel}
-        </span>
-      </div>
-
       {/* Draggable Divider Line & Knob */}
       <div
         className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex items-center justify-center will-change-[left]"
@@ -134,13 +122,6 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         <div className="absolute w-10 h-10 rounded-full bg-slate-950 border-2 border-teal-400 text-white shadow-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-active:scale-95 transition-transform">
           <MoveHorizontal className="w-5 h-5 text-teal-300" />
         </div>
-      </div>
-
-      {/* Bottom hint */}
-      <div className="absolute bottom-3 inset-x-0 flex justify-center z-20 pointer-events-none">
-        <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] text-slate-300 font-medium tracking-wide">
-          Arraste para comparar a infraestrutura de titânio e o protocolo finalizado
-        </span>
       </div>
     </div>
   )
