@@ -115,11 +115,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTriage }) => {
                   onClick={handleScrollToTop}
                   className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none cursor-pointer shrink-0"
                 >
-                  <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900/90 border border-amber-500/30 flex items-center justify-center p-1 transition-transform group-hover:scale-105 shrink-0 shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+                  <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center transition-transform group-hover:scale-105 shrink-0">
                     <img
                       src="/assets/logo-gold.png"
                       alt="Laboratório Lourenço"
-                      className="w-full h-full object-contain filter drop-shadow-sm"
+                      className="w-full h-full object-contain"
                       width="36"
                       height="36"
                     />

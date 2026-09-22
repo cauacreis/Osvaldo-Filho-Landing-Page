@@ -284,11 +284,11 @@ export const TriageModal: React.FC<TriageModalProps> = ({
         <div className="p-5 sm:p-6 pb-4 border-b border-slate-800 bg-slate-950/70">
           <div className="flex items-center justify-between gap-4 mb-3">
             <div className="flex items-center gap-3">
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 border border-amber-500/40 p-1 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center shrink-0">
                 <img
                   src="/assets/logo-gold.png"
                   alt="Laboratório Lourenço"
-                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  className="w-full h-full object-contain"
                   width="36"
                   height="36"
                 />

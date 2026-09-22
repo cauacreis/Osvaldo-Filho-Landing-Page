@@ -18,11 +18,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
           {/* Col 1: Brand & Identity */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-slate-900 border border-amber-500/30 p-1 flex items-center justify-center shadow-[0_0_10px_rgba(212,175,55,0.15)]">
+              <div className="w-10 h-10 flex items-center justify-center shrink-0">
                 <img
                   src="/assets/logo-gold.png"
                   alt="Laboratório Lourenço"
-                  className="w-full h-full object-contain filter drop-shadow-sm"
+                  className="w-full h-full object-contain"
                 />
               </div>
               <div>

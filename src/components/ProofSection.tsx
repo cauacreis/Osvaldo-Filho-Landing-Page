@@ -6,7 +6,6 @@ import {
   Star,
   ZoomIn,
   X,
-  Send,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
@@ -14,10 +13,10 @@ import {
 import { FEEDBACK_REVIEWS } from '../config'
 
 interface ProofSectionProps {
-  onOpenTriage: () => void
+  onOpenTriage?: () => void
 }
 
-export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
+export const ProofSection: React.FC<ProofSectionProps> = () => {
   const [activeZoomImage, setActiveZoomImage] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(1)
@@ -314,18 +313,6 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           <p className="sm:hidden text-center mt-3 text-xs text-slate-400">
             ← Deslize para o lado para ver outros prints →
           </p>
-        </div>
-
-        {/* Action Trigger */}
-        <div className="text-center">
-          <button
-            type="button"
-            onClick={onOpenTriage}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(245,158,11,0.35)] active:scale-95 transition-all"
-          >
-            <span>Enviar caso para análise com o Osvaldo</span>
-            <Send className="w-4 h-4 text-slate-950" />
-          </button>
         </div>
       </div>
 

@@ -2,14 +2,13 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Send } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface AboutSectionProps {
-  onOpenTriage: () => void
+  onOpenTriage?: () => void
 }
 
-export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
+export const AboutSection: React.FC<AboutSectionProps> = () => {
   return (
     <section id="sobre" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
       {/* Ambient background glow */}
@@ -83,15 +82,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
               </p>
             </div>
 
-            {/* CTA */}
-            <button
-              type="button"
-              onClick={onOpenTriage}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_25px_rgba(245,158,11,0.35)] active:scale-95 transition-all"
-            >
-              <span>Enviar caso para análise com o Osvaldo</span>
-              <Send className="w-4 h-4 text-slate-950" />
-            </button>
+            <div className="pt-2 flex items-center gap-3 text-xs text-amber-400 font-semibold">
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+              <span>Atendimento direto e personalizado para cada cirurgião-dentista parceiro</span>
+            </div>
           </motion.div>
 
         </div>

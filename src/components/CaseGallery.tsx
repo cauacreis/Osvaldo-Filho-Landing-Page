@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ZoomIn, X, CheckCircle2, Send } from 'lucide-react'
+import { ZoomIn, X, CheckCircle2 } from 'lucide-react'
 import { BeforeAfterSlider } from './ui/BeforeAfterSlider'
 import { TiltCard } from './ui/TiltCard'
 
 interface CaseGalleryProps {
-  onOpenTriage: () => void
+  onOpenTriage?: () => void
 }
 
 interface CaseItem {
@@ -20,7 +20,7 @@ interface CaseItem {
   technicalNotes: string[]
 }
 
-export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
+export const CaseGallery: React.FC<CaseGalleryProps> = () => {
   const [activeImage, setActiveImage] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState<'todos' | 'protocolo' | 'unitario' | 'implantes' | 'placas'>('todos')
 
@@ -203,15 +203,14 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center">
-                <button
-                  type="button"
-                  onClick={onOpenTriage}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] active:scale-95"
-                >
-                  <span>Enviar caso para análise</span>
-                  <Send className="w-4 h-4 text-slate-950" />
-                </button>
+              <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Caso clínico confeccionado no laboratório
+                </span>
+                <span className="text-[11px] text-amber-400 font-semibold">
+                  Planejamento e Execução Lourenço
+                </span>
               </div>
 
             </div>
@@ -306,16 +305,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                       </div>
                     </div>
                   </div>
-
-                  <div className="p-6 pt-0">
-                    <button
-                      type="button"
-                      onClick={onOpenTriage}
-                      className="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 hover:text-slate-950 text-white text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
-                    >
-                      <span>Enviar caso para análise</span>
-                    </button>
-                  </div>
                 </TiltCard>
               </motion.div>
             ))}
@@ -353,21 +342,8 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
               <img
                 src={activeImage}
                 alt="Ampliação do caso clínico"
-                className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-amber-500/30"
+                className="max-h-[85vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-amber-500/30"
               />
-              <div className="mt-4 text-center">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActiveImage(null)
-                    onOpenTriage()
-                  }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
-                >
-                  <span>Enviar caso para análise</span>
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </div>
             </motion.div>
           </motion.div>
         )}

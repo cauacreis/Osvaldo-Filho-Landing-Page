@@ -2,14 +2,14 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Clock, MessageSquareOff, SlidersHorizontal, ArrowRight, ShieldCheck } from 'lucide-react'
+import { Clock, MessageSquareOff, SlidersHorizontal, ShieldCheck } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface PainPointsProps {
-  onOpenTriage: () => void
+  onOpenTriage?: () => void
 }
 
-export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
+export const PainPoints: React.FC<PainPointsProps> = () => {
   const pains = [
     {
       icon: SlidersHorizontal,
@@ -111,33 +111,22 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="rounded-3xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-amber-950/30 border border-amber-500/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+          className="rounded-3xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-amber-950/30 border border-amber-500/30 p-6 sm:p-8 flex items-center gap-5 shadow-xl"
         >
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 mt-1 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <div>
-              <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">
-                A Alternativa Definitiva
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                No Laboratório Lourenço, você conversa direto com o Osvaldo.
-              </h3>
-              <p className="mt-1 text-sm text-slate-300 max-w-2xl font-normal">
-                Alinhamos preparo, oclusão e cronograma antes de fresar. O trabalho entra com assentamento passivo e sem surpresas na cadeira.
-              </p>
-            </div>
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+            <ShieldCheck className="w-6 h-6" />
           </div>
-
-          <button
-            type="button"
-            onClick={onOpenTriage}
-            className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(245,158,11,0.35)] active:scale-95 whitespace-nowrap"
-          >
-            <span>Enviar caso para análise</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
+          <div>
+            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">
+              O Padrão Laboratório Lourenço
+            </span>
+            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+              Você conversa direto com o Osvaldo antes de qualquer fresagem.
+            </h3>
+            <p className="mt-1 text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+              Alinhamos preparo, oclusão e cronograma antes de produzir. O trabalho entra com assentamento passivo e sem surpresas na cadeira.
+            </p>
+          </div>
         </motion.div>
 
       </div>
