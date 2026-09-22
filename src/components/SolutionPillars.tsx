@@ -47,11 +47,15 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = ({ onOpenTriage }
   ]
 
   return (
-    <section id="solucao" className="py-24 sm:py-32 bg-[#F8FAFC] relative overflow-hidden">
-      {/* Background subtle light ambient effects */}
+    <section id="solucao" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
+      {/* Background subtle ambient effects */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute -top-40 right-0 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -64,16 +68,16 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = ({ onOpenTriage }
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-4 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-teal-600 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-4 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
             <span>Nosso Posicionamento de Parceria</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Mais do que produzir próteses: acompanhar o seu caso.
           </h2>
           
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
             Não atuamos como fornecedores distantes. Somos a extensão técnica do seu consultório,
             garantindo que o que foi planejado no diagnóstico chegue impecável na cadeira do paciente.
           </p>
@@ -92,24 +96,24 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = ({ onOpenTriage }
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <TiltCard
-                  glowColor="rgba(20, 184, 166, 0.12)"
-                  className="h-full bg-white rounded-3xl p-8 border border-slate-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-teal-500/30 transition-all flex flex-col justify-between group"
+                  glowColor="rgba(20, 184, 166, 0.2)"
+                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-8 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center shadow-md shadow-teal-950/15 group-hover:scale-105 group-hover:bg-teal-800 transition-all">
+                      <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:border-teal-400/40 transition-all">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-teal-700 transition-colors">
+                      <span className="text-xs font-bold uppercase tracking-wider text-teal-400/80 group-hover:text-teal-300 transition-colors">
                         {pillar.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-teal-900 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-teal-200 transition-colors">
                       {pillar.title}
                     </h3>
 
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
                       {pillar.description}
                     </p>
                   </div>
@@ -131,24 +135,24 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = ({ onOpenTriage }
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <TiltCard
-                  glowColor="rgba(20, 184, 166, 0.12)"
-                  className="h-full bg-white rounded-3xl p-8 border border-slate-200/90 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:shadow-xl hover:border-teal-500/30 transition-all flex flex-col justify-between group"
+                  glowColor="rgba(20, 184, 166, 0.2)"
+                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-8 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center shadow-md shadow-teal-950/15 group-hover:scale-105 group-hover:bg-teal-800 transition-all">
+                      <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shadow-md group-hover:scale-110 group-hover:border-teal-400/40 transition-all">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-400 group-hover:text-teal-700 transition-colors">
+                      <span className="text-xs font-bold uppercase tracking-wider text-teal-400/80 group-hover:text-teal-300 transition-colors">
                         {pillar.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-teal-900 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-teal-200 transition-colors">
                       {pillar.title}
                     </h3>
 
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
                       {pillar.description}
                     </p>
                   </div>

@@ -48,7 +48,17 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
   }
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-[#F8FAFC] relative overflow-hidden">
+    <section id="faq" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
+      {/* Background subtle ambient lights */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-1/4 -right-20 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[140px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-10 left-0 w-[450px] h-[450px] bg-cyan-500/5 rounded-full blur-[140px]"
+      />
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -59,14 +69,14 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-            <HelpCircle className="w-3.5 h-3.5 text-teal-600" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
+            <HelpCircle className="w-3.5 h-3.5 text-teal-400" />
             <span>Tire Suas Dúvidas</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Perguntas frequentes de cirurgiões-dentistas.
           </h2>
-          <p className="mt-4 text-base text-slate-600 font-normal">
+          <p className="mt-4 text-base text-slate-300 font-normal">
             Transparência técnica para construir uma parceria duradoura e previsível com o seu consultório.
           </p>
         </motion.div>
@@ -82,20 +92,20 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:border-teal-500/30 transition-all"
+                className="bg-slate-900/60 hover:bg-slate-900/90 rounded-2xl border border-slate-800/80 hover:border-teal-500/40 overflow-hidden shadow-lg transition-all"
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-bold text-slate-900">
+                  <span className="text-base sm:text-lg font-bold text-white group-hover:text-teal-200 transition-colors">
                     {faq.question}
                   </span>
                   <div
-                    className={`w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 text-slate-600 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-teal-50 text-teal-700' : ''
+                    className={`w-8 h-8 rounded-full bg-slate-800 border border-slate-700/60 flex items-center justify-center shrink-0 text-slate-300 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 bg-teal-500/20 text-teal-300 border-teal-500/40' : ''
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -115,7 +125,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
                       }}
                       transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                      <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                      <div className="px-5 sm:px-6 pb-6 pt-2 text-sm sm:text-base text-slate-300 leading-relaxed border-t border-slate-800/80 bg-slate-950/60">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -127,12 +137,12 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
         </div>
 
         {/* Prompt to contact if still has questions */}
-        <div className="mt-12 text-center bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 text-center bg-slate-900/70 rounded-3xl p-6 sm:p-8 border border-slate-800/80 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h3 className="text-base font-bold text-slate-900">
+            <h3 className="text-base font-bold text-white">
               Tem alguma dúvida clínica específica sobre seu caso?
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
               Converse diretamente com o responsável técnico do laboratório.
             </p>
           </div>
@@ -140,7 +150,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
           <button
             type="button"
             onClick={onOpenTriage}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-teal-800 hover:bg-teal-900 text-white font-semibold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(20,184,166,0.3)] transition-all active:scale-95 whitespace-nowrap"
           >
             <span>Enviar caso para análise</span>
             <Send className="w-3.5 h-3.5" />

@@ -141,7 +141,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   }
 
   return (
-    <section id="servicos" className="py-24 sm:py-32 bg-slate-100/70 relative overflow-hidden">
+    <section id="servicos" className="py-24 sm:py-32 bg-[#070c18] text-white relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-10 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-10 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[140px]"
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
@@ -153,14 +163,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-teal-400" />
               <span>Catálogo Técnico de Soluções</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Soluções protéticas para cada desafio clínico.
             </h2>
-            <p className="mt-3 text-base text-slate-600 font-normal">
+            <p className="mt-3 text-base text-slate-300 font-normal">
               Da reabilitação unitária anterior aos protocolos complexos de carga imediata, combinamos os melhores biomateriais à precisão artesanal e digital.
             </p>
           </div>
@@ -170,7 +180,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('left')}
-              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 hover:text-teal-700 transition-colors"
+              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-white transition-colors"
               aria-label="Rolar para a esquerda"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -178,7 +188,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('right')}
-              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 hover:text-teal-700 transition-colors"
+              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-white transition-colors"
               aria-label="Rolar para a direita"
             >
               <ChevronRight className="w-5 h-5" />
@@ -187,21 +197,24 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </motion.div>
 
         {/* Category Pills Filter */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              type="button"
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
-                activeCategory === cat.id
-                  ? 'bg-slate-900 text-white shadow-md font-bold'
-                  : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/80'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.id
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveCategory(cat.id)}
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-teal-400 text-slate-950 font-bold shadow-[0_0_20px_rgba(20,184,166,0.35)]'
+                    : 'bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800/80'
+                }`}
+              >
+                {cat.label}
+              </button>
+            )
+          })}
         </div>
 
         {/* Services Horizontal Scroll on Mobile / Dynamic Grid on Desktop with 3D Tilt */}
@@ -223,39 +236,39 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   className="w-[85vw] sm:w-auto shrink-0 snap-start"
                 >
                   <TiltCard
-                    glowColor="rgba(20, 184, 166, 0.12)"
-                    className="h-full bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-500/30 transition-all flex flex-col justify-between group"
+                    glowColor="rgba(20, 184, 166, 0.2)"
+                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                   >
                     <div>
                       {/* Top line with Icon and Badge */}
                       <div className="flex items-center justify-between mb-5">
-                        <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 text-teal-800 flex items-center justify-center group-hover:scale-105 group-hover:bg-teal-700 group-hover:text-white transition-all">
+                        <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all">
                           <Icon className="w-6 h-6" />
                         </div>
                         {service.badge && (
-                          <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-900 text-white shadow-xs">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 shadow-xs">
                             {service.badge}
                           </span>
                         )}
                       </div>
 
-                      <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-900 transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-teal-200 transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-xs font-semibold text-teal-700 mb-3 leading-snug">
+                      <p className="text-xs font-semibold text-teal-300 mb-3 leading-snug">
                         {service.tagline}
                       </p>
 
-                      <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                      <p className="text-sm text-slate-300 leading-relaxed mb-6 font-normal">
                         {service.description}
                       </p>
 
                       {/* Highlights list */}
                       <div className="space-y-2 mb-6">
                         {service.highlights.map((h, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                            <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
+                          <div key={i} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
                             <span>{h}</span>
                           </div>
                         ))}
@@ -263,11 +276,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     </div>
 
                     {/* Card Action Button: Triggers Triage with service pre-selected */}
-                    <div className="pt-4 border-t border-slate-100">
+                    <div className="pt-4 border-t border-slate-800/80">
                       <button
                         type="button"
                         onClick={() => onSelectService(service.title)}
-                        className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 group-hover:bg-teal-800 text-slate-800 group-hover:text-white font-semibold text-xs sm:text-sm transition-all duration-200"
+                        className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-slate-800/80 hover:bg-teal-400 text-slate-200 hover:text-slate-950 font-bold text-xs sm:text-sm border border-slate-700/60 hover:border-teal-400 transition-all duration-200"
                       >
                         <span>Enviar caso para análise</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -281,7 +294,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </div>
 
         {/* Mobile Swipe Hint */}
-        <div className="sm:hidden text-center mt-3 text-xs text-slate-500 flex items-center justify-center gap-2">
+        <div className="sm:hidden text-center mt-3 text-xs text-slate-400 flex items-center justify-center gap-2">
           <span>← Deslize lateralmente para explorar mais →</span>
         </div>
 

@@ -16,13 +16,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
         <img
           src="/assets/osvaldo-studio.webp"
           alt="Osvaldo Lourenço Filho - Laboratório Lourenço"
-          className="w-full h-full object-cover object-[78%_center] md:object-[82%_center] lg:object-[84%_center] opacity-90 transition-opacity duration-1000"
+          className="w-full h-full object-cover object-[73%_top] sm:object-[73%_center] lg:object-[74%_center] opacity-90 transition-opacity duration-1000"
           loading="eager"
         />
 
         {/* Sophisticated Dark Gradient Overlays for Flawless Contrast */}
-        {/* Left side deep dark gradient for typography readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#06090e] via-[#06090e]/90 to-transparent sm:via-[#06090e]/75 md:to-transparent" />
+        {/* Responsive gradient: On mobile top-to-bottom protects text; on desktop left-to-right protects text while highlighting Osvaldo */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#06090e]/95 via-[#06090e]/85 to-[#06090e]/95 lg:bg-gradient-to-r lg:from-[#06090e] lg:via-[#06090e]/85 lg:to-transparent" />
         
         {/* Top gradient for navbar transition */}
         <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#06090e] via-[#06090e]/80 to-transparent" />

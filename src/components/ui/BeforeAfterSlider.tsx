@@ -17,47 +17,74 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
   className = '',
 }) => {
   const [sliderPosition, setSliderPosition] = useState(50)
-  const [isDragging, setIsDragging] = useState(false)
+  const isDraggingRef = useRef(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const handleMove = useCallback(
-    (clientX: number) => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = clientX - rect.left
-      const percent = Math.max(0, Math.min(100, (x / rect.width) * 100))
-      setSliderPosition(percent)
-    },
-    []
-  )
+  const updatePosition = useCallback((clientX: number) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = clientX - rect.left
+    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100))
+    setSliderPosition(percent)
+  }, [])
 
-  const handleTouchMove = useCallback(
-    (e: React.TouchEvent<HTMLDivElement>) => {
-      if (!isDragging) return
-      handleMove(e.touches[0].clientX)
-    },
-    [isDragging, handleMove]
-  )
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingRef.current = true
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch {
+      // Ignore if pointer capture fails
+    }
+    updatePosition(e.clientX)
+  }
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!isDragging) return
-      handleMove(e.clientX)
-    },
-    [isDragging, handleMove]
-  )
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return
+    updatePosition(e.clientX)
+  }
+
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    isDraggingRef.current = false
+    try {
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId)
+      }
+    } catch {
+      // Ignore
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      setSliderPosition((prev) => Math.max(0, prev - 5))
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      setSliderPosition((prev) => Math.min(100, prev + 5))
+    } else if (e.key === 'Home') {
+      e.preventDefault()
+      setSliderPosition(0)
+    } else if (e.key === 'End') {
+      e.preventDefault()
+      setSliderPosition(100)
+    }
+  }
 
   return (
     <div
       ref={containerRef}
-      onMouseDown={() => setIsDragging(true)}
-      onMouseUp={() => setIsDragging(false)}
-      onMouseLeave={() => setIsDragging(false)}
-      onMouseMove={handleMouseMove}
-      onTouchStart={() => setIsDragging(true)}
-      onTouchEnd={() => setIsDragging(false)}
-      onTouchMove={handleTouchMove}
-      className={`relative select-none overflow-hidden rounded-2xl bg-black shadow-2xl cursor-ew-resize group ${className}`}
+      role="slider"
+      aria-label="Comparativo antes e depois da prótese"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(sliderPosition)}
+      tabIndex={0}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      onKeyDown={handleKeyDown}
+      className={`relative select-none overflow-hidden rounded-2xl bg-black shadow-2xl cursor-ew-resize group focus:outline-none focus:ring-2 focus:ring-teal-400 ${className}`}
       style={{ touchAction: 'none' }}
     >
       {/* Background (After / Finished Image) */}
@@ -65,11 +92,12 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         src={afterImage}
         alt={afterLabel}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        loading="lazy"
       />
 
       {/* Foreground (Before / Structural Image) with clipPath */}
       <div
-        className="absolute inset-0 overflow-hidden pointer-events-none"
+        className="absolute inset-0 overflow-hidden pointer-events-none will-change-[clip-path]"
         style={{
           clipPath: `inset(0 ${100 - sliderPosition}% 0 0)`,
         }}
@@ -78,17 +106,18 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
           src={beforeImage}
           alt={beforeLabel}
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
         />
       </div>
 
-      {/* Labels */}
+      {/* Badges / Labels */}
       <div className="absolute top-4 left-4 z-20 pointer-events-none">
-        <span className="px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[11px] font-bold text-teal-300 uppercase tracking-wider shadow-md">
+        <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-bold text-teal-300 uppercase tracking-wider shadow-md">
           {beforeLabel}
         </span>
       </div>
       <div className="absolute top-4 right-4 z-20 pointer-events-none">
-        <span className="px-3 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/10 text-[11px] font-bold text-amber-300 uppercase tracking-wider shadow-md flex items-center gap-1.5">
+        <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-[11px] font-bold text-amber-300 uppercase tracking-wider shadow-md flex items-center gap-1.5">
           <Sparkles className="w-3 h-3 text-amber-400" />
           {afterLabel}
         </span>
@@ -96,24 +125,25 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
 
       {/* Draggable Divider Line & Knob */}
       <div
-        className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex items-center justify-center"
+        className="absolute top-0 bottom-0 z-30 pointer-events-none -translate-x-1/2 flex items-center justify-center will-change-[left]"
         style={{ left: `${sliderPosition}%` }}
       >
         {/* Vertical divider line */}
-        <div className="w-[2px] h-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.8)]" />
+        <div className="w-[2px] h-full bg-white shadow-[0_0_14px_rgba(255,255,255,0.9)]" />
 
         {/* Circular handle knob */}
-        <div className="absolute w-10 h-10 rounded-full bg-slate-900 border-2 border-teal-400 text-white shadow-xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform">
+        <div className="absolute w-10 h-10 rounded-full bg-slate-950 border-2 border-teal-400 text-white shadow-2xl flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-active:scale-95 transition-transform">
           <MoveHorizontal className="w-5 h-5 text-teal-300" />
         </div>
       </div>
 
       {/* Bottom hint */}
       <div className="absolute bottom-3 inset-x-0 flex justify-center z-20 pointer-events-none">
-        <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] text-slate-300 font-medium">
-          Arraste para comparar a estrutura interna e o resultado final
+        <span className="px-3.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[10px] text-slate-300 font-medium tracking-wide">
+          Arraste para comparar a infraestrutura de titânio e o protocolo finalizado
         </span>
       </div>
     </div>
   )
 }
+

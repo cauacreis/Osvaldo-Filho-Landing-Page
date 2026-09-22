@@ -40,6 +40,21 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       badge: 'Cerâmica Pura',
     },
     {
+      id: 'emax-macro',
+      title: 'Lentes e Facetas em Dissilicato de Lítio (E.max)',
+      category: 'unitario',
+      image: '/assets/emax-ceramic-macro.jpg',
+      caption: 'Fluorescência, opalescência e halo incisal natural',
+      description:
+        'Trabalho de excelência em cerâmica pura vítrea, proporcionando mimetismo óptico inigualável para o setor anterior com preparos minimamente invasivos.',
+      technicalNotes: [
+        'Espessuras ultrafinas de 0.3mm a 0.5mm',
+        'Cimentação adesiva com selamento micrométrico',
+        'Controle de textura periquemácea e reflexão de luz',
+      ],
+      badge: 'Estética Pura',
+    },
+    {
       id: 'zirconia-macro',
       title: 'Ponte Fixa em Zircônia Monolítica Multilayer',
       category: 'unitario',
