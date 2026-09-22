@@ -166,7 +166,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           </div>
 
           {/* Active Carousel Card */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-[#0b141a] border border-teal-500/30 p-6 sm:p-8 shadow-2xl">
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-[#0b141a] border border-teal-500/30 p-6 sm:p-8 shadow-2xl min-h-[850px] sm:min-h-[740px] lg:min-h-[480px] lg:h-[480px] flex flex-col justify-center">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={currentReview.id}
@@ -175,18 +175,18 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction > 0 ? -30 : 30 }}
                 transition={{ duration: 0.35, ease: 'easeInOut' }}
-                className="w-full"
+                className="w-full h-full flex items-center"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full">
                   
                   {/* WhatsApp Screenshot Showcase (Clean aspect ratio, uncropped) */}
-                  <div className="lg:col-span-6 flex flex-col items-center">
+                  <div className="lg:col-span-6 flex flex-col items-center justify-center">
                     <div
                       onClick={() => setActiveZoomImage(currentReview.image)}
                       className="group/print relative w-full max-w-sm rounded-2xl overflow-hidden bg-[#0b141a] border border-teal-500/30 shadow-2xl cursor-pointer transition-transform hover:scale-[1.02]"
                     >
                       {/* WhatsApp Window Header Bar */}
-                      <div className="bg-[#1f2c34] px-3.5 py-2 flex items-center justify-between border-b border-[#2a3942] text-[11px] text-slate-300">
+                      <div className="bg-[#1f2c34] px-3.5 py-2 flex items-center justify-between border-b border-[#2a3942] text-[11px] text-slate-300 shrink-0">
                         <div className="flex items-center gap-2">
                           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
                           <span className="font-semibold text-white">WhatsApp</span>
@@ -197,12 +197,12 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                         </span>
                       </div>
 
-                      {/* Image container displaying full print without harsh crop */}
-                      <div className="relative p-2 bg-[#0b141a] flex items-center justify-center min-h-[260px] sm:min-h-[300px]">
+                      {/* Image container displaying full print without harsh crop in standardized frame */}
+                      <div className="relative p-2 bg-[#0b141a] flex items-center justify-center h-[340px] sm:h-[380px] w-full shrink-0">
                         <img
                           src={currentReview.image}
                           alt="Print da conversa real no WhatsApp"
-                          className="w-full h-auto max-h-[380px] object-contain rounded-lg"
+                          className="max-h-full max-w-full w-auto h-auto object-contain rounded-lg shadow-sm"
                           loading="lazy"
                         />
                         
@@ -216,38 +216,40 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                       </div>
 
                       {/* Quick tap footer for mobile */}
-                      <div className="bg-[#111b21] px-3 py-1.5 border-t border-[#2a3942] text-center text-[10px] text-slate-400 sm:hidden">
+                      <div className="bg-[#111b21] px-3 py-1.5 border-t border-[#2a3942] text-center text-[10px] text-slate-400 sm:hidden shrink-0">
                         Toque na imagem para ler a conversa completa
                       </div>
                     </div>
                   </div>
 
-                  {/* Review Details & Clinical Takeaways */}
-                  <div className="lg:col-span-6 flex flex-col justify-between text-left space-y-4">
+                  {/* Review Details & Clinical Takeaways (Standardized consistent height) */}
+                  <div className="lg:col-span-6 flex flex-col justify-between text-left h-full min-h-[370px] sm:min-h-[300px] lg:h-[415px] lg:min-h-[415px]">
                     
-                    {/* Stars */}
-                    <div className="flex items-center gap-1 text-amber-400">
-                      {[...Array(currentReview.stars || 5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400" />
-                      ))}
+                    <div className="flex flex-col gap-3 sm:gap-4">
+                      {/* Stars */}
+                      <div className="flex items-center gap-1 text-amber-400 shrink-0">
+                        {[...Array(currentReview.stars || 5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400" />
+                        ))}
+                      </div>
+
+                      {/* Highlight */}
+                      {currentReview.highlight && (
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug min-h-[3rem] sm:min-h-[2rem] flex items-center shrink-0">
+                          {currentReview.highlight}
+                        </h3>
+                      )}
+
+                      {/* Excerpt quote */}
+                      {currentReview.quote && (
+                        <blockquote className="text-sm sm:text-base text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-800 h-[220px] sm:h-[150px] lg:h-[185px] flex items-center overflow-y-auto">
+                          <p className="w-full">{currentReview.quote}</p>
+                        </blockquote>
+                      )}
                     </div>
 
-                    {/* Highlight */}
-                    {currentReview.highlight && (
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                        {currentReview.highlight}
-                      </h3>
-                    )}
-
-                    {/* Excerpt quote */}
-                    {currentReview.quote && (
-                      <blockquote className="text-sm sm:text-base text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-800">
-                        {currentReview.quote}
-                      </blockquote>
-                    )}
-
                     {/* Dentist info footer */}
-                    <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
+                    <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2 mt-auto shrink-0">
                       <div>
                         <p className="text-xs sm:text-sm font-bold text-white">
                           {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
@@ -260,7 +262,7 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                       <button
                         type="button"
                         onClick={() => setActiveZoomImage(currentReview.image)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-teal-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-400 hover:text-teal-300 transition-colors cursor-pointer"
                       >
                         <span>Ver original</span>
                         <ExternalLink className="w-3.5 h-3.5" />
