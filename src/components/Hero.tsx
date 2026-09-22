@@ -42,21 +42,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
           {/* Left Column: High Impact Headline & Action Area */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-6 sm:pt-0">
             
-            {/* 1. Glowing Status Pill */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-slate-900/80 border border-teal-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(20,184,166,0.15)] mb-6"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400" />
-              </span>
-              <span className="text-xs sm:text-sm font-semibold text-teal-200 tracking-wide">
-                Prótese Dental de Alta Precisão para Cirurgiões-Dentistas
-              </span>
-            </motion.div>
 
             {/* 2. Editorial Headline */}
             <motion.h1

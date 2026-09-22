@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { HeartHandshake, ShieldCheck, Send, CheckCircle2 } from 'lucide-react'
+import { ShieldCheck, Send, CheckCircle2 } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface AboutSectionProps {
@@ -75,12 +75,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 flex flex-col items-start"
           >
-            
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-4 shadow-xs">
-              <HeartHandshake className="w-3.5 h-3.5 text-teal-400" />
-              <span>Sobre o Laboratório Lourenço</span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
               Um parceiro de bancada para o seu consultório.
             </h2>

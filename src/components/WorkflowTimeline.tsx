@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FileUp, GitMerge, Settings, Truck, Send, CheckCircle, Sparkles } from 'lucide-react'
+import { FileUp, GitMerge, Settings, Truck, Send, CheckCircle } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface WorkflowTimelineProps {
@@ -69,10 +69,6 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-            <span>Passo a Passo Sem Fricção</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Como funciona: do envio à cimentação com total previsibilidade.
           </h2>

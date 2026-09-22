@@ -11,28 +11,24 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
   const pillars = [
     {
       icon: PhoneCall,
-      badge: 'Contato Direto',
       title: 'Conversa sem intermediários',
       description:
         'Você fala direto com quem está na bancada ou no software CAD. Dúvidas de preparo, término ou cor são resolvidas na hora pelo WhatsApp.',
     },
     {
       icon: CheckCheck,
-      badge: 'Assentamento Passivo',
       title: 'Checagem rigorosa em troquel',
       description:
         'Cada peça é conferida sob magnificação e em articulador. A prótese chega pronta para cimentar, sem desgaste exaustivo no consultório.',
     },
     {
       icon: Cpu,
-      badge: 'Fluxo Híbrido',
       title: 'Digital ou convencional',
       description:
         'Recebemos arquivos STL e PLY de qualquer scanner do mercado, ou coletamos moldagens físicas de silicone e gesso no seu consultório.',
     },
     {
       icon: Compass,
-      badge: 'Pontualidade',
       title: 'Prazo combinado é sagrado',
       description:
         'Acompanhamos sua data de atendimento. O paciente senta na cadeira e o trabalho já está pronto para ser instalado com tranquilidade.',
@@ -61,11 +57,6 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-14 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-            <span>Nosso Padrão de Trabalho</span>
-          </div>
-          
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Mais do que entregar prótese: ser o braço técnico do seu consultório.
           </h2>
@@ -92,13 +83,8 @@ export const SolutionPillars: React.FC<SolutionPillarsProps> = () => {
                   className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-teal-400/40 transition-all">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-teal-400/90 group-hover:text-teal-300 transition-colors">
-                        {pillar.badge}
-                      </span>
+                    <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shadow-md group-hover:scale-105 group-hover:border-teal-400/40 transition-all mb-5">
+                      <Icon className="w-6 h-6" />
                     </div>
 
                     <h3 className="text-lg font-bold text-white mb-2.5 tracking-tight group-hover:text-teal-200 transition-colors">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, HelpCircle } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { FaqItem } from '../types'
 
 interface FaqSectionProps {
@@ -70,10 +70,6 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-            <HelpCircle className="w-3.5 h-3.5 text-teal-400" />
-            <span>Tire Suas Dúvidas</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Perguntas frequentes de cirurgiões-dentistas.
           </h2>

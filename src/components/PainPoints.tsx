@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { AlertTriangle, Clock, MessageSquareOff, SlidersHorizontal, ArrowRight, ShieldCheck } from 'lucide-react'
+import { Clock, MessageSquareOff, SlidersHorizontal, ArrowRight, ShieldCheck } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface PainPointsProps {
@@ -54,11 +54,6 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mb-14 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-300 text-xs font-bold tracking-wider uppercase mb-4">
-            <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-            <span>O Gargalo da Rotina Clínica</span>
-          </div>
-          
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Quando o laboratório falha, o prejuízo sobra para o seu consultório.
           </h2>

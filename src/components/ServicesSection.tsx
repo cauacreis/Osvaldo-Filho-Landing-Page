@@ -15,7 +15,6 @@ interface ServiceCard {
   description: string
   highlights: string[]
   icon: React.ElementType
-  badge?: string
 }
 
 export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectService }) => {
@@ -32,7 +31,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         'Para coroas unitárias e pontes fixas. Vedamento cervical rigoroso e polimento oclusal protetor.',
       highlights: ['Alta resistência à fratura', 'Degradê natural de cor', 'Assentamento em troquel'],
       icon: Gem,
-      badge: 'Mais Pedido',
     },
     {
       id: 'emax',
@@ -43,7 +41,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         'Facetas, lentes de contato e coroas anteriores ultrafinas com reflexão idêntica ao esmalte dental.',
       highlights: ['Espessuras de 0.3mm a 0.5mm', 'Cimentação adesiva segura', 'Alta fidelidade de cor'],
       icon: Sparkles,
-      badge: 'Estética Pura',
     },
     {
       id: 'metaloceramica',
@@ -64,7 +61,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         'Compatível com as principais plataformas. Ti-Base com perfil de emergência anatômico.',
       highlights: ['Saúde peri-implantar', 'Assentamento sem tensão', 'Parafusadas e cimentadas'],
       icon: CircleDot,
-      badge: 'Especialidade',
     },
     {
       id: 'protocolos',
@@ -75,7 +71,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         'Provisórios rápidos para o dia cirúrgico e definitivos em zircônia sobre barra.',
       highlights: ['Entrega no dia da cirurgia', 'Barra interna reforçada', 'Caracterização realista'],
       icon: Activity,
-      badge: 'Destaque',
     },
     {
       id: 'barras',
@@ -116,7 +111,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         'Envio ágil pelo WhatsApp ou nuvem. Desenho CAD 3D, fresagem CNC e modelo impresso com troquel.',
       highlights: ['Sem distorção de moldagem', 'Agilidade de bancada', 'Arquivo 3D salvo em nuvem'],
       icon: Cpu,
-      badge: 'CAD / CAM',
     },
   ]
 
@@ -163,10 +157,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-              <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-              <span>Soluções Protéticas</span>
-            </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
               A prótese certa para a necessidade do seu paciente.
             </h2>
@@ -240,16 +230,9 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                     className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                   >
                     <div>
-                      {/* Top Header with Icon and Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all">
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        {service.badge && (
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300">
-                            {service.badge}
-                          </span>
-                        )}
+                      {/* Top Header with Icon */}
+                      <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all mb-4">
+                        <Icon className="w-5 h-5" />
                       </div>
 
                       <h3 className="text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-teal-200 transition-colors">

@@ -10,7 +10,6 @@ import {
   MessageSquare,
   ChevronLeft,
   ChevronRight,
-  CheckCircle2,
   ExternalLink,
 } from 'lucide-react'
 import { FEEDBACK_REVIEWS } from '../config'
@@ -111,11 +110,6 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
-            <MessageSquare className="w-3.5 h-3.5 text-teal-400" />
-            <span>Depoimentos Reais no WhatsApp</span>
-          </div>
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             A prova real de quem instala nossas peças no consultório.
           </h2>
@@ -273,18 +267,11 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                   {/* Review Details & Clinical Takeaways */}
                   <div className="lg:col-span-6 flex flex-col justify-between text-left space-y-4">
                     
-                    {/* Badge & Stars */}
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/15 border border-teal-500/30 text-teal-300 text-xs font-bold">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
-                        <span>{currentReview.badge || 'Feedback Verificado'}</span>
-                      </span>
-
-                      <div className="flex items-center gap-1 text-amber-400">
-                        {[...Array(currentReview.stars || 5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400" />
-                        ))}
-                      </div>
+                    {/* Stars */}
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(currentReview.stars || 5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400" />
+                      ))}
                     </div>
 
                     {/* Highlight */}
@@ -299,21 +286,6 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
                       <blockquote className="text-sm sm:text-base text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 sm:p-5 rounded-2xl border border-slate-800">
                         {currentReview.quote}
                       </blockquote>
-                    )}
-
-                    {/* Key tags */}
-                    {currentReview.topics && currentReview.topics.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {currentReview.topics.map((topic, idx) => (
-                          <span
-                            key={idx}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-teal-950/60 border border-teal-500/25 text-xs text-teal-200 font-medium"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
                     )}
 
                     {/* Dentist info footer */}

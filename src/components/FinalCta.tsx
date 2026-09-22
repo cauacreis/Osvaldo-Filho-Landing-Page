@@ -21,16 +21,6 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/20 border border-teal-400/30 text-teal-300 text-xs font-bold uppercase tracking-wider mb-6 shadow-xs"
-        >
-          <ShieldCheck className="w-4 h-4 text-teal-400" />
-          <span>Parceria Clínica Segura</span>
-        </motion.div>
 
         <motion.h2
           initial={{ opacity: 0, y: 24 }}

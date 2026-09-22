@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ZoomIn, X, CheckCircle2, Eye, Sparkles, Send, MoveHorizontal } from 'lucide-react'
+import { ZoomIn, X, CheckCircle2, Eye, Send, MoveHorizontal } from 'lucide-react'
 import { BeforeAfterSlider } from './ui/BeforeAfterSlider'
 import { TiltCard } from './ui/TiltCard'
 
@@ -16,7 +16,6 @@ interface CaseItem {
   caption: string
   description: string
   technicalNotes: string[]
-  badge?: string
 }
 
 export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
@@ -37,7 +36,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Textura superficial e halo incisal natural',
         'Ajuste oclusal verificado em articulador',
       ],
-      badge: 'Cerâmica Pura',
     },
     {
       id: 'emax-macro',
@@ -52,7 +50,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Cimentação adesiva com selamento micrométrico',
         'Reflexão de luz idêntica ao esmalte dental',
       ],
-      badge: 'Estética Pura',
     },
     {
       id: 'zirconia-macro',
@@ -67,7 +64,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Pigmentação e caracterização anatômica',
         'Assentamento passivo testado no troquel',
       ],
-      badge: 'Zircônia Multilayer',
     },
     {
       id: 'ponte-implante',
@@ -82,7 +78,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Ponto de contato proximal calibrado',
         'Emergência biológica para saúde peri-implantar',
       ],
-      badge: 'Sobre Implante',
     },
     {
       id: 'reabilitacao-anterior',
@@ -97,7 +92,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Eixo de inserção planejado para evitar sobrecarga',
         'Contorno estético de zênite gengival',
       ],
-      badge: 'Estética Anterior',
     },
     {
       id: 'placa-bruxismo',
@@ -112,7 +106,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
         'Retenção sem basculamento',
         'Desoclusão suave nos movimentos mandibulares',
       ],
-      badge: 'Acrílico Cristal',
     },
   ]
 
@@ -140,10 +133,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.6 }}
           className="max-w-3xl mb-16 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-300 text-xs font-bold tracking-wider uppercase mb-4 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-            <span>Casos Reais do Laboratório</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Precisão que se comprova no modelo e na boca.
           </h2>
@@ -195,10 +184,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
             {/* Right Column: Responsible, Simple Technical Analysis */}
             <div className="w-full lg:w-1/2 flex flex-col justify-between">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-wider uppercase mb-4">
-                  <span>Destaque Clínico</span>
-                </div>
-
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-tight">
                   Protocolo Provisório de Carga Imediata
                 </h3>
@@ -315,11 +300,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                           Ampliar Detalhes
                         </span>
                       </div>
-                      {item.badge && (
-                        <span className="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-sm text-teal-300 border border-teal-500/30">
-                          {item.badge}
-                        </span>
-                      )}
                     </div>
 
                     <div className="p-6">
