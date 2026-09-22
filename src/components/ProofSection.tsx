@@ -1,9 +1,66 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { CheckCircle2, MessageSquare, Star, ZoomIn, X, Send, Award, Users, ShieldCheck } from 'lucide-react'
 import { LAB_CONFIG } from '../config'
 
 interface ProofSectionProps {
   onOpenTriage: () => void
+}
+
+function AnimatedCounter({
+  target,
+  prefix = '',
+  suffix = '',
+  duration = 1600,
+}: {
+  target: number
+  prefix?: string
+  suffix?: string
+  duration?: number
+}) {
+  const [count, setCount] = useState(0)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const elementRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const node = elementRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true)
+          const startTime = performance.now()
+
+          const updateCounter = (currentTime: number) => {
+            const elapsed = currentTime - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setCount(Math.floor(eased * target))
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter)
+            } else {
+              setCount(target)
+            }
+          }
+
+          requestAnimationFrame(updateCounter)
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [target, duration, hasAnimated])
+
+  return (
+    <span ref={elementRef}>
+      {prefix}
+      {count.toLocaleString('pt-BR')}
+      {suffix}
+    </span>
+  )
 }
 
 export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
@@ -53,56 +110,107 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
         {/* ============================================================ */}
         {/* ANIMATED COUNTERS GRID                                       */}
         {/* ============================================================ */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center">
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
             <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
               <Award className="w-6 h-6" />
             </div>
             <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {LAB_CONFIG.metrics.deliveredProstheses}
+              <AnimatedCounter target={1000} prefix="+" />
             </p>
             <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
               Próteses entregues com sucesso
             </p>
           </div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center">
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
             <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
               <Users className="w-6 h-6" />
             </div>
             <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {LAB_CONFIG.metrics.partnerDentists}
+              <AnimatedCounter target={30} prefix="+" />
             </p>
             <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
               Dentistas parceiros ativos
             </p>
           </div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center">
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
             <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              Digital & Convencional
+            <p className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Digital & Físico
             </p>
             <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
               Integração completa de fluxos
             </p>
           </div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center">
+          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
             <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
               <MessageSquare className="w-6 h-6" />
             </div>
             <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              100%
+              <AnimatedCounter target={100} suffix="%" />
             </p>
             <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
               Acompanhamento técnico direto
             </p>
           </div>
 
+        </div>
+
+        {/* ============================================================ */}
+        {/* ESPAÇO PARA FOTO DO LABORATÓRIO E DO RESPONSÁVEL TÉCNICO     */}
+        {/* ============================================================ */}
+        <div className="mb-20 bg-gradient-to-br from-slate-900 via-slate-900 to-teal-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="relative w-full max-w-[280px] aspect-[4/5] rounded-2xl overflow-hidden bg-slate-950 border border-slate-700 shadow-lg">
+                <img
+                  src="/assets/osvaldo-studio.webp"
+                  alt="Osvaldo Lourenço Filho - Responsável Técnico do Laboratório"
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex flex-col justify-end p-4">
+                  <span className="text-[11px] font-bold uppercase text-amber-400">Responsável Técnico</span>
+                  <p className="text-base font-bold text-white">{LAB_CONFIG.founder}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-8 space-y-4 text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-bold uppercase tracking-wider">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
+                <span>Supervisão e Responsabilidade Direta</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Garantia técnica de quem assina e acompanha cada caso.
+              </h3>
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                No Laboratório Lourenço, seu caso não é delegado para operadores anônimos sem comunicação. Todas as etapas — da recepção dos modelos/escaneamentos à prova de oclusão e acabamento final — passam pela checagem direta do técnico responsável, garantindo respeito irrestrito ao seu tempo clínico.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <p className="text-xs font-bold text-teal-300">Inspeção em Troquel</p>
+                  <p className="text-[11px] text-slate-400 mt-1">Vedamento cervical passivo testado sob magnificação óptica</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <p className="text-xs font-bold text-teal-300">Canal WhatsApp Direto</p>
+                  <p className="text-[11px] text-slate-400 mt-1">Alinhamento de cor e preparo sem barreiras ou intermediários</p>
+                </div>
+                <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
+                  <p className="text-xs font-bold text-teal-300">Logística da Região</p>
+                  <p className="text-[11px] text-slate-400 mt-1">Coleta e entrega pontual estruturada para os consultórios</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         {/* ============================================================ */}

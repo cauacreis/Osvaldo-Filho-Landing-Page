@@ -24,6 +24,17 @@ export const LAB_CONFIG = {
 }
 
 /**
+ * Retorna o número de WhatsApp estritamente limpo com DDI para link wa.me
+ */
+export function getSanitizedWhatsAppNumber(): string {
+  let clean = (LAB_CONFIG.whatsappNumber || '').replace(/\D/g, '')
+  if (clean.length === 10 || clean.length === 11) {
+    clean = `55${clean}`
+  }
+  return clean || '5511999999999'
+}
+
+/**
  * Constrói o link oficial do WhatsApp com a mensagem formatada
  * estritamente segundo as diretrizes de triagem técnica.
  */
@@ -49,7 +60,8 @@ Observações: ${observacoes}
 Posso enviar fotos, arquivos ou mais detalhes do caso por aqui?`
 
   const encodedMessage = encodeURIComponent(message)
-  return `https://wa.me/${LAB_CONFIG.whatsappNumber}?text=${encodedMessage}`
+  const phone = getSanitizedWhatsAppNumber()
+  return `https://wa.me/${phone}?text=${encodedMessage}`
 }
 
 /**
@@ -57,5 +69,7 @@ Posso enviar fotos, arquivos ou mais detalhes do caso por aqui?`
  */
 export function getDirectWhatsAppLink(customIntro?: string): string {
   const intro = customIntro || 'Olá, equipe do Laboratório Lourenço. Gostaria de enviar um caso para análise e tirar algumas dúvidas.'
-  return `https://wa.me/${LAB_CONFIG.whatsappNumber}?text=${encodeURIComponent(intro)}`
+  const phone = getSanitizedWhatsAppNumber()
+  return `https://wa.me/${phone}?text=${encodeURIComponent(intro)}`
 }
+

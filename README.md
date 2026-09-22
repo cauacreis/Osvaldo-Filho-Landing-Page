@@ -28,15 +28,19 @@ Captar cirurgiões-dentistas da região (especialistas em reabilitação oral, i
 
 ---
 
-## 🛠️ Totem Interativo de Triagem de Caso (7 Etapas)
+## 🛠️ Totem Interativo de Triagem de Caso (Fluxo Completo de 9 Telas)
 
-1. **Parceria:** Verificação de status (Já é parceiro / Primeiro caso / Quero conhecer).
-2. **Dados do Cirurgião:** Nome completo, clínica, cidade e WhatsApp com DDD.
-3. **Tipo de Trabalho Protético:** Coroa, Zircônia, Emax, Metalocerâmica, Cerômero/Resina, Implante, Protocolo, Barra Metálica, Placas.
-4. **Fluxo de Trabalho:** Digital (STL/PLY), Convencional (Gesso/Silicone), Orientação prévia ou Alinhamento direto.
-5. **Etapa Clínica:** Planejamento, Escaneamento/Moldagem pronta, Pronto para envio, Urgência ou Retrabalho de outro laboratório.
-6. **Expectativa de Prazo:** Prazo normal, Data agendada com paciente, Urgência clínica ou A definir.
-7. **Observações Clínicas & Resumo:** Campo aberto + Síntese completa + Disparo de confetes + Botão magnético para o WhatsApp com a mensagem formatada:
+- **Tela Inicial:** *“Vamos entender seu caso em menos de 1 minuto.”* com resumo dos diferenciais de sigilo, agilidade e sem compromisso inicial.
+- **Perguntas Clínicas (Uma por Tela com Barra de Progresso):**
+  1. **(a) Parceria:** Verificação de status (Já é parceiro / Primeiro caso / Quero conhecer).
+  2. **(b) Identificação:** Nome completo (Dr./Dra.), clínica/consultório, cidade/bairro e WhatsApp com DDD.
+  3. **(c) Tipo de Trabalho:** Coroa / Unitário, Zircônia, Emax, Metalocerâmica, Cerômero/Resina, Prótese sobre Implante, Protocolo (Carga Imediata / Definitivo), Barra Metálica, Placa de Bruxismo, Placa de Clareamento ou Outro.
+  4. **(d) Fluxo de Envio:** Digital (Arquivo STL/PLY), Convencional (Moldagem/Gesso), Preciso de orientação ou Quero falar antes.
+  5. **(e) Etapa do Caso:** Planejamento inicial, Escaneamento/Moldagem pronta, Pronto para envio/coleta, Urgente ou Retrabalho.
+  6. **(f) Expectativa de Prazo:** Prazo normal de produção, Tenho data agendada com paciente, Urgência clínica ou A alinhar.
+  7. **(g) Observações Opcionais:** Atalhos rápidos para detalhes clínicos (substrato, cor, espaço) + campo aberto.
+- **Tela Final de Resumo:**
+  Síntese completa de todos os dados preenchidos + disparo de confetes comemorativos + botão de alta visibilidade **“Falar com o Laboratório no WhatsApp”** com a mensagem estritamente formatada:
 
 ```text
 Olá, equipe do Laboratório Lourenço. Gostaria de analisar um caso.

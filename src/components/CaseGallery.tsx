@@ -372,7 +372,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
               >
-                <span>Enviar caso para análise no WhatsApp</span>
+                <span>Enviar caso para análise</span>
                 <Send className="w-3.5 h-3.5" />
               </button>
             </div>

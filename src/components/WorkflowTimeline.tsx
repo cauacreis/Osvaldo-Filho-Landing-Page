@@ -27,7 +27,7 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
     },
     {
       step: '03',
-      title: 'Produzimos com Rigor',
+      title: 'Produzimos com Controle',
       subtitle: 'Controle de Bancada',
       description:
         'Usinagem CAD/CAM de precisão somada ao acabamento artesanal e estratificação anatômica. Teste triplo de assentamento passivo.',
@@ -64,11 +64,13 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
 
         {/* Animated Timeline Grid */}
         <div className="relative">
-          {/* Connecting Line (Desktop) */}
+          {/* Smooth Animated Connecting Line (Desktop) */}
           <div
             aria-hidden="true"
-            className="hidden lg:block absolute top-1/2 left-10 right-10 h-0.5 bg-gradient-to-r from-teal-200 via-teal-500 to-teal-200 -translate-y-12 z-0"
-          />
+            className="hidden lg:block absolute top-1/2 left-10 right-10 h-1 bg-slate-100 -translate-y-12 z-0 overflow-hidden rounded-full shadow-xs"
+          >
+            <div className="w-full h-full bg-gradient-to-r from-teal-300 via-teal-600 to-teal-300 rounded-full animate-pulse-subtle" />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
             {steps.map((item, index) => {

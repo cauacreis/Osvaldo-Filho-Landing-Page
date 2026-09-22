@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import {
   X,
   ArrowRight,
@@ -10,7 +10,11 @@ import {
   Phone,
   User,
   Sparkles,
-  AlertCircle
+  AlertCircle,
+  Clock,
+  ShieldCheck,
+  FileText,
+  HelpCircle,
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { TriageData, PartnerStatus } from '../types'
@@ -27,8 +31,12 @@ export const TriageModal: React.FC<TriageModalProps> = ({
   onClose,
   initialService,
 }) => {
-  const [currentStep, setCurrentStep] = useState<number>(1)
-  const totalSteps = 7
+  // Step 0: Tela Inicial
+  // Steps 1-7: Perguntas a) até g)
+  // Step 8: Tela Final com Resumo
+  const [currentStep, setCurrentStep] = useState<number>(0)
+  const totalQuestions = 7
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const [formData, setFormData] = useState<TriageData>({
     isPartner: '',
@@ -52,9 +60,16 @@ export const TriageModal: React.FC<TriageModalProps> = ({
     }
   }, [initialService])
 
-  // Trigger confetti when arriving at step 7 (Summary)
+  // Scroll to top inside modal content when step changes
   useEffect(() => {
-    if (currentStep === 7) {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0
+    }
+  }, [currentStep])
+
+  // Trigger confetti when arriving at Step 8 (Tela Final de Resumo)
+  useEffect(() => {
+    if (currentStep === 8) {
       try {
         confetti({
           particleCount: 80,
@@ -63,85 +78,133 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           colors: ['#0d9488', '#d4af37', '#0f766e', '#1e293b'],
         })
       } catch {
-        // Fallback silently if canvas is not supported
+        // Fallback silently if canvas-confetti is not supported
       }
     }
   }, [currentStep])
 
-  // Prevent background scrolling when modal is open
+  // Escape key listener & Prevent background scrolling when modal is open
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
     if (isOpen) {
       document.body.style.overflow = 'hidden'
+      window.addEventListener('keydown', handleKeyDown)
     } else {
       document.body.style.overflow = 'unset'
-      setCurrentStep(1)
+      setCurrentStep(0)
       setErrorMsg('')
     }
     return () => {
       document.body.style.overflow = 'unset'
+      window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen])
+  }, [isOpen, onClose])
 
   if (!isOpen) return null
+
+  // Phone input formatting helper
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value.replace(/\D/g, '')
+    if (val.length > 11) val = val.slice(0, 11)
+    if (val.length > 6) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2, 7)}-${val.slice(7)}`
+    } else if (val.length > 2) {
+      val = `(${val.slice(0, 2)}) ${val.slice(2)}`
+    } else if (val.length > 0) {
+      val = `(${val}`
+    }
+    setFormData((p) => ({ ...p, whatsapp: val }))
+  }
+
+  // Quick clinical notes chips helper
+  const handleToggleNoteChip = (chip: string) => {
+    setFormData((prev) => {
+      const currentNotes = prev.notes.trim()
+      if (currentNotes.includes(chip)) {
+        return prev
+      }
+      const updated = currentNotes ? `${currentNotes}, ${chip}` : chip
+      return { ...prev, notes: updated }
+    })
+  }
 
   const handleNext = () => {
     setErrorMsg('')
 
-    // Validation for Step 1
+    // Step 0 -> Step 1 (Start)
+    if (currentStep === 0) {
+      setCurrentStep(1)
+      return
+    }
+
+    // Validation for Question a (Step 1)
     if (currentStep === 1 && !formData.isPartner) {
       setErrorMsg('Por favor, selecione uma das opções acima para continuar.')
       return
     }
 
-    // Validation for Step 2
+    // Validation for Question b (Step 2)
     if (currentStep === 2) {
       if (!formData.name.trim()) {
-        setErrorMsg('Por favor, informe seu nome.')
+        setErrorMsg('Por favor, informe seu nome (Dr. / Dra.).')
         return
       }
-      if (!formData.whatsapp.trim()) {
-        setErrorMsg('Por favor, informe seu WhatsApp para alinharmos o caso.')
+      if (!formData.whatsapp.trim() || formData.whatsapp.replace(/\D/g, '').length < 10) {
+        setErrorMsg('Por favor, informe um WhatsApp válido com DDD.')
         return
       }
     }
 
-    // Validation for Step 3
+    // Validation for Question c (Step 3)
     if (currentStep === 3 && !formData.workType) {
-      setErrorMsg('Por favor, selecione o tipo de trabalho.')
+      setErrorMsg('Por favor, selecione o tipo de trabalho protético.')
       return
     }
 
-    // Validation for Step 4
+    // Validation for Question d (Step 4)
     if (currentStep === 4 && !formData.workflow) {
-      setErrorMsg('Por favor, selecione o fluxo de envio.')
+      setErrorMsg('Por favor, selecione o formato do fluxo de envio.')
       return
     }
 
-    // Validation for Step 5
+    // Validation for Question e (Step 5)
     if (currentStep === 5 && !formData.stage) {
       setErrorMsg('Por favor, selecione a etapa atual do caso.')
       return
     }
 
-    // Validation for Step 6
+    // Validation for Question f (Step 6)
     if (currentStep === 6 && !formData.deadline) {
       setErrorMsg('Por favor, selecione a expectativa de prazo.')
       return
     }
 
-    if (currentStep < totalSteps) {
+    // Step 7 (Observações) is optional, moves to Step 8 (Resumo Final)
+    if (currentStep < 8) {
       setCurrentStep((prev) => prev + 1)
     }
   }
 
   const handleBack = () => {
     setErrorMsg('')
-    if (currentStep > 1) {
+    if (currentStep > 0) {
       setCurrentStep((prev) => prev - 1)
     }
   }
 
-  const progressPercent = Math.round((currentStep / totalSteps) * 100)
+  // Progress Bar computation
+  let progressPercent = 0
+  if (currentStep >= 1 && currentStep <= 7) {
+    progressPercent = Math.round((currentStep / totalQuestions) * 100)
+  } else if (currentStep === 8) {
+    progressPercent = 100
+  }
+
 
   const workTypesList = [
     'Coroa / Unitário',
@@ -195,6 +258,15 @@ export const TriageModal: React.FC<TriageModalProps> = ({
     { id: 'Ainda não sei / A alinhar', label: 'Ainda não sei / Vamos definir em conjunto' },
   ]
 
+  const clinicalChips: string[] = [
+    'Substrato escurecido',
+    'Cor a definir',
+    'Antagonista metálico',
+    'Pouco espaço interoclusal',
+    'Ti-Base / UCLA',
+    'Sem molde antagonista ainda',
+  ]
+
   const whatsappUrl = buildWhatsAppLink(formData)
 
   return (
@@ -238,17 +310,21 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {/* Prompt banner & step counter */}
           <div className="flex items-center justify-between text-xs font-semibold text-slate-500 mb-2">
             <span className="text-teal-900 font-bold">
-              Vamos entender seu caso em menos de 1 minuto.
+              {currentStep === 0 && 'Vamos entender seu caso em menos de 1 minuto.'}
+              {currentStep >= 1 && currentStep <= 7 && `Pergunta ${currentStep} de ${totalQuestions}`}
+              {currentStep === 8 && 'Resumo do Caso Pronto'}
             </span>
             <span>
-              Passo {currentStep} de {totalSteps} ({progressPercent}%)
+              {currentStep === 0 && 'Início'}
+              {currentStep >= 1 && currentStep <= 7 && `${progressPercent}% concluído`}
+              {currentStep === 8 && '100% Concluído'}
             </span>
           </div>
 
           {/* Progress Bar */}
           <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-teal-700 to-teal-500 transition-all duration-300 rounded-full"
+              className="h-full bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 transition-all duration-300 rounded-full"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -257,28 +333,99 @@ export const TriageModal: React.FC<TriageModalProps> = ({
         {/* ============================================================ */}
         {/* STEP CONTENT BODY                                            */}
         {/* ============================================================ */}
-        <div className="p-5 sm:p-8 overflow-y-auto flex-1">
-          
+        <div ref={scrollContainerRef} className="p-5 sm:p-8 overflow-y-auto flex-1">
           {/* Error Message */}
           {errorMsg && (
-            <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5">
+            <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs sm:text-sm font-medium flex items-center gap-2.5 animate-fade-in">
               <AlertCircle className="w-4 h-4 text-red-500 shrink-0" />
               <span>{errorMsg}</span>
             </div>
           )}
 
-          {/* STEP 1: Já é parceiro? */}
+          {/* ============================================================ */}
+          {/* TELA INICIAL: "Vamos entender seu caso em menos de 1 minuto"  */}
+          {/* ============================================================ */}
+          {currentStep === 0 && (
+            <div className="space-y-6 py-2 animate-fade-in">
+              <div className="text-center max-w-xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider mb-4">
+                  <Clock className="w-3.5 h-3.5 text-teal-600" />
+                  <span>Triagem Clínica Express</span>
+                </div>
+
+                <h4 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug mb-3">
+                  Vamos entender seu caso em menos de 1 minuto.
+                </h4>
+
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  Responda a 7 etapas objetivas para que a equipe técnica do{' '}
+                  <strong className="text-slate-900 font-semibold">Laboratório Lourenço</strong>{' '}
+                  possa alinhar biomateriais, logística de coleta e prazos diretamente pelo WhatsApp.
+                </p>
+
+                {formData.workType && (
+                  <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-teal-50 border border-teal-200/80 text-teal-900 text-xs font-bold">
+                    <span>Trabalho pré-selecionado:</span>
+                    <span className="text-teal-700 underline">{formData.workType}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Guarantees Box */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <h5 className="text-xs font-bold text-slate-900">Menos de 1 Minuto</h5>
+                  <p className="text-[11px] text-slate-500 mt-0.5">Fluxo otimizado para a rotina dinâmica do consultório.</p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <h5 className="text-xs font-bold text-slate-900">Sem Compromisso</h5>
+                  <p className="text-[11px] text-slate-500 mt-0.5">Alinhamento e orientação técnica inicial sem custos.</p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-left">
+                  <div className="w-8 h-8 rounded-xl bg-teal-100 text-teal-800 flex items-center justify-center mb-2.5">
+                    <FileText className="w-4 h-4" />
+                  </div>
+                  <h5 className="text-xs font-bold text-slate-900">Direto no WhatsApp</h5>
+                  <p className="text-[11px] text-slate-500 mt-0.5">Mensagem gerada e organizada pronta para envio com fotos.</p>
+                </div>
+              </div>
+
+              {/* Start Button */}
+              <div className="pt-4">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(1)}
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-teal-800 hover:bg-teal-900 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-teal-900/20 transition-all duration-200"
+                >
+                  <span>Iniciar Triagem de Caso</span>
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* ============================================================ */}
+          {/* STEP 1: Já é parceiro? (sim / não / quero conhecer)          */}
+          {/* ============================================================ */}
           {currentStep === 1 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 01
+                  Etapa 01 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Você já é parceiro do Laboratório Lourenço?
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600">
-                  Isso nos ajuda a direcionar seu caso para o canal adequado de atendimento.
+                  Isso nos ajuda a direcionar seu caso para o canal adequado de atendimento e cadastro.
                 </p>
               </div>
 
@@ -286,7 +433,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 {[
                   { value: 'sim', label: 'Sim, já tenho trabalhos no laboratório', desc: 'Acesso rápido com seu cadastro ativo' },
                   { value: 'nao', label: 'Não, este é o meu primeiro caso', desc: 'Queremos conhecer sua preferência clínica e dar atenção especial' },
-                  { value: 'conhecer', label: 'Quero conhecer o laboratório e os padrões de trabalho', desc: 'Entender valores, prazos e fluxo de coleta' },
+                  { value: 'conhecer', label: 'Quero conhecer o laboratório e os padrões de trabalho', desc: 'Entender valores, prazos e fluxo de coleta na região' },
                 ].map((opt) => (
                   <button
                     key={opt.value}
@@ -320,18 +467,20 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 2: Identificação do Cirurgião-Dentista */}
+          {/* ============================================================ */}
+          {/* STEP 2: Nome, clínica, cidade e WhatsApp                    */}
+          {/* ============================================================ */}
           {currentStep === 2 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 02
+                  Etapa 02 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Dados do Cirurgião-Dentista
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600">
-                  Para que possamos identificar seu consultório e organizar a logística de coleta/entrega.
+                  Para identificarmos seu consultório e organizarmos o contato técnico e logística de coleta.
                 </p>
               </div>
 
@@ -346,6 +495,8 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       type="text"
                       placeholder="Ex: Dr. Marcelo Andrade"
                       value={formData.name}
+                      autoFocus
+                      autoComplete="name"
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
                     />
@@ -362,6 +513,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       type="text"
                       placeholder="Ex: Andrade Odontologia Integrada"
                       value={formData.clinic}
+                      autoComplete="organization"
                       onChange={(e) => setFormData({ ...formData, clinic: e.target.value })}
                       className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
                     />
@@ -379,6 +531,7 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                         type="text"
                         placeholder="Ex: São Paulo - Moema"
                         value={formData.city}
+                        autoComplete="address-level2"
                         onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
                       />
@@ -393,9 +546,10 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                       <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="tel"
-                        placeholder="Ex: (11) 98765-4321"
+                        placeholder="(11) 98765-4321"
                         value={formData.whatsapp}
-                        onChange={(e) => setFormData({ ...formData, whatsapp: e.target.value })}
+                        autoComplete="tel"
+                        onChange={handlePhoneChange}
                         className="w-full pl-10 pr-4 py-3 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors"
                       />
                     </div>
@@ -405,18 +559,20 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 3: Tipo de Trabalho */}
+          {/* ============================================================ */}
+          {/* STEP 3: Tipo de trabalho                                    */}
+          {/* ============================================================ */}
           {currentStep === 3 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 03
+                  Etapa 03 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Qual é o tipo de trabalho protético?
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600">
-                  Selecione a indicação principal. Se for um caso múltiplo, escolha a principal ou selecione 'Outro'.
+                  Selecione a indicação principal. Se for um caso múltiplo, escolha a principal ou 'Outro'.
                 </p>
               </div>
 
@@ -445,12 +601,14 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 4: Fluxo de Trabalho */}
+          {/* ============================================================ */}
+          {/* STEP 4: Fluxo de envio (Digital, convencional, etc.)        */}
+          {/* ============================================================ */}
           {currentStep === 4 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 04
+                  Etapa 04 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Qual o formato do fluxo de envio?
@@ -494,18 +652,20 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 5: Etapa do Caso */}
+          {/* ============================================================ */}
+          {/* STEP 5: Etapa do caso                                        */}
+          {/* ============================================================ */}
           {currentStep === 5 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 05
+                  Etapa 05 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Em qual etapa clínica o caso se encontra?
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600">
-                  Nos ajuda a saber se você precisa de orientação prévia ou se já podemos agendar a coleta/usinagem.
+                  Ajuda a definir se você precisa de alinhamento prévio ou se já podemos agendar a coleta/usinagem.
                 </p>
               </div>
 
@@ -540,18 +700,20 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 6: Prazo Desejado */}
+          {/* ============================================================ */}
+          {/* STEP 6: Prazo desejado                                       */}
+          {/* ============================================================ */}
           {currentStep === 6 && (
             <div className="space-y-4">
               <div>
                 <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
-                  Etapa 06
+                  Etapa 06 de 07
                 </span>
                 <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
                   Qual a expectativa de prazo para a instalação?
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-600">
-                  Planejamento e pontualidade são prioridades no Laboratório Lourenço.
+                  Planejamento e pontualidade são compromissos inegociáveis no Laboratório Lourenço.
                 </p>
               </div>
 
@@ -586,13 +748,74 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             </div>
           )}
 
-          {/* STEP 7: Observações e Resumo Interativo */}
+          {/* ============================================================ */}
+          {/* STEP 7: Observações opcionais                                */}
+          {/* ============================================================ */}
           {currentStep === 7 && (
-            <div className="space-y-5">
+            <div className="space-y-5 animate-fade-in">
+              <div>
+                <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                  Etapa 07 de 07 (Opcional)
+                </span>
+                <h4 className="text-xl sm:text-2xl font-bold text-slate-900 mt-1 mb-2">
+                  Observações e Detalhes Clínicos
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  Deseja adiantar alguma informação técnica sobre o caso? (Substrato, cor desejada, fotos ou arquivos).
+                </p>
+              </div>
+
+              {/* Quick Suggestion Chips */}
+              <div>
+                <p className="text-[11px] font-bold uppercase text-slate-400 tracking-wider mb-2">
+                  Atalhos rápidos (clique para incluir):
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {clinicalChips.map((chip) => (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => handleToggleNoteChip(chip)}
+                      className="text-xs px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-teal-50 hover:text-teal-900 hover:border-teal-300 border border-slate-200 text-slate-700 font-medium transition-colors"
+                    >
+                      + {chip}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Text Area */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  Campo de Observações
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="Ex: Substrato 3M2, cor desejada BL3, antagonista com restauração metálica, paciente tem bruxismo..."
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  className="w-full p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors resize-none"
+                />
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-teal-50/70 border border-teal-200/80 flex items-start gap-2.5 text-xs text-teal-900">
+                <HelpCircle className="w-4 h-4 text-teal-700 shrink-0 mt-0.5" />
+                <span>
+                  Você poderá anexar fotos clínicas, radiografias e arquivos STL diretamente pelo WhatsApp na próxima tela.
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* ============================================================ */}
+          {/* STEP 8: Tela final com resumo e botão WhatsApp               */}
+          {/* ============================================================ */}
+          {currentStep === 8 && (
+            <div className="space-y-5 animate-fade-in">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
                   <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>Triagem Pronta para Envio</span>
+                  <span>Triagem Concluída com Sucesso</span>
                 </div>
                 <h4 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
                   Tudo pronto, {formData.name || 'Doutor(a)'}!
@@ -602,56 +825,51 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 </p>
               </div>
 
-              {/* Observações Opcionais */}
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Observações Clínicas Opcionais (cor, substrato, dúvidas)
-                </label>
-                <textarea
-                  rows={2}
-                  placeholder="Ex: Substrato escurecido 3M2, cor desejada BL3, antagonista com restauração metálica..."
-                  value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-900 focus:bg-white focus:border-teal-700 focus:outline-none transition-colors resize-none"
-                />
-              </div>
-
               {/* Visual Summary Card */}
-              <div className="bg-slate-50 rounded-2xl p-4 sm:p-5 border border-slate-200/90 text-xs sm:text-sm space-y-2.5">
-                <div className="grid grid-cols-2 gap-2 pb-2 border-b border-slate-200/60">
+              <div className="bg-slate-50 rounded-2xl p-4 sm:p-5 border border-slate-200/90 text-xs sm:text-sm space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pb-3 border-b border-slate-200/60">
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Dentista / Clínica:</span>
-                    <strong className="text-slate-900 font-semibold">{formData.name || '-'}</strong>
-                    {formData.clinic && <span className="block text-slate-500 text-[11px]">{formData.clinic}</span>}
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Cirurgião-Dentista:</span>
+                    <strong className="text-slate-900 font-bold text-sm">{formData.name || '-'}</strong>
+                    {formData.clinic && <span className="block text-slate-500 text-xs">{formData.clinic}</span>}
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Cidade & WhatsApp:</span>
-                    <strong className="text-slate-900 font-semibold">{formData.city || '-'}</strong>
-                    <span className="block text-slate-500 text-[11px]">{formData.whatsapp || '-'}</span>
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Cidade & WhatsApp:</span>
+                    <strong className="text-slate-900 font-bold text-sm">{formData.city || '-'}</strong>
+                    <span className="block text-slate-600 text-xs font-medium">{formData.whatsapp || '-'}</span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 pt-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Tipo de Trabalho:</span>
-                    <strong className="text-teal-900 font-semibold">{formData.workType || '-'}</strong>
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Tipo de Trabalho:</span>
+                    <strong className="text-teal-900 font-bold text-sm">{formData.workType || '-'}</strong>
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Fluxo de Trabalho:</span>
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Fluxo de Trabalho:</span>
                     <strong className="text-slate-900 font-semibold">{formData.workflow || '-'}</strong>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2 pt-1">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 border-t border-slate-200/60">
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Etapa Atual:</span>
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Etapa Atual:</span>
                     <span className="text-slate-700 font-medium">{formData.stage || '-'}</span>
                   </div>
                   <div>
-                    <span className="text-slate-400 block text-[11px]">Expectativa de Prazo:</span>
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Expectativa de Prazo:</span>
                     <span className="text-slate-700 font-medium">{formData.deadline || '-'}</span>
                   </div>
                 </div>
+
+                {formData.notes && (
+                  <div className="pt-2 border-t border-slate-200/60">
+                    <span className="text-slate-400 block text-[11px] font-semibold uppercase">Observações:</span>
+                    <p className="text-slate-700 text-xs italic mt-0.5 bg-white p-2.5 rounded-xl border border-slate-200/80">
+                      {formData.notes}
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* WhatsApp Trigger Button */}
@@ -660,52 +878,56 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/20 active:scale-95 transition-all text-center"
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/25 transition-all text-center"
                 >
                   <Send className="w-5 h-5 text-white" />
                   <span>Falar com o Laboratório no WhatsApp</span>
                 </a>
 
-                <p className="mt-2.5 text-[11px] text-center text-slate-500">
-                  🔒 Ao clicar, abriremos sua conversa com a mensagem organizada. Você poderá anexar fotos, escaneamentos ou radiografias direto pelo WhatsApp.
+                <p className="mt-3 text-[11px] text-center text-slate-500 leading-relaxed">
+                  🔒 Ao clicar, abriremos sua conversa com o Laboratório Lourenço com os dados organizados. Você poderá anexar fotos do preparo, escaneamentos ou radiografias direto no WhatsApp.
                 </p>
               </div>
 
+              <div className="pt-1 text-center">
+                <button
+                  type="button"
+                  onClick={() => setCurrentStep(1)}
+                  className="text-xs text-slate-400 hover:text-teal-700 transition-colors underline"
+                >
+                  Editar dados da triagem
+                </button>
+              </div>
             </div>
           )}
-
         </div>
 
         {/* ============================================================ */}
         {/* FOOTER NAVIGATION (Back / Next)                              */}
         {/* ============================================================ */}
-        {currentStep < 7 && (
+        {currentStep >= 1 && currentStep <= 7 && (
           <div className="p-4 sm:p-6 pt-3 border-t border-slate-100 bg-white flex items-center justify-between gap-3">
-            {currentStep > 1 ? (
-              <button
-                type="button"
-                onClick={handleBack}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Voltar</span>
-              </button>
-            ) : (
-              <div />
-            )}
+            <button
+              type="button"
+              onClick={handleBack}
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Voltar</span>
+            </button>
 
             <button
               type="button"
               onClick={handleNext}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-900 text-white text-xs sm:text-sm font-bold shadow-md transition-all active:scale-95"
             >
-              <span>Continuar</span>
+              <span>{currentStep === 7 ? 'Ver Resumo' : 'Continuar'}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         )}
-
       </div>
     </div>
   )
 }
+
