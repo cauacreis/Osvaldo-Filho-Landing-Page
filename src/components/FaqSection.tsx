@@ -14,32 +14,32 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
     {
       question: 'Quais trabalhos o laboratório realiza?',
       answer:
-        'Confeccionamos soluções em prótese fixa e sobre implantes, incluindo zircônia (monolítica e multicamadas), cerâmica pura E.max (dissilicato de lítio), metalocerâmica, cerômeros e resinas, próteses sobre implantes unitárias e múltiplas, protocolos provisórios de carga imediata e definitivos, barras metálicas fresadas ou fundidas, além de placas miorrelaxantes de bruxismo e placas de clareamento.',
+        'Prótese fixa, zircônia multilayer, cerâmica pura E.max (dissilicato de lítio), metalocerâmica, prótese sobre implante, protocolos de carga imediata, barras metálicas e placas de bruxismo.',
     },
     {
       question: 'O laboratório trabalha com fluxo digital e convencional?',
       answer:
-        'Sim, temos total integração com ambos os fluxos. Você pode nos enviar arquivos digitais de escaneamento intraoral (formatos STL ou PLY) de qualquer marca de scanner do mercado, bem como moldagens convencionais de precisão (silicones de adição/condensação) e modelos em gesso especial.',
+        'Sim. Recebemos arquivos digitais (STL ou PLY) de qualquer scanner intraoral do mercado, e também coletamos moldagens físicas em silicone e modelos de gesso no seu consultório.',
     },
     {
       question: 'Como funciona a coleta e entrega?',
       answer:
-        'Para cirurgiões-dentistas e clínicas da nossa região de cobertura, disponibilizamos serviço de motoboy/coleta e entrega ágil. O agendamento da retirada da moldagem ou do trabalho pode ser solicitado diretamente pelo WhatsApp do laboratório de forma simples e rápida.',
+        'Temos serviço de coleta e entrega próprio para São Paulo e região metropolitana. O agendamento é feito direto pelo WhatsApp de forma rápida.',
     },
     {
-      question: 'Como solicitar orçamento?',
+      question: 'Como solicitar orçamento para um caso?',
       answer:
-        'Como cada reabilitação protética possui particularidades biológicas e mecânicas (substrato dental, tipo de implante, espaço oclusal e material indicado), não trabalhamos com valores tabelados fixos sem avaliação. Para receber um orçamento detalhado para o seu caso, basta utilizar nosso formulário de triagem ou nos chamar no WhatsApp enviando os dados ou fotos do caso.',
+        'Basta preencher a triagem rápida aqui no site ou chamar no WhatsApp com as fotos e dados do caso. O Osvaldo analisa o substrato e envia a estimativa técnica de imediato.',
     },
     {
-      question: 'Como confirmar o prazo?',
+      question: 'Como é combinado o prazo de entrega?',
       answer:
-        'O prazo de confecção é alinhado de forma individualizada com você no momento do recebimento do caso, levando em consideração a complexidade do trabalho e a data agendada com o seu paciente. Dessa forma, garantimos que o cronograma seja cumprido com total pontualidade e rigor de controle.',
+        'Alinhamos o prazo com base na data agendada com o seu paciente. O cronograma combinado é cumprido com rigor para evitar qualquer atraso na sua clínica.',
     },
     {
-      question: 'Posso enviar um caso para orientação antes de decidir?',
+      question: 'Posso tirar dúvidas com o técnico antes de moldar?',
       answer:
-        'Com certeza! Esse é um dos nossos maiores diferenciais. Você pode nos enviar fotos clínicas, radiografias ou escaneamentos para discutir espaço interoclusal, término cervical ou viabilidade de material com o Osvaldo e nossa equipe técnica antes de iniciar o procedimento ou moldar.',
+        'Com certeza. Você pode mandar fotos do preparo, radiografias ou escaneamentos para alinhar término cervical, espaço oclusal e material direto com o Osvaldo.',
     },
   ]
 

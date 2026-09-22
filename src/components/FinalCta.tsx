@@ -39,7 +39,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight max-w-3xl mx-auto mb-6"
         >
-          Seu próximo caso merece previsibilidade desde o planejamento.
+          Traga previsibilidade para o seu próximo caso.
         </motion.h2>
 
         <motion.p
@@ -49,7 +49,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal"
         >
-          Elimine o receio de retrabalhos, desajustes e atrasos. Conte com um laboratório que entende a responsabilidade do cirurgião-dentista e acompanha cada detalhe do caso.
+          Chega de perder tempo desgastando peças ou remarcando pacientes. Envie o seu caso e alinhe tudo diretamente no WhatsApp com o Osvaldo.
         </motion.p>
 
         {/* Big Action Button with Glowing Pulse */}
@@ -65,7 +65,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
             onClick={onOpenTriage}
             className="group w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-5 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-base sm:text-lg rounded-2xl shadow-[0_0_35px_rgba(20,184,166,0.4)] hover:shadow-[0_0_50px_rgba(20,184,166,0.6)] active:scale-95 transition-all"
           >
-            <span>Enviar caso para análise</span>
+            <span>Enviar caso para o Osvaldo</span>
             <span className="w-8 h-8 rounded-xl bg-slate-950/15 flex items-center justify-center transition-transform group-hover:translate-x-1">
               <Send className="w-4 h-4 text-slate-950" />
             </span>

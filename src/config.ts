@@ -1,4 +1,4 @@
-import { TriageData } from './types'
+import { TriageData, FeedbackReview } from './types'
 
 export const LAB_CONFIG = {
   name: 'Laboratório Lourenço',
@@ -72,4 +72,34 @@ export function getDirectWhatsAppLink(customIntro?: string): string {
   const phone = getSanitizedWhatsAppNumber()
   return `https://wa.me/${phone}?text=${encodeURIComponent(intro)}`
 }
+
+/**
+ * REVIEWS & PRINTS REAIS DO WHATSAPP
+ * Para adicionar novos feedbacks quando receber prints do Osvaldo:
+ * Basta adicionar um novo objeto neste array com o caminho da imagem salva em /assets/
+ */
+export const FEEDBACK_REVIEWS: FeedbackReview[] = [
+  {
+    id: 'review-1',
+    image: '/assets/review-1.webp',
+    badge: 'Feedback no WhatsApp',
+    dentistType: 'Cirurgião-Dentista Parceiro',
+    clinicCity: 'São Paulo - SP',
+    highlight: 'Instalação imediata sem nenhum retrabalho',
+    quote: '“Já entregou e eu já instalei. Parabéns pelo seu trabalho! Gostei bastante! Vamos alinhar pra eu poder mandar mais trabalhos pra você...”',
+    topics: ['Entregue no prazo', 'Instalação sem ajuste', 'Parceria contínua'],
+    stars: 5,
+  },
+  {
+    id: 'review-2',
+    image: '/assets/review-2.webp',
+    badge: 'Feedback Verificado',
+    dentistType: 'Cirurgiã-Dentista Parceira',
+    clinicCity: 'São Paulo - SP',
+    highlight: 'Superou expectativas e entrega no prazo certo',
+    quote: '“Quero deixar meu agradecimento a toda a equipe do laboratório Lourenço pelo excelente atendimento! Fiquei muito satisfeita com todo o processo, desde o atendimento até a qualidade final. As peças ficaram excelentes e superou as expectativas. Destaco principalmente a agilidade na execução e na entrega...”',
+    topics: ['Atendimento direto', 'Peças acima da média', 'Agilidade e cuidado'],
+    stars: 5,
+  },
+]
 

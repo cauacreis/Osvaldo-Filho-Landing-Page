@@ -14,35 +14,35 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
       title: 'Envie o Caso',
       subtitle: 'Digital ou Convencional',
       description:
-        'Envie arquivos STL/PLY diretamente pelo WhatsApp ou solicite nossa coleta física de moldagens e modelos no seu consultório.',
-      details: ['Compatível com qualquer scanner', 'Coleta própria na região', 'Triagem ágil de caso'],
+        'Envie arquivos STL/PLY pelo WhatsApp ou agende a coleta física de moldagens e modelos no seu consultório.',
+      details: ['Qualquer scanner intraoral', 'Coleta própria na região', 'Triagem rápida'],
       icon: FileUp,
     },
     {
       step: '02',
-      title: 'Alinhamos o Planejamento',
-      subtitle: 'Comunicação Direta',
+      title: 'Alinhamento Direto',
+      subtitle: 'Com o Osvaldo',
       description:
-        'Analisamos preparos, espaço interoclusal, seleção de cor e indicação do biomaterial antes de iniciar qualquer corte ou injeção.',
-      details: ['Contato direto de técnico para dentista', 'Sem decisões unilaterais', 'Previsibilidade biomecânica'],
+        'Analisamos preparo, término, espaço oclusal e indicação do biomaterial antes de usinar ou injetar.',
+      details: ['Conversa direta no WhatsApp', 'Sem decisões unilaterais', 'Previsibilidade clínica'],
       icon: GitMerge,
     },
     {
       step: '03',
-      title: 'Produzimos com Controle',
+      title: 'Produção com Rigor',
       subtitle: 'Controle de Bancada',
       description:
-        'Usinagem CAD/CAM de precisão somada ao acabamento artesanal e estratificação anatômica. Teste triplo de assentamento passivo.',
-      details: ['Materiais nobres certificados', 'Selamento marginal milimétrico', 'Textura e opalescência natural'],
+        'Fresagem CAD/CAM aliada à estratificação e textura anatômica. Teste de vedamento passivo no modelo.',
+      details: ['Biomateriais de procedência', 'Adaptação marginal conferida', 'Acabamento natural'],
       icon: Settings,
     },
     {
       step: '04',
-      title: 'Entregamos com Acompanhamento',
-      subtitle: 'Pontualidade e Suporte',
+      title: 'Entrega Pontual',
+      subtitle: 'Instalação Tranquila',
       description:
-        'Entrega rápida e devidamente acondicionada. Ficamos à disposição caso necessite de algum ajuste fino ou acompanhamento clínico.',
-      details: ['Cumprimento estrito de cronograma', 'Embalagem técnica protetora', 'Garantia de parceria ativa'],
+        'Entrega pontual para o dia agendado com seu paciente, pronta para cimentação com rapidez.',
+      details: ['Cronograma rigoroso', 'Embalagem técnica protetora', 'Suporte contínuo'],
       icon: Truck,
     },
   ]

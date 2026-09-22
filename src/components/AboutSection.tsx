@@ -82,63 +82,52 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-              Um parceiro especialista ao lado do seu consultório.
+              Um parceiro de bancada para o seu consultório.
             </h2>
 
             <div className="space-y-4 text-base text-slate-300 leading-relaxed mb-8 font-normal">
               <p>
-                O <strong className="text-white font-semibold">Laboratório Lourenço</strong> nasceu com uma convicção inegociável: 
-                o laboratório de prótese não deve ser uma linha de montagem anônima e impessoal, mas sim uma extensão clínica do consultório odontológico.
+                O <strong className="text-white font-semibold">Laboratório Lourenço</strong> nasceu para acabar com a distância entre o dentista e o técnico. Aqui, seu caso não cai numa linha de produção anônima.
               </p>
               
               <p>
-                Liderado por <strong className="text-white font-semibold">Osvaldo Lourenço Filho</strong>, nossa bancada une a sensibilidade artística da anatomia dental clássica à precisão tecnológica dos fluxos digitais CAD/CAM. Cada peça é tratada com rigor individual — respeitando espaço biológico, término cervical, oclusão funcional e harmonia facial.
+                Liderado por <strong className="text-white font-semibold">Osvaldo Lourenço Filho</strong>, aliamos a anatomia dental clássica à precisão do fluxo digital CAD/CAM. Quando você envia um caso, é o próprio responsável técnico quem confere o troquel, a oclusão e alinha os detalhes com você no WhatsApp.
               </p>
 
               <p>
-                Sabemos o valor do seu tempo e o peso da sua responsabilidade perante o paciente. Por isso, oferecemos canal de comunicação direto, logística ágil para consultórios da região e o compromisso real de entregar próteses previsíveis, que entram passivas e encantam na cimentação.
+                O objetivo é simples: próteses que entram passivas na boca, sem retrabalho e com entrega pontual para a sua consulta de instalação.
               </p>
             </div>
 
-            {/* Core Values / Commitments */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-8">
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex items-start gap-3.5 hover:border-teal-500/30 transition-colors">
-                <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400 shrink-0">
+            {/* 3 Core Commitments */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 w-full mb-8">
+              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Diálogo Aberto</h4>
-                  <p className="text-xs text-slate-400 mt-0.5">Sem burocracia ou intermediários para tirar dúvidas clínicas.</p>
+                  <h4 className="text-sm font-bold text-white">Contato Direto</h4>
+                  <p className="text-xs text-slate-400 mt-1">Converse com quem faz a peça, sem intermediários.</p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex items-start gap-3.5 hover:border-teal-500/30 transition-colors">
-                <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400 shrink-0">
+              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Rigor Artesanal & Digital</h4>
-                  <p className="text-xs text-slate-400 mt-0.5">Escaneamento digital e estratificação cerâmica cuidadosa.</p>
+                  <h4 className="text-sm font-bold text-white">Rigor em Troquel</h4>
+                  <p className="text-xs text-slate-400 mt-1">Vedamento e passividade testados sob aumento.</p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex items-start gap-3.5 hover:border-teal-500/30 transition-colors">
-                <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400 shrink-0">
+              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex flex-col gap-2 hover:border-teal-500/30 transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center shrink-0">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white">Logística Alinhada</h4>
-                  <p className="text-xs text-slate-400 mt-0.5">Coleta e entrega estruturada para dentistas da região.</p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-slate-900/70 border border-slate-800/80 shadow-xs flex items-start gap-3.5 hover:border-teal-500/30 transition-colors">
-                <div className="p-2 rounded-xl bg-teal-500/10 text-teal-400 shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-white">Previsibilidade Real</h4>
-                  <p className="text-xs text-slate-400 mt-0.5">Prazos respeitados para garantir a sua tranquilidade de agenda.</p>
+                  <h4 className="text-sm font-bold text-white">Logística Pontual</h4>
+                  <p className="text-xs text-slate-400 mt-1">Coleta e entrega alinhadas à sua agenda clínica.</p>
                 </div>
               </div>
             </div>

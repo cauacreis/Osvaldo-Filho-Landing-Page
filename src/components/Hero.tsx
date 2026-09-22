@@ -78,10 +78,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-base sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl mb-8"
             >
-              Transformamos o planejamento do dentista em próteses com foco em{' '}
-              <strong className="font-semibold text-white">adaptação</strong>,{' '}
-              <strong className="font-semibold text-white">estética</strong> e{' '}
-              <strong className="font-semibold text-white">previsibilidade</strong>.
+              Sem ajuste exaustivo na cadeira e sem atraso na entrega. Próteses fixas, cerâmicas e protocolos com alinhamento direto no WhatsApp do responsável técnico.
             </motion.p>
 
             {/* 4. Action Area: Primary Button-in-Button + Secondary Link */}

@@ -29,43 +29,43 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       title: 'Coroa Unitária em Cerâmica Pura',
       category: 'unitario',
       image: '/assets/case-coroa-estetica.webp',
-      caption: 'Adaptação marginal micrométrica em modelo troquelado',
+      caption: 'Adaptação marginal em modelo troquelado',
       description:
-        'Trabalho de alta fidelidade anatômica com esmalte estratificado, sulcos oclusais funcionais e selamento cervical rigoroso para preservação periodontal.',
+        'Adaptação cervical conferida sob magnificação. Sulcos oclusais anatômicos e vedamento passivo para saúde periodontal.',
       technicalNotes: [
         'Término em chanfro com vedamento passivo',
-        'Texturização superficial e mimetismo óptico',
-        'Controle oclusal em articulador semi-ajustável',
+        'Textura superficial e halo incisal natural',
+        'Ajuste oclusal verificado em articulador',
       ],
       badge: 'Cerâmica Pura',
     },
     {
       id: 'emax-macro',
-      title: 'Lentes e Facetas em Dissilicato de Lítio (E.max)',
+      title: 'Lentes e Facetas em Dissilicato (E.max)',
       category: 'unitario',
       image: '/assets/emax-ceramic-macro.jpg',
-      caption: 'Fluorescência, opalescência e halo incisal natural',
+      caption: 'Fluorescência e translucidez natural',
       description:
-        'Trabalho de excelência em cerâmica pura vítrea, proporcionando mimetismo óptico inigualável para o setor anterior com preparos minimamente invasivos.',
+        'Cerâmica pura vítrea com estética anterior refinada. Espessuras finas que preservam estrutura dental sadia.',
       technicalNotes: [
         'Espessuras ultrafinas de 0.3mm a 0.5mm',
         'Cimentação adesiva com selamento micrométrico',
-        'Controle de textura periquemácea e reflexão de luz',
+        'Reflexão de luz idêntica ao esmalte dental',
       ],
       badge: 'Estética Pura',
     },
     {
       id: 'zirconia-macro',
-      title: 'Ponte Fixa em Zircônia Monolítica Multilayer',
+      title: 'Ponte Fixa em Zircônia Multilayer',
       category: 'unitario',
       image: '/assets/dental-zirconia-macro.jpg',
-      caption: 'Gradiente de translucidez incisal e anatomia oclusal refinada',
+      caption: 'Degradê natural e anatomia oclusal funcional',
       description:
-        'Usinagem de alta definição com polimento mecânico glazeado que previne desgaste de dentes antagonistas e garante alta resistência à fratura.',
+        'Usinagem precisa com polimento mecânico glazeado que preserva dentes antagonistas e garante resistência mastigatória.',
       technicalNotes: [
-        'Gradiente de 4Y/5Y-PSZ de alta translucidez',
-        'Fissuras anatômicas com pigmentação biológica',
-        'Assentamento passivo testado sob microscópio',
+        'Zircônia multilayer de alta translucidez',
+        'Pigmentação e caracterização anatômica',
+        'Assentamento passivo testado no troquel',
       ],
       badge: 'Zircônia Multilayer',
     },
@@ -74,9 +74,9 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       title: 'Prótese Fixa sobre Implantes',
       category: 'implantes',
       image: '/assets/case-ponte-implante.webp',
-      caption: 'Análogos e pilares protéticos com assentamento passivo',
+      caption: 'Assentamento passivo sobre análogos',
       description:
-        'Solução protética aparafusada sobre análogos em modelo de gesso especial. Perfil de emergência projetado para facilitar a higienização interproximal pelo paciente.',
+        'Prótese parafusada com assentamento livre de tensões mecânicas. Perfil de emergência desenhado para facilitar a higienização.',
       technicalNotes: [
         'Aparafusamento sem tensões mecânicas',
         'Ponto de contato proximal calibrado',
@@ -89,13 +89,13 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       title: 'Reabilitação Múltipla Anterior sobre Implantes',
       category: 'implantes',
       image: '/assets/case-reabilitacao-anterior.webp',
-      caption: 'Pilares protéticos cônicos e harmonia do zênite gengival',
+      caption: 'Pilares protéticos e harmonia gengival',
       description:
-        'Alinhamento estético do setor anterior com respeito à proporção áurea dentofacial e vedamento adequado nos intermediários transmucosos.',
+        'Harmonia do zênite gengival e proporção dentofacial. Vedamento adequado nos intermediários transmucosos.',
       technicalNotes: [
         'Compatibilidade com pilares cônicos e Ti-Base',
-        'Eixo de inserção planejado para evitar sobrecargas',
-        'Contorno de zênite gengival harmônico',
+        'Eixo de inserção planejado para evitar sobrecarga',
+        'Contorno estético de zênite gengival',
       ],
       badge: 'Estética Anterior',
     },
@@ -104,13 +104,13 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       title: 'Placa Miorrelaxante de Alta Densidade',
       category: 'placas',
       image: '/assets/case-placa-bruxismo.webp',
-      caption: 'Acrílico cristalino com polimento mecânico avançado',
+      caption: 'Acrílico cristalino com polimento refinado',
       description:
-        'Confeccionada em resina acrílica termopolimerizável com alto índice de transparência e estabilidade dimensional. Guias funcionais balanceadas para alívio muscular.',
+        'Resina acrílica prensada com alta transparência e estabilidade dimensional. Guias funcionais balanceadas para proteção oclusal.',
       technicalNotes: [
         'Transparência óptica sem bolhas',
-        'Retenção calibrada sem basculamento',
-        'Desoclusão suave nos movimentos excursivos',
+        'Retenção sem basculamento',
+        'Desoclusão suave nos movimentos mandibulares',
       ],
       badge: 'Acrílico Cristal',
     },
@@ -204,8 +204,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 </h3>
 
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-normal">
-                  Reabilitações totais de carga imediata exigem sincronia milimétrica entre cirurgião e técnico.
-                  Nosso foco principal neste caso foi assegurar o <strong>assentamento passivo</strong> absoluto para não introduzir forças de torção sobre os implantes recém-instalados, além de garantir sustentação labial e conforto fonético ao paciente.
+                  Carga imediata exige precisão total entre cirurgião e técnico. Focamos em <strong>assentamento passivo</strong> para proteger os implantes recém-instalados, além de suporte labial e fonética ideais.
                 </p>
 
                 {/* Technical Points */}
@@ -213,21 +212,21 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                   <div className="flex items-start gap-3 text-sm text-slate-200">
                     <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white">Reforço Estrutural Rígido:</strong> Barra interna confeccionada para distribuição uniforme do impacto mastigatório durante o período crítico de osseointegração.
+                      <strong className="text-white">Barra Interna Rígida:</strong> Distribuição uniforme de carga durante a osseointegração.
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 text-sm text-slate-200">
                     <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white">Caracterização Gengival Anatômica:</strong> Resina com pigmentação e estrias fisiológicas sutis para devolver a estética facial e o zênite natural.
+                      <strong className="text-white">Gengiva Caracterizada:</strong> Estética facial harmônica e zênite gengival natural.
                     </div>
                   </div>
 
                   <div className="flex items-start gap-3 text-sm text-slate-200">
                     <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
                     <div>
-                      <strong className="text-white">Oclusão Balanceada Bilateral:</strong> Contatos posteriores simultâneos para proteger os intermediários e propiciar estabilidade mastigatória imediata.
+                      <strong className="text-white">Oclusão Balanceada:</strong> Contatos posteriores bilaterais para proteção dos componentes.
                     </div>
                   </div>
                 </div>

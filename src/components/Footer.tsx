@@ -77,6 +77,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
                 </a>
               </li>
               <li>
+                <a href="#avaliacoes" className="hover:text-teal-400 transition-colors">
+                  Depoimentos no WhatsApp
+                </a>
+              </li>
+              <li>
                 <a href="#sobre" className="hover:text-teal-400 transition-colors">
                   Sobre o Laboratório
                 </a>
@@ -133,7 +138,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
         {/* Bottom Notice & Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <p>
-            © {new Date().getFullYear()} Laboratório Lourenço — Prótese Dental. Todos os direitos reservados.
+            © {new Date().getFullYear()} Laboratório Lourenço: Prótese Dental. Todos os direitos reservados.
           </p>
           <p className="max-w-xl text-center md:text-right">
             Imagens reais de trabalhos protéticos para fins técnico-científicos entre profissionais da odontologia (Cirurgiões-Dentistas e Técnicos em Prótese Dental), em estrita observância ao Código de Ética Odontológica.

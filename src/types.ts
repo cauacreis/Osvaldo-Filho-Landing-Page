@@ -62,3 +62,15 @@ export interface CaseStudy {
   image: string
   badge?: string
 }
+
+export interface FeedbackReview {
+  id: string
+  dentistType: string
+  clinicCity?: string
+  image: string
+  badge: string
+  highlight: string
+  quote: string
+  topics: string[]
+  stars?: number
+}

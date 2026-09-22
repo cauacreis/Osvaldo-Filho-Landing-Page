@@ -25,96 +25,96 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   const services: ServiceCard[] = [
     {
       id: 'zirconia',
-      title: 'Zircônia Monolítica & Multilayer',
+      title: 'Zircônia Multilayer',
       category: 'ceramica',
-      tagline: 'Resistência extrema com gradiente de translucidez natural',
+      tagline: 'Resistência com gradiente natural de translucidez',
       description:
-        'Indicada para coroas unitárias, pontes extensas e reabilitações sobre dentes ou implantes. Excelente biocompatibilidade e acabamento oclusal que preserva dentes antagonistas.',
-      highlights: ['Alta resistência à flexão', 'Estratificação anatômica', 'Adaptação cervical precisa'],
+        'Indicada para coroas unitárias e pontes fixas. Biocompatibilidade alta e polimento oclusal que protege o dente antagonista.',
+      highlights: ['Alta resistência à fratura', 'Degradê natural de cor', 'Vedamento cervical passivo'],
       icon: Gem,
-      badge: 'Alta Demanda',
+      badge: 'Mais Pedido',
     },
     {
       id: 'emax',
       title: 'Dissilicato de Lítio (E.max)',
       category: 'ceramica',
-      tagline: 'O ápice da mimetização óptica e selamento adesivo',
+      tagline: 'Mimetismo óptico e adesão máxima',
       description:
-        'Ideal para lentes de contato dentais, facetas, inlays, onlays e coroas anteriores. Fluorescência e opalescência idênticas às estruturas dentárias hígidas.',
-      highlights: ['Translucidez esmalte-dentina', 'Cimentação adesiva segura', 'Espessuras ultrafinas'],
+        'Ideal para facetas, lentes de contato e coroas anteriores. Fluorescência e opalescência idênticas ao esmalte dental.',
+      highlights: ['Espessuras ultrafinas', 'Cimentação adesiva segura', 'Estética anterior de alto nível'],
       icon: Sparkles,
       badge: 'Estética Pura',
     },
     {
       id: 'metaloceramica',
-      title: 'Metalocerâmica de Alta Precisão',
+      title: 'Metalocerâmica Precisa',
       category: 'ceramica',
-      tagline: 'A solidez clássica da infraestrutura metálica com estratificação cerâmica',
+      tagline: 'Solidez estrutural clássica',
       description:
-        'Solução consagrada para dentes posteriores, pontes fixas com pilares reduzidos e casos clínicos com limitações de espaço interoclusal.',
-      highlights: ['Ligas nobres e sem berílio', 'Opacificação controlada', 'Excelente custo-benefício'],
+        'Solução recomendada para dentes posteriores, pontes com pilares curtos e casos com espaço interoclusal reduzido.',
+      highlights: ['Ligas livres de berílio', 'Opacificação controlada', 'Excelente previsibilidade'],
       icon: Layers,
     },
     {
       id: 'implantes',
       title: 'Prótese sobre Implante',
       category: 'implantes',
-      tagline: 'Soluções parafusadas e cimentadas com perfil de emergência personalizado',
+      tagline: 'Pilares personalizados e passividade',
       description:
-        'Trabalhamos com as principais marcas e plataformas do mercado nacional e importado. Pilares protéticos cônicos, UCLA calcináveis e bases de titânio (Ti-Base) de alta fidelidade.',
-      highlights: ['Perfil de emergência biológico', 'Passividade micrométrica', 'Chaves e parafusos adequados'],
+        'Compatibilidade com as principais plataformas do mercado. Ti-Base e pilares personalizados com perfil de emergência anatômico.',
+      highlights: ['Emergência biológica saudável', 'Passividade garantida', 'Parafusadas e cimentadas'],
       icon: CircleDot,
       badge: 'Especialidade',
     },
     {
       id: 'protocolos',
-      title: 'Protocolos (Carga Imediata & Definitivos)',
+      title: 'Protocolos de Carga Imediata',
       category: 'implantes',
-      tagline: 'Reabilitações totais com reforço estrutural e caracterização gengival',
+      tagline: 'Agilidade cirúrgica e reforço estrutural',
       description:
-        'Protocolos provisórios ágeis para o mesmo dia cirúrgico e protocolos definitivos em zircônia sobre barra ou híbridos metaloplásticos com retenção e fonética ideais.',
-      highlights: ['Agilidade em carga imediata', 'Caracterização gengival realista', 'Oclusão balanceada bilateral'],
+        'Provisórios imediatos com entrega ágil no dia cirúrgico e definitivos em zircônia sobre barra com fonética e oclusão balanceada.',
+      highlights: ['Rapidez para o dia da cirurgia', 'Barra interna reforçada', 'Caracterização gengival realista'],
       icon: Activity,
-      badge: 'Destaque Clínico',
+      badge: 'Destaque',
     },
     {
       id: 'barras',
-      title: 'Barras Metálicas Fresadas & Fundidas',
+      title: 'Barras Fresadas e Fundidas',
       category: 'implantes',
-      tagline: 'Rigidez estrutural indispensável para distribuição de cargas mastigatórias',
+      tagline: 'Rigidez para distribuição de forças',
       description:
-        'Barras fresadas em titânio ou Co-Cr por tecnologia CAD/CAM ou fundições com assentamento passivo rigorosamente testado em bancada.',
-      highlights: ['Assentamento 100% passivo', 'Distribuição harmônica de forças', 'Conexões rígidas'],
+        'Fresadas em titânio ou Co-Cr por CAD/CAM com teste de assentamento passivo rigoroso antes da prensagem.',
+      highlights: ['Assentamento 100% passivo', 'Distribuição harmônica de carga', 'Usinagem de alta precisão'],
       icon: Shield,
     },
     {
       id: 'ceromero',
-      title: 'Cerômeros & Resinas Estruturadas',
+      title: 'Cerômeros e Resinas',
       category: 'resinas',
-      tagline: 'Resiliência e amortecimento de impacto mastigatório',
+      tagline: 'Amortecimento de impacto mastigatório',
       description:
-        'Indicadas para coroas provisórias de longa permanência, mockups funcionais, inlays/onlays resilientes e reembasamentos parciais com excelente polimento.',
-      highlights: ['Módulo de elasticidade próximo à dentina', 'Fácil ajuste e reparo', 'Estética satisfatória'],
+        'Indicadas para provisórios de longa permanência, mockups funcionais e inlays/onlays com elasticidade semelhante à dentina.',
+      highlights: ['Fácil ajuste e polimento', 'Módulo elástico protetor', 'Boa estabilidade de cor'],
       icon: Layers,
     },
     {
       id: 'placas',
-      title: 'Placas de Bruxismo & Clareamento',
+      title: 'Placas de Bruxismo e Clareamento',
       category: 'placas',
-      tagline: 'Acrílico cristalino de alta densidade e termoformagem a vácuo',
+      tagline: 'Acrílico cristal de alta densidade',
       description:
-        'Placas miorrelaxantes rígidas prensadas e polidas com guias caninas e anterior balanceadas, além de moldeiras anatômicas confortáveis para clareamento caseiro.',
-      highlights: ['Acrílico cristal de alta transparência', 'Retenção sem compressão excessiva', 'Desoclusão suave'],
+        'Placas miorrelaxantes rígidas prensadas e polidas com guias funcionais calibradas, além de moldeiras para clareamento caseiro.',
+      highlights: ['Acrílico cristal sem bolhas', 'Retenção confortável', 'Desoclusão canina e anterior suave'],
       icon: Shield,
     },
     {
       id: 'digital',
-      title: 'Fluxo Digital Integrado (STL/PLY)',
+      title: 'Fluxo Digital (STL / PLY)',
       category: 'digital',
-      tagline: 'Compatibilidade total com qualquer scanner intraoral do mercado',
+      tagline: 'Compatível com qualquer scanner intraoral',
       description:
-        'Recebemos seus arquivos digitais via nuvem ou WhatsApp. Desenho digital (CAD) de ponta, fresagem de alta precisão e impressão 3D de modelos troquelados.',
-      highlights: ['Sem distorção de moldagem', 'Agilidade no tempo de bancada', 'Armazenamento dos arquivos'],
+        'Receba ou envie arquivos direto pelo WhatsApp ou nuvem. Desenho CAD em 3D, fresagem CNC e modelos impressos com troquel.',
+      highlights: ['Sem distorção de molde', 'Agilidade no tempo de bancada', 'Arquivo digital arquivado'],
       icon: Cpu,
       badge: 'CAD / CAM',
     },
@@ -122,7 +122,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
 
   const categories = [
     { id: 'todos', label: 'Todos os Trabalhos' },
-    { id: 'ceramica', label: 'Cerâmicas & Zircônias' },
+    { id: 'ceramica', label: 'Cerâmicas & Zircônia' },
     { id: 'implantes', label: 'Implantes & Protocolos' },
     { id: 'digital', label: 'Fluxo Digital' },
     { id: 'placas', label: 'Placas & Resinas' },
@@ -141,11 +141,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   }
 
   return (
-    <section id="servicos" className="py-24 sm:py-32 bg-[#070c18] text-white relative overflow-hidden">
+    <section id="servicos" className="py-20 sm:py-28 bg-[#070c18] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-10 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute top-10 right-0 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
@@ -160,22 +160,22 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
         >
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
               <Sparkles className="w-3.5 h-3.5 text-teal-400" />
-              <span>Catálogo Técnico de Soluções</span>
+              <span>Soluções Protéticas</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              Soluções protéticas para cada desafio clínico.
+              A prótese certa para a necessidade do seu paciente.
             </h2>
             <p className="mt-3 text-base text-slate-300 font-normal">
-              Da reabilitação unitária anterior aos protocolos complexos de carga imediata, combinamos os melhores biomateriais à precisão artesanal e digital.
+              Do unitário anterior aos protocolos de carga imediata: biomateriais certificados e ajuste de bancada rigoroso.
             </p>
           </div>
 
-          {/* Desktop/Tablet Carousel Nav Buttons */}
+          {/* Carousel Arrows for Tablet/Desktop */}
           <div className="hidden sm:flex items-center gap-3">
             <button
               type="button"
@@ -196,7 +196,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           </div>
         </motion.div>
 
-        {/* Category Pills Filter */}
+        {/* Category Filter Pills */}
         <div className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id
@@ -217,7 +217,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           })}
         </div>
 
-        {/* Services Horizontal Scroll on Mobile / Dynamic Grid on Desktop with 3D Tilt */}
+        {/* Services Grid with 3D Tilt */}
         <div
           ref={scrollRef}
           className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 snap-x snap-mandatory scrollbar-none"
@@ -232,42 +232,42 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.25 }}
                   className="w-[85vw] sm:w-auto shrink-0 snap-start"
                 >
                   <TiltCard
                     glowColor="rgba(20, 184, 166, 0.2)"
-                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
+                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-teal-500/40 transition-all flex flex-col justify-between group"
                   >
                     <div>
-                      {/* Top line with Icon and Badge */}
-                      <div className="flex items-center justify-between mb-5">
-                        <div className="w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all">
-                          <Icon className="w-6 h-6" />
+                      {/* Top Header with Icon and Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center group-hover:scale-105 group-hover:border-teal-400/40 transition-all">
+                          <Icon className="w-5 h-5" />
                         </div>
                         {service.badge && (
-                          <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 shadow-xs">
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300">
                             {service.badge}
                           </span>
                         )}
                       </div>
 
-                      <h3 className="text-xl font-bold text-white mb-2 tracking-tight group-hover:text-teal-200 transition-colors">
+                      <h3 className="text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-teal-200 transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-xs font-semibold text-teal-300 mb-3 leading-snug">
+                      <p className="text-xs font-medium text-teal-300 mb-2.5 leading-snug">
                         {service.tagline}
                       </p>
 
-                      <p className="text-sm text-slate-300 leading-relaxed mb-6 font-normal">
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 font-normal">
                         {service.description}
                       </p>
 
-                      {/* Highlights list */}
-                      <div className="space-y-2 mb-6">
+                      {/* Fast Highlights List */}
+                      <div className="space-y-1.5 mb-5">
                         {service.highlights.map((h, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
+                          <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
                             <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
                             <span>{h}</span>
                           </div>
@@ -275,15 +275,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                       </div>
                     </div>
 
-                    {/* Card Action Button: Triggers Triage with service pre-selected */}
-                    <div className="pt-4 border-t border-slate-800/80">
+                    {/* Preselect service in Triage Modal */}
+                    <div className="pt-3 border-t border-slate-800/80">
                       <button
                         type="button"
                         onClick={() => onSelectService(service.title)}
-                        className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-slate-800/80 hover:bg-teal-400 text-slate-200 hover:text-slate-950 font-bold text-xs sm:text-sm border border-slate-700/60 hover:border-teal-400 transition-all duration-200"
+                        className="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-teal-400 text-slate-200 hover:text-slate-950 font-bold text-xs border border-slate-700/60 hover:border-teal-400 transition-all duration-200"
                       >
-                        <span>Enviar caso para análise</span>
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        <span>Enviar este tipo de caso</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                       </button>
                     </div>
                   </TiltCard>
@@ -294,8 +294,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </div>
 
         {/* Mobile Swipe Hint */}
-        <div className="sm:hidden text-center mt-3 text-xs text-slate-400 flex items-center justify-center gap-2">
-          <span>← Deslize lateralmente para explorar mais →</span>
+        <div className="sm:hidden text-center mt-3 text-xs text-slate-400">
+          ← Deslize para ver todos os serviços →
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { AlertTriangle, Clock, MessageSquareOff, SlidersHorizontal, UserX, ArrowRight, ShieldCheck } from 'lucide-react'
+import { AlertTriangle, Clock, MessageSquareOff, SlidersHorizontal, ArrowRight, ShieldCheck } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
 
 interface PainPointsProps {
@@ -11,47 +11,33 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
   const pains = [
     {
       icon: SlidersHorizontal,
-      title: 'Retrabalhos e ajustes excessivos',
+      title: 'Retrabalho e desgaste na cadeira',
       description:
-        'Perder tempo de cadeira desgastando pontos de contato, refazendo oclusão ou devolvendo peças para reembasamento que deveriam vir perfeitamente adaptadas.',
-      impact: 'Consome horas clínicas e reduz a lucratividade do consultório.',
+        'Perder 30 a 40 minutos desgastando ponto de contato ou refazendo oclusão em peça que deveria vir perfeitamente adaptada.',
+      impact: 'Consome seu tempo clínico e atrasa todos os outros pacientes do dia.',
     },
     {
       icon: Clock,
-      title: 'Atrasos que desmarcam consultas',
+      title: 'Atraso na entrega e paciente esperando',
       description:
-        'A promessa de entrega não é cumprida. O paciente já está na sala de espera ou anestesiado e a prótese ainda não chegou.',
-      impact: 'Quebra a confiança do paciente e prejudica a reputação do cirurgião.',
+        'A promessa de entrega não é cumprida. O paciente já está no consultório ou anestesiado e a prótese ainda não chegou.',
+      impact: 'Gera estresse imediato e queima a confiança que você levou anos para construir.',
     },
     {
       icon: MessageSquareOff,
-      title: 'Falta de comunicação e sumiço',
+      title: 'Falta de comunicação quando surge dúvida',
       description:
-        'Quando surge uma dúvida de término cervical, espaço interoclusal ou implante divergente, o laboratório decide sozinho ou simplesmente não responde.',
-      impact: 'Você descobre o problema apenas quando abre a caixa de entrega.',
-    },
-    {
-      icon: AlertTriangle,
-      title: 'Adaptação e estética fora do esperado',
-      description:
-        'Cores que não batem com a escala acordada, espessuras sem naturalidade e falta de passividade biomecânica que colocam em risco o trabalho clínico.',
-      impact: 'Frustração imediata e necessidade de refazer o caso do zero.',
-    },
-    {
-      icon: UserX,
-      title: 'Falta de acompanhamento técnico real',
-      description:
-        'Laboratórios que operam como linhas de produção impessoais, sem olhar clínico ou abertura para discutir os detalhes antes da usinagem ou injeção.',
-      impact: 'O dentista fica sozinho para arcar com a responsabilidade do resultado.',
+        'Dúvida de preparo, término cervical ou espaço interoclusal que o laboratório decide sozinho ou demora para responder.',
+      impact: 'Você só descobre o erro quando abre a caixa de entrega na frente do paciente.',
     },
   ]
 
   return (
-    <section id="dores" className="py-24 sm:py-32 bg-[#080d17] text-white relative overflow-hidden">
+    <section id="dores" className="py-20 sm:py-28 bg-[#080d17] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"
+        className="pointer-events-none absolute -bottom-40 -left-40 w-[550px] h-[550px] bg-teal-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
@@ -60,31 +46,30 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header with Motion */}
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-16 sm:mb-20"
+          className="max-w-3xl mb-14 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-300 text-xs font-bold tracking-wider uppercase mb-5">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-500/10 border border-red-500/25 text-red-300 text-xs font-bold tracking-wider uppercase mb-4">
             <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
-            <span>O Gargalo Silencioso da Odontologia</span>
+            <span>O Gargalo da Rotina Clínica</span>
           </div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Quando o laboratório não acompanha o seu planejamento, o prejuízo aparece no consultório.
+            Quando o laboratório falha, o prejuízo sobra para o seu consultório.
           </h2>
           
-          <p className="mt-5 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
-            A rotina clínica de reabilitação e prótese não tem margem para imprevistos. Cada ajuste não planejado
-            rouba minutos preciosos da sua agenda e enfraquece a percepção de excelência perante o seu paciente.
+          <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
+            Na reabilitação oral, não há espaço para surpresas na hora de instalar. Cada ajuste inesperado custa horas de cadeira e desgasta a relação com o paciente.
           </p>
         </motion.div>
 
-        {/* 6 Pain & Solution Cards Grid with 3D Tilt */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* 3 Sharp Pain Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10">
           {pains.map((pain, index) => {
             const Icon = pain.icon
             return (
@@ -97,10 +82,10 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
               >
                 <TiltCard
                   glowColor="rgba(239, 68, 68, 0.15)"
-                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-red-500/40 rounded-3xl p-7 flex flex-col justify-between group shadow-lg"
+                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-red-500/40 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group shadow-lg"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-5 group-hover:scale-105 transition-transform">
                       <Icon className="w-6 h-6" />
                     </div>
                     
@@ -121,47 +106,42 @@ export const PainPoints: React.FC<PainPointsProps> = ({ onOpenTriage }) => {
               </motion.div>
             )
           })}
-
-          {/* Contrast Highlight Card (The Solution Pivot) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-          >
-            <TiltCard
-              glowColor="rgba(20, 184, 166, 0.35)"
-              className="h-full bg-gradient-to-br from-teal-950/80 via-slate-900 to-teal-900/40 border border-teal-500/40 rounded-3xl p-7 flex flex-col justify-between shadow-[0_0_40px_rgba(20,184,166,0.15)] group"
-            >
-              <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wider mb-5 border border-teal-400/30">
-                  <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
-                  <span>Padrão Lourenço</span>
-                </span>
-                
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight">
-                  Parceria de técnico para cirurgião.
-                </h3>
-                
-                <p className="text-sm text-teal-100/90 leading-relaxed font-normal">
-                  Nós alinhamos preparo, oclusão e cronograma antes de usinar ou estratificar. O resultado é cimentação passiva, sem surpresas e com total respeito ao seu tempo clínico.
-                </p>
-              </div>
-
-              <div className="mt-8 pt-4 border-t border-teal-800/60">
-                <button
-                  type="button"
-                  onClick={onOpenTriage}
-                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-4 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95"
-                >
-                  <span>Enviar caso para análise</span>
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-            </TiltCard>
-          </motion.div>
-
         </div>
+
+        {/* The Solution Pivot Strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="rounded-3xl bg-gradient-to-r from-teal-950/80 via-slate-900 to-teal-950/80 border border-teal-500/35 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-teal-500/15 border border-teal-500/30 flex items-center justify-center text-teal-300 shrink-0 mt-1">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <div>
+              <span className="text-xs font-bold text-teal-400 uppercase tracking-wider block mb-1">
+                A Alternativa Definitiva
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                No Laboratório Lourenço, você conversa direto com o Osvaldo.
+              </h3>
+              <p className="mt-1 text-sm text-slate-300 max-w-2xl font-normal">
+                Alinhamos preparo, oclusão e cronograma antes de fresar. O trabalho entra com assentamento passivo e sem surpresas na cadeira.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={onOpenTriage}
+            className="w-full md:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95 whitespace-nowrap"
+          >
+            <span>Enviar caso para análise</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </motion.div>
 
       </div>
     </section>
