@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, Shield, Layers, Gem, Cpu, Activity, CircleDot } from 'lucide-react'
+import { TiltCard } from './ui/TiltCard'
 
 interface ServicesSectionProps {
   onSelectService: (serviceName: string) => void
@@ -139,19 +141,26 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
   }
 
   return (
-    <section id="servicos" className="py-20 sm:py-28 bg-slate-100/70 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servicos" className="py-24 sm:py-32 bg-slate-100/70 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+        >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
+              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
               <span>Catálogo Técnico de Soluções</span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Soluções protéticas para cada desafio clínico.
             </h2>
-            <p className="mt-3 text-base text-slate-600">
+            <p className="mt-3 text-base text-slate-600 font-normal">
               Da reabilitação unitária anterior aos protocolos complexos de carga imediata, combinamos os melhores biomateriais à precisão artesanal e digital.
             </p>
           </div>
@@ -161,7 +170,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('left')}
-              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 transition-colors"
+              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 hover:text-teal-700 transition-colors"
               aria-label="Rolar para a esquerda"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -169,13 +178,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             <button
               type="button"
               onClick={() => handleScroll('right')}
-              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 transition-colors"
+              className="p-3 rounded-full bg-white hover:bg-slate-50 border border-slate-200 shadow-sm text-slate-700 hover:text-teal-700 transition-colors"
               aria-label="Rolar para a direita"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Category Pills Filter */}
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
@@ -186,7 +195,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
                 activeCategory === cat.id
-                  ? 'bg-slate-900 text-white shadow-md'
+                  ? 'bg-slate-900 text-white shadow-md font-bold'
                   : 'bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/80'
               }`}
             >
@@ -195,68 +204,80 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           ))}
         </div>
 
-        {/* Services Horizontal Scroll on Mobile / Dynamic Grid on Desktop */}
+        {/* Services Horizontal Scroll on Mobile / Dynamic Grid on Desktop with 3D Tilt */}
         <div
           ref={scrollRef}
           className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 snap-x snap-mandatory scrollbar-none"
         >
-          {filteredServices.map((service) => {
-            const Icon = service.icon
-            return (
-              <div
-                key={service.id}
-                className="w-[85vw] sm:w-auto shrink-0 snap-start bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-500/30 transition-all duration-300 flex flex-col justify-between group"
-              >
-                <div>
-                  {/* Top line with Icon and Badge */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 text-teal-800 flex items-center justify-center group-hover:scale-105 transition-transform">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    {service.badge && (
-                      <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-teal-900 text-white shadow-xs">
-                        {service.badge}
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-900 transition-colors">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-xs font-semibold text-teal-700 mb-3 leading-snug">
-                    {service.tagline}
-                  </p>
-
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Highlights list */}
-                  <div className="space-y-2 mb-6">
-                    {service.highlights.map((h, i) => (
-                      <div key={i} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
-                        <span>{h}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Card Action Button: Triggers Triage with service pre-selected */}
-                <div className="pt-4 border-t border-slate-100">
-                  <button
-                    type="button"
-                    onClick={() => onSelectService(service.title)}
-                    className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 group-hover:bg-teal-800 text-slate-800 group-hover:text-white font-semibold text-xs sm:text-sm transition-all duration-200"
+          <AnimatePresence mode="popLayout">
+            {filteredServices.map((service) => {
+              const Icon = service.icon
+              return (
+                <motion.div
+                  key={service.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-[85vw] sm:w-auto shrink-0 snap-start"
+                >
+                  <TiltCard
+                    glowColor="rgba(20, 184, 166, 0.12)"
+                    className="h-full bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-500/30 transition-all flex flex-col justify-between group"
                   >
-                    <span>Enviar caso para análise</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </div>
-              </div>
-            )
-          })}
+                    <div>
+                      {/* Top line with Icon and Badge */}
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 text-teal-800 flex items-center justify-center group-hover:scale-105 group-hover:bg-teal-700 group-hover:text-white transition-all">
+                          <Icon className="w-6 h-6" />
+                        </div>
+                        {service.badge && (
+                          <span className="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-900 text-white shadow-xs">
+                            {service.badge}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-900 transition-colors">
+                        {service.title}
+                      </h3>
+
+                      <p className="text-xs font-semibold text-teal-700 mb-3 leading-snug">
+                        {service.tagline}
+                      </p>
+
+                      <p className="text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                        {service.description}
+                      </p>
+
+                      {/* Highlights list */}
+                      <div className="space-y-2 mb-6">
+                        {service.highlights.map((h, i) => (
+                          <div key={i} className="flex items-center gap-2 text-xs text-slate-700 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
+                            <span>{h}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Card Action Button: Triggers Triage with service pre-selected */}
+                    <div className="pt-4 border-t border-slate-100">
+                      <button
+                        type="button"
+                        onClick={() => onSelectService(service.title)}
+                        className="w-full inline-flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 group-hover:bg-teal-800 text-slate-800 group-hover:text-white font-semibold text-xs sm:text-sm transition-all duration-200"
+                      >
+                        <span>Enviar caso para análise</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </button>
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              )
+            })}
+          </AnimatePresence>
         </div>
 
         {/* Mobile Swipe Hint */}

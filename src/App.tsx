@@ -29,7 +29,7 @@ export function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 flex flex-col font-sans selection:bg-teal-700 selection:text-white">
+    <div className="min-h-screen bg-[#06090e] text-slate-900 flex flex-col font-sans selection:bg-teal-400 selection:text-slate-950">
       {/* Navigation */}
       <Navbar onOpenTriage={() => handleOpenTriage()} />
 

@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import { ZoomIn, X, CheckCircle2, Eye, Sparkles, Send } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ZoomIn, X, CheckCircle2, Eye, Sparkles, Send, MoveHorizontal } from 'lucide-react'
+import { BeforeAfterSlider } from './ui/BeforeAfterSlider'
+import { TiltCard } from './ui/TiltCard'
 
 interface CaseGalleryProps {
   onOpenTriage: () => void
@@ -37,19 +40,19 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       badge: 'Cerâmica Pura',
     },
     {
-      id: 'placa-bruxismo',
-      title: 'Placa Miorrelaxante de Alta Densidade',
-      category: 'placas',
-      image: '/assets/case-placa-bruxismo.webp',
-      caption: 'Acrílico cristalino com polimento mecânico avançado',
+      id: 'zirconia-macro',
+      title: 'Ponte Fixa em Zircônia Monolítica Multilayer',
+      category: 'unitario',
+      image: '/assets/dental-zirconia-macro.jpg',
+      caption: 'Gradiente de translucidez incisal e anatomia oclusal refinada',
       description:
-        'Confeccionada em resina acrílica termopolimerizável com alto índice de transparência e estabilidade dimensional. Guias funcionais balanceadas para alívio muscular.',
+        'Usinagem de alta definição com polimento mecânico glazeado que previne desgaste de dentes antagonistas e garante alta resistência à fratura.',
       technicalNotes: [
-        'Transparência óptica sem bolhas',
-        'Retenção calibrada sem basculamento',
-        'Desoclusão suave nos movimentos excursivos',
+        'Gradiente de 4Y/5Y-PSZ de alta translucidez',
+        'Fissuras anatômicas com pigmentação biológica',
+        'Assentamento passivo testado sob microscópio',
       ],
-      badge: 'Acrílico Cristal',
+      badge: 'Zircônia Multilayer',
     },
     {
       id: 'ponte-implante',
@@ -81,103 +84,96 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
       ],
       badge: 'Estética Anterior',
     },
+    {
+      id: 'placa-bruxismo',
+      title: 'Placa Miorrelaxante de Alta Densidade',
+      category: 'placas',
+      image: '/assets/case-placa-bruxismo.webp',
+      caption: 'Acrílico cristalino com polimento mecânico avançado',
+      description:
+        'Confeccionada em resina acrílica termopolimerizável com alto índice de transparência e estabilidade dimensional. Guias funcionais balanceadas para alívio muscular.',
+      technicalNotes: [
+        'Transparência óptica sem bolhas',
+        'Retenção calibrada sem basculamento',
+        'Desoclusão suave nos movimentos excursivos',
+      ],
+      badge: 'Acrílico Cristal',
+    },
   ]
 
   const filteredCases = activeTab === 'todos' ? cases : cases.filter((c) => c.category === activeTab)
 
   return (
-    <section id="cases" className="py-20 sm:py-28 bg-slate-900 text-white relative overflow-hidden">
+    <section id="cases" className="py-24 sm:py-32 bg-[#06090e] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"
+        className="pointer-events-none absolute top-1/4 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[140px]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"
+        className="pointer-events-none absolute bottom-10 left-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px]"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="max-w-3xl mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-300 text-xs font-semibold tracking-wider uppercase mb-3">
+        {/* Section Header with Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-16 sm:mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/25 text-teal-300 text-xs font-bold tracking-wider uppercase mb-4 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-teal-400" />
             <span>Casos Reais do Laboratório</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
             Precisão que se comprova no modelo e na boca.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            Fotografias autênticas de próteses produzidas na nossa bancada para cirurgiões-dentistas parceiros. Sem filtros excessivos, com foco no rigor técnico e na qualidade de acabamento.
+          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+            Fotografias autênticas de próteses produzidas na nossa bancada para cirurgiões-dentistas parceiros. Sem maquiagem excessiva, com foco no rigor técnico, ajuste passivo e qualidade de acabamento.
           </p>
-        </div>
+        </motion.div>
 
         {/* ============================================================ */}
         {/* SPOTLIGHT CASE: Protocolo Provisório de Carga Imediata        */}
+        {/* WITH INTERACTIVE BEFORE/AFTER SLIDER                         */}
         {/* ============================================================ */}
-        <div className="mb-20 bg-gradient-to-br from-slate-800 via-slate-800/90 to-slate-900 border border-teal-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-          
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-20 bg-gradient-to-br from-slate-900/90 via-slate-900 to-slate-950 border border-teal-500/30 rounded-3xl p-6 sm:p-10 shadow-[0_0_50px_rgba(20,184,166,0.1)] relative overflow-hidden"
+        >
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
             
-            {/* Left Column: Visual Case Presentation (Internal Structure vs Final Protocol) */}
+            {/* Left Column: Interactive Before/After Comparison */}
             <div className="w-full lg:w-1/2 flex flex-col gap-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* 1. Foto da Estrutura / Barra Metálica */}
-                <div
-                  onClick={() => setActiveImage('/assets/case-protocolo-barra.webp')}
-                  className="group relative cursor-pointer rounded-2xl overflow-hidden bg-black/40 border border-slate-700/80 aspect-[4/5] flex items-center justify-center"
-                >
-                  <img
-                    src="/assets/case-protocolo-barra.webp"
-                    alt="Barra metálica interna para protocolo"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                    <span className="text-[11px] font-bold text-teal-300 uppercase tracking-wider mb-1">
-                      Fase Estrutural
-                    </span>
-                    <p className="text-xs text-white font-medium">
-                      Barra metálica para dissipação de cargas
-                    </p>
-                  </div>
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/80 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ZoomIn className="w-4 h-4" />
-                  </div>
-                </div>
+              
+              <BeforeAfterSlider
+                beforeImage="/assets/case-protocolo-barra.webp"
+                afterImage="/assets/case-protocolo-finalizado.webp"
+                beforeLabel="Estrutura / Barra Metálica"
+                afterLabel="Protocolo Finalizado"
+                className="aspect-[4/3] sm:aspect-[16/11] border border-slate-700/80"
+              />
 
-                {/* 2. Foto da Peça Finalizada */}
-                <div
+              <div className="flex items-center justify-between text-xs text-slate-400 px-2 pt-1">
+                <button
+                  type="button"
                   onClick={() => setActiveImage('/assets/case-protocolo-finalizado.webp')}
-                  className="group relative cursor-pointer rounded-2xl overflow-hidden bg-black/40 border border-teal-500/40 aspect-[4/5] flex items-center justify-center ring-2 ring-teal-500/20"
+                  className="flex items-center gap-1.5 hover:text-teal-300 transition-colors cursor-pointer"
                 >
-                  <img
-                    src="/assets/case-protocolo-finalizado.webp"
-                    alt="Protocolo de carga imediata finalizado"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-4">
-                    <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1">
-                      Resultado Protético
-                    </span>
-                    <p className="text-xs text-white font-medium">
-                      Caracterização gengival e alinhamento
-                    </p>
-                  </div>
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-900/80 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ZoomIn className="w-4 h-4" />
-                  </div>
-                </div>
-
-              </div>
-
-              <div className="flex items-center justify-between text-xs text-slate-400 px-2">
-                <span className="flex items-center gap-1.5">
                   <Eye className="w-3.5 h-3.5 text-teal-400" />
-                  Clique nas fotos para ampliar em alta resolução
+                  <span>Clique para ampliar imagem completa</span>
+                </button>
+                <span className="text-teal-400 font-semibold flex items-center gap-1">
+                  <MoveHorizontal className="w-3.5 h-3.5" />
+                  Slider Interativo
                 </span>
-                <span className="text-teal-400 font-semibold">Caso Real Lourenço</span>
               </div>
             </div>
 
@@ -185,14 +181,14 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
             <div className="w-full lg:w-1/2 flex flex-col justify-between">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-wider uppercase mb-4">
-                  <span>Estudo de Caso Clínico</span>
+                  <span>Destaque Clínico</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-tight">
                   Protocolo Provisório de Carga Imediata
                 </h3>
 
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-normal">
                   Reabilitações totais de carga imediata exigem sincronia milimétrica entre cirurgião e técnico.
                   Nosso foco principal neste caso foi assegurar o <strong>assentamento passivo</strong> absoluto para não introduzir forças de torção sobre os implantes recém-instalados, além de garantir sustentação labial e conforto fonético ao paciente.
                 </p>
@@ -222,14 +218,14 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-700/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                 <button
                   type="button"
                   onClick={onOpenTriage}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95"
                 >
                   <span>Enviar caso para análise</span>
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 text-slate-950" />
                 </button>
                 <span className="text-xs text-slate-400 text-center sm:text-left">
                   Planejamento conjunto com o técnico antes da cirurgia
@@ -240,7 +236,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
 
           </div>
 
-        </div>
+        </motion.div>
 
         {/* ============================================================ */}
         {/* OTHER CASES GALLERY (Crowns, Bridges, Splints)               */}
@@ -252,7 +248,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             {[
               { id: 'todos', label: 'Todos os Casos' },
-              { id: 'unitario', label: 'Coroas Cerâmicas' },
+              { id: 'unitario', label: 'Coroas & Cerâmicas' },
               { id: 'implantes', label: 'Sobre Implantes' },
               { id: 'placas', label: 'Placas & Oclusão' },
             ].map((tab) => (
@@ -260,10 +256,10 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                   activeTab === tab.id
-                    ? 'bg-teal-500 text-slate-950 shadow-md font-bold'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-teal-400 text-slate-950 shadow-md font-bold'
+                    : 'bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800'
                 }`}
               >
                 {tab.label}
@@ -272,113 +268,133 @@ export const CaseGallery: React.FC<CaseGalleryProps> = ({ onOpenTriage }) => {
           </div>
         </div>
 
-        {/* Grid of Other Real Cases */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredCases.map((item) => (
-            <div
-              key={item.id}
-              className="group bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-teal-500/40 rounded-3xl overflow-hidden transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                {/* Image Container with click to zoom */}
-                <div
-                  onClick={() => setActiveImage(item.image)}
-                  className="relative aspect-square bg-black/50 cursor-pointer overflow-hidden"
+        {/* Grid of Other Real Cases with 3D Tilt */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredCases.map((item) => (
+              <motion.div
+                key={item.id}
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+              >
+                <TiltCard
+                  glowColor="rgba(20, 184, 166, 0.15)"
+                  className="h-full bg-slate-900/80 hover:bg-slate-900 border border-slate-800 hover:border-teal-500/40 rounded-3xl overflow-hidden flex flex-col justify-between group shadow-xl"
                 >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="px-3 py-1.5 rounded-full bg-slate-900/90 text-white text-xs font-semibold flex items-center gap-1.5">
-                      <ZoomIn className="w-3.5 h-3.5" />
-                      Ampliar Detalhes
-                    </span>
-                  </div>
-                  {item.badge && (
-                    <span className="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-900/80 backdrop-blur-sm text-teal-300 border border-teal-500/30">
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-
-                <div className="p-5">
-                  <h4 className="text-base font-bold text-white mb-1.5 group-hover:text-teal-300 transition-colors">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs font-medium text-teal-400 mb-3">
-                    {item.caption}
-                  </p>
-                  <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                    {item.description}
-                  </p>
-
-                  <div className="space-y-1.5 pt-3 border-t border-slate-700/60">
-                    {item.technicalNotes.map((note, i) => (
-                      <div key={i} className="flex items-center gap-1.5 text-[11px] text-slate-300">
-                        <span className="w-1 h-1 rounded-full bg-teal-400 shrink-0" />
-                        <span>{note}</span>
+                  <div>
+                    {/* Image Container with click to zoom */}
+                    <div
+                      onClick={() => setActiveImage(item.image)}
+                      className="relative aspect-[4/3] bg-black/50 cursor-pointer overflow-hidden"
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="px-3 py-1.5 rounded-full bg-slate-950/90 text-white text-xs font-semibold flex items-center gap-1.5 border border-white/10">
+                          <ZoomIn className="w-3.5 h-3.5 text-teal-400" />
+                          Ampliar Detalhes
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+                      {item.badge && (
+                        <span className="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full bg-slate-950/80 backdrop-blur-sm text-teal-300 border border-teal-500/30">
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
 
-              <div className="p-5 pt-0">
-                <button
-                  type="button"
-                  onClick={onOpenTriage}
-                  className="w-full py-2.5 px-3 rounded-xl bg-slate-700/60 hover:bg-teal-600 text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1.5"
-                >
-                  <span>Enviar caso para análise</span>
-                </button>
-              </div>
-            </div>
-          ))}
+                    <div className="p-6">
+                      <h4 className="text-base sm:text-lg font-bold text-white mb-1.5 group-hover:text-teal-300 transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs font-medium text-teal-400 mb-3">
+                        {item.caption}
+                      </p>
+                      <p className="text-xs text-slate-400 leading-relaxed mb-5 font-normal">
+                        {item.description}
+                      </p>
+
+                      <div className="space-y-1.5 pt-4 border-t border-slate-800">
+                        {item.technicalNotes.map((note, i) => (
+                          <div key={i} className="flex items-center gap-2 text-[11px] text-slate-300">
+                            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
+                            <span>{note}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 pt-0">
+                    <button
+                      type="button"
+                      onClick={onOpenTriage}
+                      className="w-full py-2.5 px-3 rounded-xl bg-slate-800/80 hover:bg-teal-500 hover:text-slate-950 text-white text-xs font-semibold transition-all flex items-center justify-center gap-1.5"
+                    >
+                      <span>Enviar caso para análise</span>
+                    </button>
+                  </div>
+                </TiltCard>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
       </div>
 
-      {/* Lightbox Modal for High Resolution Inspection */}
-      {activeImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setActiveImage(null)}
-        >
-          <div
-            className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
+      {/* Lightbox Modal for High Resolution Inspection with AnimatePresence */}
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setActiveImage(null)}
           >
-            <button
-              type="button"
-              onClick={() => setActiveImage(null)}
-              className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              aria-label="Fechar visualização"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-6 h-6" />
-            </button>
-            <img
-              src={activeImage}
-              alt="Ampliação do caso clínico"
-              className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700"
-            />
-            <div className="mt-4 text-center">
               <button
                 type="button"
-                onClick={() => {
-                  setActiveImage(null)
-                  onOpenTriage()
-                }}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
+                onClick={() => setActiveImage(null)}
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Fechar visualização"
               >
-                <span>Enviar caso para análise</span>
-                <Send className="w-3.5 h-3.5" />
+                <X className="w-6 h-6" />
               </button>
-            </div>
-          </div>
-        </div>
-      )}
+              <img
+                src={activeImage}
+                alt="Ampliação do caso clínico"
+                className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700"
+              />
+              <div className="mt-4 text-center">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveImage(null)
+                    onOpenTriage()
+                  }}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-teal-400 hover:bg-teal-300 text-slate-950 font-bold text-xs rounded-xl shadow-lg transition-all"
+                >
+                  <span>Enviar caso para análise</span>
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

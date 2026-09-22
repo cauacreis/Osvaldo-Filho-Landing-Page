@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, MessageSquare, Star, ZoomIn, X, Send, Award, Users, ShieldCheck } from 'lucide-react'
 import { LAB_CONFIG } from '../config'
+import { TiltCard } from './ui/TiltCard'
 
 interface ProofSectionProps {
   onOpenTriage: () => void
@@ -90,90 +92,142 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
   ]
 
   return (
-    <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 sm:py-32 bg-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16 sm:mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
             <Award className="w-3.5 h-3.5 text-teal-600" />
             <span>Resultados e Credibilidade</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             A confiança de quem instala nossas próteses no consultório.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 font-normal">
             Números comprovados e conversas reais com dentistas que vivem a rotina clínica e contam com o Laboratório Lourenço diariamente.
           </p>
-        </div>
+        </motion.div>
 
         {/* ============================================================ */}
-        {/* ANIMATED COUNTERS GRID                                       */}
+        {/* ANIMATED COUNTERS GRID WITH 3D TILT                          */}
         {/* ============================================================ */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
-              <Award className="w-6 h-6" />
-            </div>
-            <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              <AnimatedCounter target={1000} prefix="+" />
-            </p>
-            <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-              Próteses entregues com sucesso
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <TiltCard
+              glowColor="rgba(20, 184, 166, 0.12)"
+              className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs h-full"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-950/15">
+                <Award className="w-6 h-6" />
+              </div>
+              <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                <AnimatedCounter target={1000} prefix="+" />
+              </p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
+                Próteses entregues com sucesso
+              </p>
+            </TiltCard>
+          </motion.div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
-              <Users className="w-6 h-6" />
-            </div>
-            <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              <AnimatedCounter target={30} prefix="+" />
-            </p>
-            <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-              Dentistas parceiros ativos
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <TiltCard
+              glowColor="rgba(20, 184, 166, 0.12)"
+              className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs h-full"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-950/15">
+                <Users className="w-6 h-6" />
+              </div>
+              <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                <AnimatedCounter target={30} prefix="+" />
+              </p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
+                Dentistas parceiros ativos
+              </p>
+            </TiltCard>
+          </motion.div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <p className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Digital & Físico
-            </p>
-            <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-              Integração completa de fluxos
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <TiltCard
+              glowColor="rgba(20, 184, 166, 0.12)"
+              className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs h-full"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-950/15">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <p className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Digital & Físico
+              </p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
+                Integração completa de fluxos
+              </p>
+            </TiltCard>
+          </motion.div>
 
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs">
-            <div className="w-12 h-12 rounded-2xl bg-teal-800 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-900/10">
-              <MessageSquare className="w-6 h-6" />
-            </div>
-            <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-              <AnimatedCounter target={100} suffix="%" />
-            </p>
-            <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
-              Acompanhamento técnico direto
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <TiltCard
+              glowColor="rgba(20, 184, 166, 0.12)"
+              className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/80 text-center flex flex-col items-center justify-center shadow-xs h-full"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-teal-900 text-white flex items-center justify-center mb-4 shadow-md shadow-teal-950/15">
+                <MessageSquare className="w-6 h-6" />
+              </div>
+              <p className="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                <AnimatedCounter target={100} suffix="%" />
+              </p>
+              <p className="mt-2 text-xs sm:text-sm font-semibold text-slate-600">
+                Acompanhamento técnico direto
+              </p>
+            </TiltCard>
+          </motion.div>
 
         </div>
 
         {/* ============================================================ */}
         {/* ESPAÇO PARA FOTO DO LABORATÓRIO E DO RESPONSÁVEL TÉCNICO     */}
         {/* ============================================================ */}
-        <div className="mb-20 bg-gradient-to-br from-slate-900 via-slate-900 to-teal-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-20 bg-gradient-to-br from-slate-900 via-slate-900 to-teal-950 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-2xl relative overflow-hidden"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-4 flex justify-center">
-              <div className="relative w-full max-w-[280px] aspect-[4/5] rounded-2xl overflow-hidden bg-slate-950 border border-slate-700 shadow-lg">
+              <div className="relative w-full max-w-[280px] aspect-[4/5] rounded-2xl overflow-hidden bg-slate-950 border border-teal-500/30 shadow-2xl">
                 <img
                   src="/assets/osvaldo-studio.webp"
                   alt="Osvaldo Lourenço Filho - Responsável Técnico do Laboratório"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[82%_20%]"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex flex-col justify-end p-4">
@@ -191,27 +245,27 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
               <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Garantia técnica de quem assina e acompanha cada caso.
               </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
                 No Laboratório Lourenço, seu caso não é delegado para operadores anônimos sem comunicação. Todas as etapas — da recepção dos modelos/escaneamentos à prova de oclusão e acabamento final — passam pela checagem direta do técnico responsável, garantindo respeito irrestrito ao seu tempo clínico.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                 <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
                   <p className="text-xs font-bold text-teal-300">Inspeção em Troquel</p>
-                  <p className="text-[11px] text-slate-400 mt-1">Vedamento cervical passivo testado sob magnificação óptica</p>
+                  <p className="text-[11px] text-slate-400 mt-1 font-normal">Vedamento cervical passivo testado sob magnificação óptica</p>
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
                   <p className="text-xs font-bold text-teal-300">Canal WhatsApp Direto</p>
-                  <p className="text-[11px] text-slate-400 mt-1">Alinhamento de cor e preparo sem barreiras ou intermediários</p>
+                  <p className="text-[11px] text-slate-400 mt-1 font-normal">Alinhamento de cor e preparo sem barreiras ou intermediários</p>
                 </div>
                 <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80">
                   <p className="text-xs font-bold text-teal-300">Logística da Região</p>
-                  <p className="text-[11px] text-slate-400 mt-1">Coleta e entrega pontual estruturada para os consultórios</p>
+                  <p className="text-[11px] text-slate-400 mt-1 font-normal">Coleta e entrega pontual estruturada para os consultórios</p>
                 </div>
               </div>
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* ============================================================ */}
         {/* AUTHENTIC WHATSAPP PRINTS & DENTIST TESTIMONIALS             */}
@@ -233,71 +287,79 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {reviews.map((rev) => (
-              <div
+              <motion.div
                 key={rev.id}
-                className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-all duration-300 group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-bold text-teal-800 bg-teal-100/70 px-3 py-1 rounded-full">
-                      {rev.badge}
-                    </span>
-                    <div className="flex text-amber-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400" />
+                <TiltCard
+                  glowColor="rgba(20, 184, 166, 0.12)"
+                  className="bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200 flex flex-col justify-between hover:shadow-xl transition-all h-full group"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-bold text-teal-800 bg-teal-100/70 px-3 py-1 rounded-full">
+                        {rev.badge}
+                      </span>
+                      <div className="flex text-amber-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400" />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Transcript quote */}
+                    <blockquote className="text-sm sm:text-base font-normal text-slate-700 italic leading-relaxed mb-6 bg-white p-5 rounded-2xl border border-slate-100 shadow-xs">
+                      {rev.quote}
+                    </blockquote>
+
+                    {/* Key highlights tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {rev.topics.map((t, idx) => (
+                        <span
+                          key={idx}
+                          className="text-[11px] font-medium text-slate-600 bg-slate-200/60 px-2.5 py-1 rounded-lg flex items-center gap-1"
+                        >
+                          <CheckCircle2 className="w-3 h-3 text-teal-700" />
+                          {t}
+                        </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Transcript quote */}
-                  <blockquote className="text-sm sm:text-base font-normal text-slate-700 italic leading-relaxed mb-6 bg-white p-5 rounded-2xl border border-slate-100 shadow-xs">
-                    {rev.quote}
-                  </blockquote>
-
-                  {/* Key highlights tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {rev.topics.map((t, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[11px] font-medium text-slate-600 bg-slate-200/60 px-2.5 py-1 rounded-lg flex items-center gap-1"
-                      >
-                        <CheckCircle2 className="w-3 h-3 text-teal-700" />
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* WhatsApp Print Visual Attachment with click to zoom */}
-                <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
-                  <div
-                    onClick={() => setActiveZoomImage(rev.image)}
-                    className="flex items-center gap-3 cursor-pointer group/print"
-                  >
-                    <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-slate-900 border border-slate-300 shadow-xs shrink-0">
-                      <img
-                        src={rev.image}
-                        alt="Print da conversa real do WhatsApp"
-                        className="w-full h-full object-cover group-hover/print:scale-110 transition-transform"
-                      />
-                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white opacity-0 group-hover/print:opacity-100 transition-opacity">
-                        <ZoomIn className="w-4 h-4" />
+                  {/* WhatsApp Print Visual Attachment with click to zoom */}
+                  <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                    <div
+                      onClick={() => setActiveZoomImage(rev.image)}
+                      className="flex items-center gap-3 cursor-pointer group/print"
+                    >
+                      <div className="relative w-14 h-14 rounded-xl overflow-hidden bg-slate-900 border border-slate-300 shadow-xs shrink-0">
+                        <img
+                          src={rev.image}
+                          alt="Print da conversa real do WhatsApp"
+                          className="w-full h-full object-cover group-hover/print:scale-110 transition-transform"
+                        />
+                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center text-white opacity-0 group-hover/print:opacity-100 transition-opacity">
+                          <ZoomIn className="w-4 h-4" />
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-slate-900 group-hover/print:text-teal-700 transition-colors flex items-center gap-1">
+                          <span>Ver print original</span>
+                          <ZoomIn className="w-3 h-3 text-teal-700" />
+                        </p>
+                        <p className="text-[11px] text-slate-500">Clique para abrir imagem original</p>
                       </div>
                     </div>
-                    <div>
-                      <p className="text-xs font-bold text-slate-900 group-hover/print:text-teal-700 transition-colors flex items-center gap-1">
-                        <span>Ver print original</span>
-                        <ZoomIn className="w-3 h-3 text-teal-700" />
-                      </p>
-                      <p className="text-[11px] text-slate-500">Clique para abrir imagem original</p>
-                    </div>
-                  </div>
 
-                  <span className="text-xs font-semibold text-slate-500">
-                    {rev.dentistType}
-                  </span>
-                </div>
-              </div>
+                    <span className="text-xs font-semibold text-slate-500">
+                      {rev.dentistType}
+                    </span>
+                  </div>
+                </TiltCard>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -316,35 +378,43 @@ export const ProofSection: React.FC<ProofSectionProps> = ({ onOpenTriage }) => {
 
       </div>
 
-      {/* Lightbox for WhatsApp review prints */}
-      {activeZoomImage && (
-        <div
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setActiveZoomImage(null)}
-        >
-          <div
-            className="relative max-w-lg w-full max-h-[90vh] flex flex-col items-center"
-            onClick={(e) => e.stopPropagation()}
+      {/* Lightbox for WhatsApp review prints with AnimatePresence */}
+      <AnimatePresence>
+        {activeZoomImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            onClick={() => setActiveZoomImage(null)}
           >
-            <button
-              type="button"
-              onClick={() => setActiveZoomImage(null)}
-              className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-              aria-label="Fechar"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative max-w-lg w-full max-h-[90vh] flex flex-col items-center"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-6 h-6" />
-            </button>
-            <img
-              src={activeZoomImage}
-              alt="Print real ampliado"
-              className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700"
-            />
-            <p className="mt-3 text-xs text-slate-400">
-              Registro real de comunicação técnica do Laboratório Lourenço
-            </p>
-          </div>
-        </div>
-      )}
+              <button
+                type="button"
+                onClick={() => setActiveZoomImage(null)}
+                className="absolute -top-12 right-0 p-2 text-white/80 hover:text-white rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                aria-label="Fechar"
+              >
+                <X className="w-6 h-6" />
+              </button>
+              <img
+                src={activeZoomImage}
+                alt="Print real ampliado"
+                className="max-h-[80vh] w-auto max-w-full rounded-2xl shadow-2xl object-contain border border-slate-700"
+              />
+              <p className="mt-3 text-xs text-slate-400">
+                Registro real de comunicação técnica do Laboratório Lourenço
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

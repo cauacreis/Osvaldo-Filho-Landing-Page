@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, HelpCircle, Send } from 'lucide-react'
 import { FaqItem } from '../types'
 
@@ -47,31 +48,41 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
   }
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-24 sm:py-32 bg-[#F8FAFC] relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-semibold tracking-wider uppercase mb-3 shadow-xs">
             <HelpCircle className="w-3.5 h-3.5 text-teal-600" />
             <span>Tire Suas Dúvidas</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
             Perguntas frequentes de cirurgiões-dentistas.
           </h2>
-          <p className="mt-4 text-base text-slate-600">
+          <p className="mt-4 text-base text-slate-600 font-normal">
             Transparência técnica para construir uma parceria duradoura e previsível com o seu consultório.
           </p>
-        </div>
+        </motion.div>
 
         {/* Accordion List */}
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index
             return (
-              <div
+              <motion.div
                 key={index}
-                className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs transition-all"
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs hover:border-teal-500/30 transition-all"
               >
                 <button
                   type="button"
@@ -91,12 +102,26 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
                   </div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: { opacity: 1, height: 'auto' },
+                        collapsed: { opacity: 0, height: 0 },
+                      }}
+                      transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    >
+                      <div className="px-5 sm:px-6 pb-6 pt-1 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             )
           })}
         </div>
@@ -115,7 +140,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenTriage }) => {
           <button
             type="button"
             onClick={onOpenTriage}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-teal-800 hover:bg-teal-900 text-white font-semibold text-xs sm:text-sm shadow-md transition-all active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-teal-800 hover:bg-teal-900 text-white font-semibold text-xs sm:text-sm shadow-md transition-all active:scale-95"
           >
             <span>Enviar caso para análise</span>
             <Send className="w-3.5 h-3.5" />
