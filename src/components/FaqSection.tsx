@@ -26,7 +26,7 @@ export const FaqSection: React.FC<FaqSectionProps> = () => {
     {
       question: 'Como funciona a coleta e entrega?',
       answer:
-        'Temos serviço de coleta e entrega próprio para São Paulo e região metropolitana. O agendamento é feito direto pelo WhatsApp de forma rápida.',
+        'Temos serviço de coleta e entrega próprio para Itaguaru e região de Goiás, além de envio seguro via Sedex/transportadora para todo o Brasil. O agendamento é feito direto pelo WhatsApp de forma rápida.',
     },
     {
       question: 'Como solicitar orçamento para um caso?',

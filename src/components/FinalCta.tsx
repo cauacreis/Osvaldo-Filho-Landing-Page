@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Send, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react'
 
-import { getPricingTableWhatsAppLink } from '../config'
+import { getPricingTableWhatsAppLink, LAB_CONFIG } from '../config'
 
 interface FinalCtaProps {
   onOpenTriage: () => void
@@ -91,7 +91,7 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
           </span>
           <span className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-amber-400" />
-            Coleta Grande SP • Sedex Brasil
+            {LAB_CONFIG.logisticsShort}
           </span>
         </motion.div>
 

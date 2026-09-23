@@ -129,7 +129,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-                  Coleta Grande SP • Sedex Brasil
+                  {LAB_CONFIG.logisticsShort}
                 </span>
               </div>
             </motion.div>

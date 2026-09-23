@@ -5,17 +5,17 @@ export const LAB_CONFIG = {
   subtitle: 'Prótese Dental',
   founder: 'Osvaldo Lourenço Filho',
   founderRole: 'Responsável Técnico & Especialista Protético',
-  croTpd: 'Reg. TPD / CRO-SP',
+  croTpd: 'Reg. TPD / CRO-GO',
   /**
    * WHATSAPP CONFIGURATION:
    * Formato internacional com DDI e DDD sem caracteres especiais.
    */
-  whatsappNumber: '5511999999999',
-  whatsappDisplay: '(11) 99999-9999',
+  whatsappNumber: '556295434004',
+  whatsappDisplay: '(62) 9543-4004',
   instagram: '@laboratoriolourenco',
-  location: 'São Paulo e Região Metropolitana',
-  logisticsShort: 'Coleta Própria na Região • Envio Nacional',
-  logisticsDetail: 'Coleta e entrega diária em São Paulo e Região Metropolitana • Envio via Sedex / Transportadora para todo o Brasil',
+  location: 'Itaguaru e Região de Goiás',
+  logisticsShort: 'Coleta em Itaguaru e Região GO • Envio Brasil',
+  logisticsDetail: 'Coleta e entrega em Itaguaru e região de Goiás • Envio via Sedex / Transportadora para todo o Brasil',
   coletaHorario: 'Segunda a Sexta: 08h às 18h',
   riskReversal: 'Primeiro caso com alinhamento passo a passo por vídeo/WhatsApp para você testar nossa adaptação marginal sem risco.',
   metrics: {
@@ -34,7 +34,7 @@ export function getSanitizedWhatsAppNumber(): string {
   if (clean.length === 10 || clean.length === 11) {
     clean = `55${clean}`
   }
-  return clean || '5511999999999'
+  return clean || '556295434004'
 }
 
 /**
