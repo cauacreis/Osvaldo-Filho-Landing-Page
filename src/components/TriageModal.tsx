@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   Send,
   CheckCircle,
+  CheckCircle2,
   Building2,
   MapPin,
   Phone,
@@ -16,6 +17,9 @@ import {
   ShieldCheck,
   FileText,
   HelpCircle,
+  RotateCcw,
+  ExternalLink,
+  Sparkles,
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { TriageData, PartnerStatus } from '../types'
@@ -34,7 +38,8 @@ export const TriageModal: React.FC<TriageModalProps> = ({
 }) => {
   // Step 0: Tela Inicial
   // Steps 1-7: Perguntas a) até g)
-  // Step 8: Tela Final com Resumo
+  // Step 8: Tela de Envio / Quase lá (Resumo)
+  // Step 9: Tela de Sucesso / Concluída com opção de nova triagem
   const [currentStep, setCurrentStep] = useState<number>(0)
   const totalQuestions = 7
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -68,15 +73,15 @@ export const TriageModal: React.FC<TriageModalProps> = ({
     }
   }, [currentStep])
 
-  // Trigger confetti when arriving at Step 8 (Tela Final de Resumo)
+  // Trigger confetti when arriving at Step 9 (Tela de Triagem Concluída)
   useEffect(() => {
-    if (currentStep === 8) {
+    if (currentStep === 9) {
       try {
         confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#d4af37', '#f59e0b', '#fef08a', '#1e293b'],
+          particleCount: 100,
+          spread: 80,
+          origin: { y: 0.5 },
+          colors: ['#d4af37', '#f59e0b', '#10b981', '#fef08a', '#ffffff'],
         })
       } catch {
         // Fallback silently if canvas-confetti is not supported
@@ -105,6 +110,24 @@ export const TriageModal: React.FC<TriageModalProps> = ({
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [isOpen, onClose])
+
+  // Reset form and start a new triage
+  const handleResetTriage = () => {
+    setFormData({
+      isPartner: '',
+      name: '',
+      clinic: '',
+      city: '',
+      whatsapp: '',
+      workType: '',
+      workflow: '',
+      stage: '',
+      deadline: '',
+      notes: '',
+    })
+    setErrorMsg('')
+    setCurrentStep(1)
+  }
 
   if (!isOpen) return null
 
@@ -201,8 +224,10 @@ export const TriageModal: React.FC<TriageModalProps> = ({
   // Progress Bar computation
   let progressPercent = 0
   if (currentStep >= 1 && currentStep <= 7) {
-    progressPercent = Math.round((currentStep / totalQuestions) * 100)
+    progressPercent = Math.round((currentStep / totalQuestions) * 85)
   } else if (currentStep === 8) {
+    progressPercent = 95
+  } else if (currentStep === 9) {
     progressPercent = 100
   }
 
@@ -318,19 +343,25 @@ export const TriageModal: React.FC<TriageModalProps> = ({
             <span className="text-amber-300 font-bold">
               {currentStep === 0 && 'Vamos entender seu caso em menos de 1 minuto.'}
               {currentStep >= 1 && currentStep <= 7 && `Pergunta ${currentStep} de ${totalQuestions}`}
-              {currentStep === 8 && 'Resumo do Caso Pronto'}
+              {currentStep === 8 && 'Quase lá... Envie no WhatsApp agora!'}
+              {currentStep === 9 && 'Triagem Concluída com Sucesso!'}
             </span>
             <span>
               {currentStep === 0 && 'Início'}
               {currentStep >= 1 && currentStep <= 7 && `${progressPercent}% concluído`}
-              {currentStep === 8 && '100% Concluído'}
+              {currentStep === 8 && '95% concluído'}
+              {currentStep === 9 && '100% Concluído'}
             </span>
           </div>
 
           {/* Progress Bar */}
           <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300 transition-all duration-300 rounded-full shadow-[0_0_8px_rgba(245,158,11,0.5)]"
+              className={`h-full transition-all duration-300 rounded-full shadow-[0_0_8px_rgba(245,158,11,0.5)] ${
+                currentStep === 9
+                  ? 'bg-gradient-to-r from-emerald-500 to-amber-400 shadow-[0_0_12px_rgba(16,185,129,0.5)]'
+                  : 'bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-300'
+              }`}
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -834,16 +865,20 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           )}
 
           {/* ============================================================ */}
-          {/* STEP 8: Tela final com resumo e botão WhatsApp               */}
+          {/* STEP 8: Tela de Envio / Quase lá com botão WhatsApp          */}
           {/* ============================================================ */}
           {currentStep === 8 && (
             <div className="space-y-5 animate-fade-in">
               <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Quase lá... Envie no WhatsApp agora!</span>
+                </div>
                 <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                   Tudo pronto, {formData.name || 'Doutor(a)'}!
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300">
-                  Confira o resumo das informações antes de abrir o WhatsApp direto com o laboratório:
+                  Confira o resumo das informações do seu caso. Clique no botão verde abaixo para enviar diretamente ao WhatsApp do Osvaldo:
                 </p>
               </div>
 
@@ -900,14 +935,15 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/30 transition-all text-center"
+                  onClick={() => setCurrentStep(9)}
+                  className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] text-white font-bold text-base rounded-2xl shadow-xl shadow-emerald-700/30 transition-all text-center cursor-pointer"
                 >
                   <Send className="w-5 h-5 text-white" />
-                  <span>Falar com o Laboratório no WhatsApp</span>
+                  <span>Enviar Caso no WhatsApp Agora</span>
                 </a>
 
                 <p className="mt-3 text-[11px] text-center text-slate-400 leading-relaxed">
-                  🔒 Ao clicar, abriremos sua conversa com o Laboratório Lourenço com os dados organizados. Você poderá anexar fotos do preparo, escaneamentos ou radiografias direto no WhatsApp.
+                  🔒 Ao clicar, abriremos sua conversa com o Laboratório Lourenço com os dados organizados. Ao retornar a este site, sua triagem estará confirmada.
                 </p>
               </div>
 
@@ -919,6 +955,86 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 >
                   Editar dados da triagem
                 </button>
+              </div>
+            </div>
+          )}
+
+          {/* ============================================================ */}
+          {/* STEP 9: Tela de Triagem Concluída e Nova Triagem             */}
+          {/* ============================================================ */}
+          {currentStep === 9 && (
+            <div className="space-y-6 py-2 animate-fade-in text-center">
+              <div className="relative mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-500/50 flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.35)]">
+                <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12 text-emerald-400" />
+              </div>
+
+              <div className="space-y-2 max-w-lg mx-auto">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Triagem Concluída com Sucesso</span>
+                </div>
+                <h4 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                  Caso Enviado com Sucesso!
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  Os dados do caso do(a) <strong className="text-white font-semibold">{formData.name || 'Cirurgião(ã)'}</strong> foram encaminhados para o WhatsApp do Laboratório Lourenço. O Osvaldo Lourenço Filho já irá analisar o planejamento.
+                </p>
+              </div>
+
+              {/* Mini resumo do caso enviado */}
+              <div className="bg-slate-950 rounded-2xl p-4 border border-slate-800 text-left text-xs text-slate-300 space-y-2 max-w-lg mx-auto">
+                <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
+                  <span className="text-slate-400 font-medium">Trabalho Triado:</span>
+                  <span className="font-bold text-amber-300">{formData.workType || 'Prótese Dental'}</span>
+                </div>
+                <div className="flex items-center justify-between border-b border-slate-800/80 pb-2">
+                  <span className="text-slate-400 font-medium">Fluxo & Etapa:</span>
+                  <span className="text-slate-200">{formData.workflow ? `${formData.workflow.split(' ')[0]} • ${formData.stage}` : 'Fluxo Direto'}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-slate-400 font-medium">Contato Registrado:</span>
+                  <span className="text-slate-200">{formData.whatsapp || '-'}</span>
+                </div>
+              </div>
+
+              {/* Helpful hint box */}
+              <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-xs text-amber-200 text-left max-w-lg mx-auto flex items-start gap-2.5">
+                <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                <span>
+                  <strong className="text-amber-300">Arquivos e Fotos:</strong> Se você tiver fotos do preparo, escaneamento intraoral (.STL / .PLY) ou tomografia, envie diretamente na conversa aberta do WhatsApp.
+                </span>
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-3 pt-2 max-w-lg mx-auto">
+                <button
+                  type="button"
+                  onClick={handleResetTriage}
+                  className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-bold text-sm sm:text-base rounded-2xl shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all cursor-pointer"
+                >
+                  <RotateCcw className="w-4 h-4 text-slate-950" />
+                  <span>Fazer outra triagem de caso</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-slate-700 bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition-colors cursor-pointer"
+                >
+                  <span>Concluir e Voltar ao Site</span>
+                </button>
+
+                <div className="pt-1">
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-amber-300 transition-colors cursor-pointer"
+                  >
+                    <span>Não abriu o WhatsApp? Clique aqui para abrir a conversa</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
             </div>
           )}
