@@ -169,8 +169,8 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
             </p>
           </div>
 
-          {/* Quick Price List Button on Top Right */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Quick Actions & Carousel Navigation */}
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
             <a
               href={getPricingTableWhatsAppLink('servicos_topo')}
               target="_blank"
@@ -181,11 +181,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
 
-            <div className="flex items-center gap-1.5 ml-2">
+            <div className="flex items-center gap-1.5 shrink-0">
               <button
                 type="button"
                 onClick={() => handleScroll('left')}
-                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/40 text-slate-300 hover:text-amber-400 transition-all cursor-pointer shadow-md active:scale-95"
                 aria-label="Rolar para a esquerda"
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -193,7 +193,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               <button
                 type="button"
                 onClick={() => handleScroll('right')}
-                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-amber-500/40 text-slate-300 hover:text-amber-400 transition-all cursor-pointer shadow-md active:scale-95"
                 aria-label="Rolar para a direita"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -203,7 +203,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
         </motion.div>
 
         {/* Dynamic Category Tabs */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-3 mb-8 scrollbar-none">
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-3 mb-6 scrollbar-none">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id
             return (
@@ -223,91 +223,87 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           })}
         </div>
 
-        {/* Services Compact Grid */}
-        <div
-          ref={scrollRef}
-          className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 snap-x snap-mandatory scrollbar-none"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredServices.map((service) => {
-              const Icon = service.icon
-              return (
-                <motion.div
-                  key={service.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-[85vw] sm:w-auto shrink-0 snap-start"
-                >
-                  <TiltCard
-                    glowColor="rgba(245, 158, 11, 0.18)"
-                    className="h-full bg-slate-900/70 hover:bg-slate-900 rounded-3xl p-6 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
-                  >
-                    <div>
-                      {/* Top Header with Icon & Lead Time Badge */}
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all">
-                          <Icon className="w-5 h-5" />
-                        </div>
-                        <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">
-                          Prazo: {service.leadTime}
-                        </span>
-                      </div>
-
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
-                        {service.title}
-                      </h3>
-
-                      {/* Technical Bench Sheet */}
-                      <div className="space-y-2 mb-5 text-xs">
-                        <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                          <span className="text-amber-400 font-bold block text-[10px] uppercase tracking-wider mb-0.5">
-                            Biomaterial de Bancada:
-                          </span>
-                          <span className="text-slate-200 font-medium">{service.biomaterial}</span>
-                        </div>
-
-                        <div className="text-slate-300 leading-relaxed">
-                          <strong className="text-slate-200 font-semibold">Indicação:</strong> {service.indication}
-                        </div>
-
-                        <div className="text-slate-400 leading-relaxed text-[11px] pt-1 border-t border-slate-800/60">
-                          <span className="text-amber-300/90 font-medium">Controle:</span> {service.benchCheck}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action Area */}
-                    <div className="pt-3 border-t border-slate-800/80 flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => onSelectService(service.title)}
-                        className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-md transition-all cursor-pointer"
-                      >
-                        <span>Enviar este tipo de caso</span>
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </TiltCard>
-                </motion.div>
-              )
-            })}
-          </AnimatePresence>
-        </div>
-
-        {/* Mobile Action Banner */}
-        <div className="mt-8 sm:hidden text-center">
-          <a
-            href={getPricingTableWhatsAppLink('servicos_mobile')}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-slate-900 border border-amber-500/30 text-amber-300 font-bold text-xs"
+        {/* Services Dedicated Horizontal Carousel */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto pb-6 pt-2 snap-x snap-mandatory scrollbar-none scroll-smooth px-1"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            <span>Solicitar Tabela de Valores e Prazos</span>
-            <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
-          </a>
+            <AnimatePresence mode="popLayout">
+              {filteredServices.map((service) => {
+                const Icon = service.icon
+                return (
+                  <motion.div
+                    key={service.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-[300px] sm:w-[350px] lg:w-[370px] shrink-0 snap-start flex flex-col"
+                  >
+                    <TiltCard
+                      glowColor="rgba(245, 158, 11, 0.18)"
+                      className="h-full bg-slate-900/70 hover:bg-slate-900 rounded-3xl p-6 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
+                    >
+                      <div>
+                        {/* Top Header with Icon & Lead Time Badge */}
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">
+                            Prazo: {service.leadTime}
+                          </span>
+                        </div>
+
+                        <h3 className="text-base sm:text-lg font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
+                          {service.title}
+                        </h3>
+
+                        {/* Technical Bench Sheet */}
+                        <div className="space-y-2 mb-5 text-xs">
+                          <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                            <span className="text-amber-400 font-bold block text-[10px] uppercase tracking-wider mb-0.5">
+                              Biomaterial de Bancada:
+                            </span>
+                            <span className="text-slate-200 font-medium">{service.biomaterial}</span>
+                          </div>
+
+                          <div className="text-slate-300 leading-relaxed">
+                            <strong className="text-slate-200 font-semibold">Indicação:</strong> {service.indication}
+                          </div>
+
+                          <div className="text-slate-400 leading-relaxed text-[11px] pt-1 border-t border-slate-800/60">
+                            <span className="text-amber-300/90 font-medium">Controle:</span> {service.benchCheck}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Area */}
+                      <div className="pt-3 border-t border-slate-800/80 flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => onSelectService(service.title)}
+                          className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-md transition-all cursor-pointer"
+                        >
+                          <span>Enviar este tipo de caso</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </TiltCard>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Micro Helper Note */}
+          <div className="mt-3 flex items-center justify-between text-xs text-slate-500 px-1">
+            <span>← Deslize horizontalmente para ver todos os biomateriais →</span>
+            <span className="hidden sm:inline">Use as setas acima para navegar</span>
+          </div>
         </div>
 
       </div>
