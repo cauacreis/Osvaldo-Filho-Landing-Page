@@ -284,9 +284,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
                           <span className="text-amber-400 font-bold shrink-0">Indicação:</span>
                           <span className="text-slate-300">{item.techSheet.indication}</span>
                         </div>
-                        <div className="pt-1.5 border-t border-slate-800/80 text-[11px] text-amber-300/90 font-medium">
-                          ✓ {item.techSheet.precision}
-                        </div>
                       </div>
                     </div>
                   </div>
