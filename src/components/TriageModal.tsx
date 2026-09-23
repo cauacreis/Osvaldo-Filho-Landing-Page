@@ -19,7 +19,6 @@ import {
   HelpCircle,
   RotateCcw,
   ExternalLink,
-  Sparkles,
 } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { TriageData, PartnerStatus } from '../types'
@@ -870,14 +869,10 @@ export const TriageModal: React.FC<TriageModalProps> = ({
           {currentStep === 8 && (
             <div className="space-y-5 animate-fade-in">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold mb-2">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Quase lá... Envie no WhatsApp agora!</span>
-                </div>
                 <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
                   Tudo pronto, {formData.name || 'Doutor(a)'}!
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300">
+                <p className="text-xs sm:text-sm text-slate-300 mt-1">
                   Confira o resumo das informações do seu caso. Clique no botão verde abaixo para enviar diretamente ao WhatsApp do Osvaldo:
                 </p>
               </div>
@@ -969,10 +964,6 @@ export const TriageModal: React.FC<TriageModalProps> = ({
               </div>
 
               <div className="space-y-2 max-w-lg mx-auto">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  <span>Triagem Concluída com Sucesso</span>
-                </div>
                 <h4 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                   Caso Enviado com Sucesso!
                 </h4>
