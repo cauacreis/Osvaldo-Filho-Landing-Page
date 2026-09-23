@@ -150,10 +150,10 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
             {/* Left Column: Interactive Before/After Comparison */}
             <div className="w-full lg:w-1/2">
               <BeforeAfterSlider
-                beforeImage="/assets/case-protocolo-barra.webp"
-                afterImage="/assets/case-protocolo-finalizado.webp"
-                beforeLabel="Estrutura / Barra Metálica"
-                afterLabel="Protocolo Finalizado"
+                beforeImage="/assets/protocolo-oclusal.png"
+                afterImage="/assets/protocolo-frontal.png"
+                beforeLabel="Vista Oclusal & Acessos"
+                afterLabel="Vista Frontal & Estética"
                 className="aspect-[4/3] sm:aspect-[16/11] border border-slate-700/80"
               />
             </div>
