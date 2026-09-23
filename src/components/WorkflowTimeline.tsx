@@ -218,14 +218,11 @@ export const WorkflowTimeline: React.FC<WorkflowTimelineProps> = ({ onOpenTriage
                   className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-7 border border-slate-800/80 hover:border-amber-500/40 shadow-lg transition-all flex flex-col justify-between group"
                 >
                   <div>
-                    {/* Top Header with 3D Translucent Gold Icon & Step Number */}
-                    <div className="flex items-center justify-between mb-6">
+                    {/* Top Header with 3D Translucent Gold Icon */}
+                    <div className="flex items-center mb-6">
                       <div className="p-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 backdrop-blur-md flex items-center justify-center group-hover:border-amber-400/50 transition-all shadow-[0_0_20px_rgba(212,175,55,0.15)]">
                         <Icon3D />
                       </div>
-                      <span className="text-3xl font-extrabold text-amber-500/30 group-hover:text-amber-400 transition-colors">
-                        {item.step}
-                      </span>
                     </div>
 
                     <p className="text-xs font-bold text-amber-400 uppercase tracking-wider mb-1">
