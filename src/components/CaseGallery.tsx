@@ -194,16 +194,6 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  Caso clínico confeccionado no laboratório
-                </span>
-                <span className="text-[11px] text-amber-400 font-semibold">
-                  Planejamento e Execução Lourenço
-                </span>
-              </div>
-
             </div>
 
           </div>
