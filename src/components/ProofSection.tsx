@@ -206,16 +206,11 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                   {/* Review Details & Editorial Flow */}
                   <div className="lg:col-span-6 flex flex-col justify-center text-left space-y-5">
                     
-                    {/* Top Row: Stars + Verified Badge */}
-                    <div className="flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-1 text-amber-400">
-                        {[...Array(currentReview.stars || 5)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-amber-400" />
-                        ))}
-                      </div>
-                      <span className="text-[11px] font-mono text-amber-400/80 uppercase tracking-wider">
-                        Depoimento Verificado
-                      </span>
+                    {/* Top Row: Stars */}
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(currentReview.stars || 5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400" />
+                      ))}
                     </div>
 
                     {/* Headline */}
@@ -236,18 +231,13 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
 
                     {/* Dentist info footer */}
                     <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-xs">
-                          ★
-                        </div>
-                        <div>
-                          <p className="text-xs sm:text-sm font-bold text-white">
-                            {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
-                          </p>
-                          <p className="text-[11px] text-slate-400">
-                            {currentReview.clinicCity || 'Goiás - GO'} • Parceria ativa de bancada
-                          </p>
-                        </div>
+                      <div>
+                        <p className="text-xs sm:text-sm font-bold text-white">
+                          {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
+                        </p>
+                        <p className="text-[11px] text-slate-400">
+                          {currentReview.clinicCity || 'Goiás - GO'} • Parceria ativa de bancada
+                        </p>
                       </div>
 
                       <button
