@@ -32,7 +32,7 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
       id: 'coroa-estetica',
       title: 'Coroa Unitária em E.max',
       category: 'unitario',
-      image: '/assets/case-coroa-estetica.webp',
+      image: '/assets/case-coroa-estetica.png',
       techSheet: {
         material: 'Dissilicato de Lítio (IPS e.max)',
         system: 'Modelo troquelado & magnificação ótica',
