@@ -260,20 +260,20 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                         </h3>
 
                         {/* Technical Bench Sheet */}
-                        <div className="space-y-2 mb-5 text-xs">
-                          <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
-                            <span className="text-amber-400 font-bold block text-[10px] uppercase tracking-wider mb-0.5">
-                              Biomaterial de Bancada:
-                            </span>
-                            <span className="text-slate-200 font-medium">{service.biomaterial}</span>
+                        <div className="space-y-2.5 mb-5 text-xs">
+                          <div className="text-slate-300 leading-relaxed">
+                            <strong className="text-amber-400 font-bold">Biomaterial:</strong>{' '}
+                            <span className="text-slate-200">{service.biomaterial}</span>
                           </div>
 
                           <div className="text-slate-300 leading-relaxed">
-                            <strong className="text-slate-200 font-semibold">Indicação:</strong> {service.indication}
+                            <strong className="text-amber-400 font-bold">Indicação:</strong>{' '}
+                            <span className="text-slate-300">{service.indication}</span>
                           </div>
 
-                          <div className="text-slate-400 leading-relaxed text-[11px] pt-1 border-t border-slate-800/60">
-                            <span className="text-amber-300/90 font-medium">Controle:</span> {service.benchCheck}
+                          <div className="text-slate-300 leading-relaxed">
+                            <strong className="text-amber-400 font-bold">Controle:</strong>{' '}
+                            <span className="text-slate-300">{service.benchCheck}</span>
                           </div>
                         </div>
                       </div>
