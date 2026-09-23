@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Send, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react'
 
-import { getPricingTableWhatsAppLink, LAB_CONFIG } from '../config'
+import { getPricingTableWhatsAppLink } from '../config'
 
 interface FinalCtaProps {
   onOpenTriage: () => void
@@ -71,20 +71,6 @@ export const FinalCta: React.FC<FinalCtaProps> = ({ onOpenTriage }) => {
           >
             <span>Solicitar Tabela de Valores e Prazos</span>
           </a>
-        </motion.div>
-
-        {/* Risk Reversal Guarantee Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="max-w-xl mx-auto mb-8 p-3.5 rounded-2xl bg-slate-900/60 border border-amber-500/20 flex items-center gap-3 text-xs text-amber-200/90 text-left"
-        >
-          <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0" />
-          <span>
-            <strong>Oferta de Entrada:</strong> {LAB_CONFIG.riskReversal}
-          </span>
         </motion.div>
 
         {/* Microcopy anti-anxiety guarantees */}

@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { TiltCard } from './ui/TiltCard'
 import { LAB_CONFIG, getDirectWhatsAppLink } from '../config'
-import { PhoneCall, CheckCheck, Cpu, Clock, ShieldCheck, ArrowRight } from 'lucide-react'
+import { PhoneCall, CheckCheck, Cpu, Clock, ArrowRight } from 'lucide-react'
 
 interface AboutSectionProps {
   onOpenTriage?: () => void
@@ -90,11 +90,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 flex flex-col items-start"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-bold mb-4">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              <span>Responsabilidade Técnica Direta</span>
-            </div>
-
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight mb-5">
               O responsável técnico que confere seu caso antes da entrega.
             </h2>

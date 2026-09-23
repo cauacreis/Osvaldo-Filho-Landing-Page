@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Menu, X, Clock } from 'lucide-react'
-import { LAB_CONFIG, getPricingTableWhatsAppLink } from '../config'
+import { LAB_CONFIG } from '../config'
 
 interface NavbarProps {
   onOpenTriage: () => void
@@ -147,17 +147,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTriage }) => {
                   ))}
                 </div>
 
-                {/* Primary CTA & Pricing Table Link */}
+                {/* Primary CTA */}
                 <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-                  <a
-                    href={getPricingTableWhatsAppLink('navbar')}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hidden xl:inline-flex items-center text-xs font-semibold text-amber-300 hover:text-amber-200 py-1.5 px-3 rounded-full hover:bg-amber-400/10 border border-amber-500/20 transition-colors cursor-pointer"
-                  >
-                    <span>Tabela de Valores</span>
-                  </a>
-
                   {/* Primary CTA button with gold metallic styling */}
                   <button
                     type="button"

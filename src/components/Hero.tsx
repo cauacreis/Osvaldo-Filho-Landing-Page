@@ -44,17 +44,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
           
           {/* Left Column: High Impact Headline & Action Area */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-6 sm:pt-0">
-            {/* Editorial Eyebrow Tag */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-bold tracking-wide uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.15)]"
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span>Prótese Dental de Alta Precisão • B2B Clínico</span>
-            </motion.div>
-
             {/* Primary Editorial Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -83,7 +72,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6"
+              className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8"
             >
               {/* Nível 1: Decisão Imediata / Enviar Caso */}
               <button
@@ -107,19 +96,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
                 <span>Solicitar Tabela de Valores e Prazos</span>
                 <ArrowDownRight className="w-4 h-4 text-amber-400" />
               </a>
-            </motion.div>
-
-            {/* Risk Reversal / Garantia de Entrada */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.35 }}
-              className="mb-8 p-3 px-4 rounded-xl bg-slate-900/60 border border-amber-500/25 flex items-center gap-2.5 text-xs text-amber-200/90 max-w-xl"
-            >
-              <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-              <span>
-                <strong className="text-amber-300 font-bold">Garantia Lourenço:</strong> {LAB_CONFIG.riskReversal}
-              </span>
             </motion.div>
 
             {/* Microprova & Trust Metrics Bar with Clear Logistics */}
