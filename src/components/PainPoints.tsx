@@ -10,29 +10,32 @@ interface PainPointsProps {
 export const PainPoints: React.FC<PainPointsProps> = () => {
   const diferenciais = [
     {
-      id: '01',
-      badge: 'Adaptação Marginal',
-      title: 'Zero desgaste de cadeira',
-      desc: 'Peças com assentamento passivo e pontos de contato calibrados em troquel e articulador. É descer da bancada e cimentar sem retrabalho.',
-      highlight: 'Ajuste oclusal conferido sob magnificação',
+      code: '01',
+      titleTag: 'CONTROLE MARGINAL',
+      category: 'Bancada & Troquel',
+      title: 'Assentamento Passivo Rigoroso',
+      desc: 'Término cervical e pontos de contato calibrados sob magnificação óptica e articulador. A peça desce em boca com vedamento passivo imediato, poupando tempo de cadeira.',
+      highlight: 'Ajuste oclusal e marginal conferido pré-entrega',
       metric: '0 min',
-      metricLabel: 'desgaste de cadeira',
+      metricLabel: 'desgaste em cadeira',
     },
     {
-      id: '02',
-      badge: 'Pontualidade Clínica',
-      title: 'Cronograma rigoroso',
-      desc: 'Acompanhamento ativo da sua data clínica. O paciente senta na cadeira e o trabalho já está no consultório pronto para instalar.',
-      highlight: 'Entrega pré-consulta garantida',
+      code: '02',
+      titleTag: 'PREVISIBILIDADE CLÍNICA',
+      category: 'Logística de Entrega',
+      title: 'Cumprimento do Cronograma Clínico',
+      desc: 'Planejamento rigorosamente sincronizado com a sua data de consulta. O trabalho é entregue com antecedência para você atender seu paciente com total tranquilidade.',
+      highlight: 'Entrega antecipada antes da sessão clínica',
       metric: '100%',
-      metricLabel: 'previsibilidade de data',
+      metricLabel: 'compromisso de prazo',
     },
     {
-      id: '03',
-      badge: 'Suporte Técnico',
-      title: 'Alinhamento direto no WhatsApp',
-      desc: 'Você valida preparo, término cervical e espaço interoclusal diretamente com o Osvaldo antes de usinar ou injetar.',
-      highlight: 'Canal exclusivo direto com o TPD',
+      code: '03',
+      titleTag: 'SUPORTE TÉCNICO DIRETO',
+      category: 'Canal Exclusivo TPD',
+      title: 'Alinhamento Clínico com o Osvaldo',
+      desc: 'Você valida término, preparo, espaço interoclusal e substrato diretamente no WhatsApp com o Osvaldo Lourenço Filho antes de iniciar qualquer fresagem.',
+      highlight: 'Comunicação direta com o responsável técnico',
       metric: 'Direto',
       metricLabel: 'com o responsável técnico',
     },
@@ -79,17 +82,17 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
         >
           {diferenciais.map((item) => (
             <div
-              key={item.id}
+              key={item.code}
               className="group relative bg-[#0B0E14] p-7 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-[#10141D]"
             >
               <div>
-                {/* Topo: Numeração técnica + Badge */}
-                <div className="flex items-center justify-between pb-5 border-b border-white/5">
-                  <span className="font-mono text-xs font-semibold text-[#D4AF37] tracking-widest uppercase">
-                    PROCESSO // {item.id}
+                {/* Topo: Numeração técnica e especialidade limpa sem pílula */}
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <span className="font-mono text-xs font-bold text-[#D4AF37] tracking-wider uppercase">
+                    {item.code} // {item.titleTag}
                   </span>
-                  <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
-                    {item.badge}
+                  <span className="font-mono text-[11px] text-slate-500 uppercase tracking-wider">
+                    {item.category}
                   </span>
                 </div>
 
