@@ -216,29 +216,14 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
 
                       {/* Highlight */}
                       {currentReview.highlight && (
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-snug min-h-[3rem] sm:min-h-[2.5rem] flex items-center shrink-0">
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-snug shrink-0">
                           {currentReview.highlight}
                         </h3>
                       )}
 
-                      {/* Key phrases grifados */}
-                      {currentReview.keyPhrases && (
-                        <div className="flex flex-wrap gap-1.5 shrink-0">
-                          {currentReview.keyPhrases.map((phrase, i) => (
-                            <span
-                              key={i}
-                              className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-lg"
-                            >
-                              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                              "{phrase}"
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
                       {/* Excerpt quote */}
                       {currentReview.quote && (
-                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/70 p-4 rounded-2xl border border-slate-800 h-[140px] sm:h-[130px] lg:h-[135px] flex flex-col overflow-y-auto scrollbar-none">
+                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/70 p-4.5 rounded-2xl border border-slate-800 h-[160px] sm:h-[150px] lg:h-[160px] flex flex-col overflow-y-auto scrollbar-none">
                           <p className="w-full my-auto text-slate-200">{currentReview.quote}</p>
                         </blockquote>
                       )}
