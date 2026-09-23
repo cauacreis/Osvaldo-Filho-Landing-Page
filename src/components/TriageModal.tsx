@@ -399,8 +399,8 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                 </div>
               </div>
 
-              {/* Start Button */}
-              <div className="pt-4">
+              {/* Start Button & Custom Order Option */}
+              <div className="pt-4 space-y-3">
                 <button
                   type="button"
                   onClick={() => setCurrentStep(1)}
@@ -409,6 +409,23 @@ export const TriageModal: React.FC<TriageModalProps> = ({
                   <span>Iniciar Triagem de Caso</span>
                   <ArrowRight className="w-5 h-5 text-slate-950" />
                 </button>
+
+                <div className="text-center pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        workType: 'Pedido Personalizado / Caso Especial',
+                      }))
+                      setCurrentStep(1)
+                    }}
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors py-1.5 px-3 rounded-xl hover:bg-amber-400/10 cursor-pointer"
+                  >
+                    <span>Fazer pedido personalizado</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+                  </button>
+                </div>
               </div>
             </div>
           )}

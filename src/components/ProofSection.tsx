@@ -180,45 +180,25 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 items-center w-full">
                   
-                  {/* WhatsApp Screenshot Showcase (Standardized Fixed Dimension Box) */}
-                  <div className="lg:col-span-6 flex flex-col items-center justify-center">
+                  {/* WhatsApp Screenshot Showcase (Half of the card, full bleed & high visibility) */}
+                  <div className="lg:col-span-6 flex items-center justify-center h-full w-full">
                     <div
                       onClick={() => setActiveZoomImage(currentReview.image)}
-                      className="group/print relative w-full max-w-sm rounded-2xl overflow-hidden bg-[#0b141a] border border-amber-500/30 shadow-2xl cursor-pointer transition-transform hover:scale-[1.02]"
+                      className="group/print relative w-full h-[360px] sm:h-[400px] lg:h-[420px] rounded-2xl overflow-hidden bg-[#0b141a] border border-amber-500/30 shadow-2xl cursor-pointer transition-all hover:border-amber-400/60 hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] flex items-center justify-center p-2"
                     >
-                      {/* WhatsApp Window Header Bar */}
-                      <div className="bg-[#1f2c34] px-3.5 py-2 flex items-center justify-between border-b border-[#2a3942] text-[11px] text-slate-300 shrink-0">
-                        <div className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-                          <span className="font-semibold text-white">WhatsApp</span>
-                        </div>
-                        <span className="text-amber-400 text-[10px] flex items-center gap-1">
-                          <ZoomIn className="w-3 h-3 text-amber-400" />
-                          Toque p/ ampliar
+                      <img
+                        src={currentReview.image}
+                        alt="Print da conversa real com cirurgião-dentista"
+                        className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-md transition-transform duration-300 group-hover/print:scale-[1.02]"
+                        loading="lazy"
+                      />
+                      
+                      {/* Hover Overlay with Zoom Icon */}
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/print:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
+                        <span className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-xl">
+                          <ZoomIn className="w-4 h-4" />
+                          Ampliar Depoimento
                         </span>
-                      </div>
-
-                      {/* Image container with locked height preventing vertical layout shifts */}
-                      <div className="relative p-2 bg-[#0b141a] flex items-center justify-center h-[300px] sm:h-[320px] w-full shrink-0 overflow-hidden">
-                        <img
-                          src={currentReview.image}
-                          alt="Print da conversa real no WhatsApp"
-                          className="max-h-full max-w-full w-auto h-auto object-contain rounded-lg shadow-sm"
-                          loading="lazy"
-                        />
-                        
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/print:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
-                          <span className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg">
-                            <ZoomIn className="w-4 h-4" />
-                            Ver print em tamanho real
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Quick tap footer for mobile */}
-                      <div className="bg-[#111b21] px-3 py-1.5 border-t border-[#2a3942] text-center text-[10px] text-slate-400 sm:hidden shrink-0">
-                        Toque na imagem para ler a conversa completa
                       </div>
                     </div>
                   </div>
@@ -277,8 +257,8 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
             </AnimatePresence>
           </div>
 
-          {/* Thumbnail Selector Strip */}
-          <div className="mt-5 flex items-center justify-center gap-3 overflow-x-auto pb-2 scrollbar-none">
+          {/* Thumbnail Selector Strip (Unclipped with proper padding & layout) */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4 py-2 px-1">
             {reviews.map((rev, idx) => {
               const isActive = idx === currentIndex
               return (
@@ -289,30 +269,35 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                     setDirection(idx > currentIndex ? 1 : -1)
                     setCurrentIndex(idx)
                   }}
-                  className={`relative shrink-0 rounded-xl overflow-hidden border-2 transition-all p-1 bg-slate-900 ${
+                  className={`group relative flex items-center gap-3 px-3.5 py-2 rounded-2xl border transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'border-amber-400 scale-105 shadow-[0_0_15px_rgba(245,158,11,0.4)]'
-                      : 'border-slate-800 opacity-60 hover:opacity-100 hover:border-slate-600'
+                      ? 'border-amber-400 bg-amber-500/15 shadow-[0_0_20px_rgba(245,158,11,0.25)] text-white ring-1 ring-amber-400/60'
+                      : 'border-slate-800 bg-slate-950/60 text-slate-400 hover:text-slate-200 hover:border-slate-700'
                   }`}
                   aria-label={`Ver print ${idx + 1}`}
                 >
-                  <img
-                    src={rev.image}
-                    alt={`Miniatura print ${idx + 1}`}
-                    className="w-16 h-12 object-cover object-top rounded-lg"
-                  />
+                  <div className="w-8 h-10 rounded-lg overflow-hidden bg-slate-900 border border-slate-700/60 shrink-0 flex items-center justify-center">
+                    <img
+                      src={rev.image}
+                      alt={`Miniatura print ${idx + 1}`}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <span className="block text-xs font-bold text-white leading-tight">
+                      {rev.dentistType || `Depoimento ${idx + 1}`}
+                    </span>
+                    <span className="block text-[10px] text-amber-400 font-medium mt-0.5">
+                      {rev.clinicCity || 'Caso Concluído'}
+                    </span>
+                  </div>
                   {isActive && (
-                    <span className="absolute bottom-1 right-1 w-2 h-2 rounded-full bg-amber-400" />
+                    <span className="w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(245,158,11,0.8)] shrink-0 ml-1" />
                   )}
                 </button>
               )
             })}
           </div>
-
-          {/* Mobile swipe hint */}
-          <p className="sm:hidden text-center mt-3 text-xs text-slate-400">
-            ← Deslize para o lado para ver outros prints →
-          </p>
         </div>
       </div>
 
