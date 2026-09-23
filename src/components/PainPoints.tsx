@@ -82,12 +82,6 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
                   className="h-full bg-slate-900/70 hover:bg-slate-900 border border-slate-800/80 hover:border-amber-500/40 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group shadow-xl transition-all"
                 >
                   <div>
-                    {/* Market Problem pill */}
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-950/50 border border-red-500/30 text-red-300 text-xs font-semibold mb-4">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-                      <span>Dor comum: {item.marketPain}</span>
-                    </div>
-
                     <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform">
                       <Icon className="w-5 h-5" />
                     </div>
