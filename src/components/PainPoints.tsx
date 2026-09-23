@@ -2,40 +2,44 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Clock, MessageSquareOff, SlidersHorizontal, ShieldCheck } from 'lucide-react'
-import { TiltCard } from './ui/TiltCard'
 
 interface PainPointsProps {
   onOpenTriage?: () => void
 }
 
 export const PainPoints: React.FC<PainPointsProps> = () => {
-  const painContrasts = [
+  const diferenciais = [
     {
-      icon: SlidersHorizontal,
-      marketPain: 'Retrabalho e desgaste na cadeira',
-      solutionTitle: 'Zero desgaste de cadeira',
-      solutionText:
-        'Peças com assentamento passivo e pontos de contato calibrados no troquel e articulador. É descer da bancada e cimentar.',
+      id: '01',
+      badge: 'Adaptação Marginal',
+      title: 'Zero desgaste de cadeira',
+      desc: 'Peças com assentamento passivo e pontos de contato calibrados em troquel e articulador. É descer da bancada e cimentar sem retrabalho.',
+      highlight: 'Ajuste oclusal conferido sob magnificação',
+      metric: '0 min',
+      metricLabel: 'desgaste de cadeira',
     },
     {
-      icon: Clock,
-      marketPain: 'Atraso na entrega e paciente esperando',
-      solutionTitle: 'Cronograma de entrega rigoroso',
-      solutionText:
-        'Acompanhamento ativo da sua data clínica. O paciente senta na cadeira e o trabalho já está no consultório pronto para instalar.',
+      id: '02',
+      badge: 'Pontualidade Clínica',
+      title: 'Cronograma rigoroso',
+      desc: 'Acompanhamento ativo da sua data clínica. O paciente senta na cadeira e o trabalho já está no consultório pronto para instalar.',
+      highlight: 'Entrega pré-consulta garantida',
+      metric: '100%',
+      metricLabel: 'previsibilidade de data',
     },
     {
-      icon: MessageSquareOff,
-      marketPain: 'Dúvidas decididas sem falar com você',
-      solutionTitle: 'Alinhamento direto no WhatsApp',
-      solutionText:
-        'Você conversa diretamente com o Osvaldo antes de qualquer fresagem para validar preparo, término e espaço interoclusal.',
+      id: '03',
+      badge: 'Suporte Técnico',
+      title: 'Alinhamento direto no WhatsApp',
+      desc: 'Você valida preparo, término cervical e espaço interoclusal diretamente com o Osvaldo antes de usinar ou injetar.',
+      highlight: 'Canal exclusivo direto com o TPD',
+      metric: 'Direto',
+      metricLabel: 'com o responsável técnico',
     },
   ]
 
   return (
-    <section id="dores" className="py-20 sm:py-28 bg-[#06090e] text-white relative overflow-hidden">
+    <section id="dores" className="py-20 sm:py-28 bg-[#05070B] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div
         aria-hidden="true"
@@ -48,7 +52,7 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header with Clinical Authority */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,49 +65,63 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
           </h2>
           
           <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
-            Na reabilitação oral, cada ajuste inesperado custa horas de cadeira. Veja como eliminamos essas fricções na bancada:
+            Na reabilitação oral, cada ajuste inesperado custa horas de cadeira. Veja como eliminamos essas fricções com rigor de bancada:
           </p>
         </motion.div>
 
-        {/* 3 Sharp Contrast Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10">
-          {painContrasts.map((item, index) => {
-            const Icon = item.icon
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <TiltCard
-                  glowColor="rgba(245, 158, 11, 0.2)"
-                  className="h-full bg-slate-900/70 hover:bg-slate-900 border border-slate-800/80 hover:border-amber-500/40 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group shadow-xl transition-all"
-                >
-                  <div>
-                    <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
-                      {item.solutionTitle}
-                    </h3>
-                    
-                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
-                      {item.solutionText}
-                    </p>
-                  </div>
+        {/* Grid com bordas unificadas estilo Bento Box técnico */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden border border-white/10 shadow-2xl mb-10"
+        >
+          {diferenciais.map((item) => (
+            <div
+              key={item.id}
+              className="group relative bg-[#0B0E14] p-7 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-[#10141D]"
+            >
+              <div>
+                {/* Topo: Numeração técnica + Badge */}
+                <div className="flex items-center justify-between pb-5 border-b border-white/5">
+                  <span className="font-mono text-xs font-semibold text-[#D4AF37] tracking-widest uppercase">
+                    PROCESSO // {item.id}
+                  </span>
+                  <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/10">
+                    {item.badge}
+                  </span>
+                </div>
 
-                  <div className="pt-4 mt-5 border-t border-slate-800/80 flex items-center gap-2 text-xs font-bold text-amber-400">
-                    <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
-                    <span>Padrão Lourenço de Bancada</span>
-                  </div>
-                </TiltCard>
-              </motion.div>
-            )
-          })}
-        </div>
+                {/* Micro-métrica técnica de impacto */}
+                <div className="mt-5 mb-3 flex items-baseline gap-2">
+                  <span className="font-mono text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-[#D4AF37] transition-colors">
+                    {item.metric}
+                  </span>
+                  <span className="text-xs font-mono text-slate-400">
+                    {item.metricLabel}
+                  </span>
+                </div>
+
+                {/* Título & Descrição com hierarquia tipográfica */}
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-amber-200 transition-colors mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-400 font-normal">
+                  {item.desc}
+                </p>
+              </div>
+
+              {/* Rodapé: Validação técnica de bancada */}
+              <div className="mt-8 pt-4 border-t border-white/5 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#D4AF37] shrink-0" />
+                <span className="text-xs font-mono text-slate-400">
+                  {item.highlight}
+                </span>
+              </div>
+            </div>
+          ))}
+        </motion.div>
 
       </div>
     </section>
