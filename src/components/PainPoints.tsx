@@ -12,7 +12,6 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
     {
       code: '01',
       titleTag: 'CONTROLE MARGINAL',
-      category: 'Bancada & Troquel',
       title: 'Assentamento Passivo Rigoroso',
       desc: 'Término cervical e pontos de contato calibrados sob magnificação óptica e articulador. A peça desce em boca com vedamento passivo imediato, poupando tempo de cadeira.',
       highlight: 'Ajuste oclusal e marginal conferido pré-entrega',
@@ -22,7 +21,6 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
     {
       code: '02',
       titleTag: 'PREVISIBILIDADE CLÍNICA',
-      category: 'Logística de Entrega',
       title: 'Cumprimento do Cronograma Clínico',
       desc: 'Planejamento rigorosamente sincronizado com a sua data de consulta. O trabalho é entregue com antecedência para você atender seu paciente com total tranquilidade.',
       highlight: 'Entrega antecipada antes da sessão clínica',
@@ -32,7 +30,6 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
     {
       code: '03',
       titleTag: 'SUPORTE TÉCNICO DIRETO',
-      category: 'Canal Exclusivo TPD',
       title: 'Alinhamento Clínico com o Osvaldo',
       desc: 'Você valida término, preparo, espaço interoclusal e substrato diretamente no WhatsApp com o Osvaldo Lourenço Filho antes de iniciar qualquer fresagem.',
       highlight: 'Comunicação direta com o responsável técnico',
@@ -87,12 +84,9 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
             >
               <div>
                 {/* Topo: Especialidade técnica limpa */}
-                <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                  <span className="font-mono text-xs font-bold text-[#D4AF37] tracking-wider uppercase">
+                <div className="pb-4 border-b border-white/10">
+                  <span className="font-mono text-xs font-bold text-[#D4AF37] tracking-wider uppercase block">
                     {item.titleTag}
-                  </span>
-                  <span className="font-mono text-[11px] text-slate-500 uppercase tracking-wider">
-                    {item.category}
                   </span>
                 </div>
 
