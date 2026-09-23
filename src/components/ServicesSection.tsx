@@ -248,14 +248,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                       className="h-full bg-slate-900/70 hover:bg-slate-900 rounded-3xl p-6 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
                     >
                       <div>
-                        {/* Top Header with Icon & Lead Time Badge */}
-                        <div className="flex items-center justify-between mb-4">
+                        {/* Top Header with Icon */}
+                        <div className="flex items-center mb-4">
                           <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all">
                             <Icon className="w-5 h-5" />
                           </div>
-                          <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">
-                            Prazo: {service.leadTime}
-                          </span>
                         </div>
 
                         <h3 className="text-base sm:text-lg font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
@@ -297,12 +294,6 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                 )
               })}
             </AnimatePresence>
-          </div>
-
-          {/* Micro Helper Note */}
-          <div className="mt-3 flex items-center justify-between text-xs text-slate-500 px-1">
-            <span>← Deslize horizontalmente para ver todos os biomateriais →</span>
-            <span className="hidden sm:inline">Use as setas acima para navegar</span>
           </div>
         </div>
 
