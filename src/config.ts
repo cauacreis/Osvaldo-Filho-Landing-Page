@@ -12,7 +12,8 @@ export const LAB_CONFIG = {
    */
   whatsappNumber: '556295434004',
   whatsappDisplay: '(62) 9543-4004',
-  instagram: '@laboratoriolourenco',
+  instagram: '@lourenco_lab_protese',
+  instagramUrl: 'https://www.instagram.com/lourenco_lab_protese/',
   location: 'Itaguaru e Região de Goiás',
   logisticsShort: 'Coleta em Itaguaru e Região GO • Envio Brasil',
   logisticsDetail: 'Coleta e entrega em Itaguaru e região de Goiás • Envio via Sedex / Transportadora para todo o Brasil',

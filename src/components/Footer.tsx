@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { LAB_CONFIG, getPricingTableWhatsAppLink } from '../config'
-import { MapPin, Phone, Clock, Send, FileSpreadsheet, ShieldCheck } from 'lucide-react'
+import { MapPin, Phone, Clock, Send, FileSpreadsheet, ShieldCheck, Instagram } from 'lucide-react'
 
 interface FooterProps {
   onOpenTriage: () => void
@@ -112,6 +112,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-amber-400 shrink-0" />
                 <span className="font-semibold text-white">{LAB_CONFIG.whatsappDisplay}</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Instagram className="w-4 h-4 text-amber-400 shrink-0" />
+                <a
+                  href={LAB_CONFIG.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-amber-300 hover:text-amber-200 transition-colors"
+                >
+                  {LAB_CONFIG.instagram}
+                </a>
               </li>
             </ul>
           </div>

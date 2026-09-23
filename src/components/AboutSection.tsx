@@ -4,7 +4,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { TiltCard } from './ui/TiltCard'
 import { LAB_CONFIG, getDirectWhatsAppLink } from '../config'
-import { PhoneCall, CheckCheck, Cpu, Clock, ArrowRight } from 'lucide-react'
+import { PhoneCall, CheckCheck, Cpu, Clock, ArrowRight, Instagram } from 'lucide-react'
 
 interface AboutSectionProps {
   onOpenTriage?: () => void
@@ -114,6 +114,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenTriage }) => {
                 <span>Conversar direto com o Osvaldo</span>
                 <ArrowRight className="w-4 h-4 text-slate-950" />
               </a>
+
+              {LAB_CONFIG.instagramUrl && (
+                <a
+                  href={LAB_CONFIG.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 text-xs sm:text-sm font-semibold border border-slate-800 hover:border-amber-500/30 transition-colors cursor-pointer"
+                >
+                  <Instagram className="w-4 h-4 text-amber-400" />
+                  <span>Instagram</span>
+                </a>
+              )}
 
               {onOpenTriage && (
                 <button
