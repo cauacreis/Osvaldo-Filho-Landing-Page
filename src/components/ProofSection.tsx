@@ -236,7 +236,7 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                           {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
                         </p>
                         <p className="text-[11px] text-slate-400">
-                          {currentReview.clinicCity || 'São Paulo - SP'} • Parceria ativa
+                          Parceria ativa com o laboratório
                         </p>
                       </div>
 
@@ -288,7 +288,7 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                       {rev.dentistType || `Depoimento ${idx + 1}`}
                     </span>
                     <span className="block text-[10px] text-amber-400 font-medium mt-0.5">
-                      {rev.clinicCity || 'Caso Concluído'}
+                      Caso Concluído
                     </span>
                   </div>
                   {isActive && (
