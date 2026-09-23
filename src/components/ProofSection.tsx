@@ -166,35 +166,35 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
             </button>
           </div>
 
-          {/* Active Carousel Card (Strict Standard Fixed Height on Desktop and Mobile) */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900/95 via-slate-900 to-[#0b141a] border border-amber-500/30 p-6 sm:p-8 shadow-2xl h-[780px] sm:h-[760px] lg:h-[480px] flex flex-col justify-center">
+          {/* Active Carousel Card */}
+          <div className="relative overflow-hidden rounded-3xl bg-[#0B0E14] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={currentReview.id}
                 custom={direction}
-                initial={{ opacity: 0, x: direction > 0 ? 30 : -30 }}
+                initial={{ opacity: 0, x: direction > 0 ? 25 : -25 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction > 0 ? -30 : 30 }}
-                transition={{ duration: 0.35, ease: 'easeInOut' }}
-                className="w-full h-full flex items-center"
+                exit={{ opacity: 0, x: direction > 0 ? -25 : 25 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="w-full"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-10 items-center w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center w-full">
                   
-                  {/* WhatsApp Screenshot Showcase (Half of the card, full bleed & high visibility) */}
-                  <div className="lg:col-span-6 flex items-center justify-center h-full w-full">
+                  {/* WhatsApp Screenshot Showcase (Clean mobile frame presentation) */}
+                  <div className="lg:col-span-6 flex items-center justify-center w-full">
                     <div
                       onClick={() => setActiveZoomImage(currentReview.image)}
-                      className="group/print relative w-full h-[360px] sm:h-[400px] lg:h-[420px] rounded-2xl overflow-hidden bg-[#0b141a] border border-amber-500/30 shadow-2xl cursor-pointer transition-all hover:border-amber-400/60 hover:shadow-[0_0_25px_rgba(245,158,11,0.2)] flex items-center justify-center p-2"
+                      className="group/print relative w-full max-w-md h-[340px] sm:h-[380px] lg:h-[400px] rounded-2xl overflow-hidden bg-[#05070B] border border-white/10 shadow-xl cursor-pointer transition-all hover:border-amber-400/50 hover:shadow-[0_0_25px_rgba(245,158,11,0.15)] flex items-center justify-center p-2.5"
                     >
                       <img
                         src={currentReview.image}
                         alt="Print da conversa real com cirurgião-dentista"
-                        className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl shadow-md transition-transform duration-300 group-hover/print:scale-[1.02]"
+                        className="max-h-full max-w-full w-auto h-auto object-contain rounded-xl transition-transform duration-300 group-hover/print:scale-[1.02]"
                         loading="lazy"
                       />
                       
                       {/* Hover Overlay with Zoom Icon */}
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/print:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/print:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
                         <span className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-xl">
                           <ZoomIn className="w-4 h-4" />
                           Ampliar Depoimento
@@ -203,49 +203,59 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                     </div>
                   </div>
 
-                  {/* Review Details & Clinical Takeaways (Locked Height & Flex Standard) */}
-                  <div className="lg:col-span-6 flex flex-col justify-between text-left h-full lg:h-[360px]">
+                  {/* Review Details & Editorial Flow */}
+                  <div className="lg:col-span-6 flex flex-col justify-center text-left space-y-5">
                     
-                    <div className="flex flex-col gap-2.5 sm:gap-3">
-                      {/* Stars */}
-                      <div className="flex items-center gap-1 text-amber-400 shrink-0">
+                    {/* Top Row: Stars + Verified Badge */}
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-1 text-amber-400">
                         {[...Array(currentReview.stars || 5)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 fill-amber-400" />
                         ))}
                       </div>
-
-                      {/* Highlight */}
-                      {currentReview.highlight && (
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-white tracking-tight leading-snug shrink-0">
-                          {currentReview.highlight}
-                        </h3>
-                      )}
-
-                      {/* Excerpt quote */}
-                      {currentReview.quote && (
-                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/70 p-4.5 rounded-2xl border border-slate-800 h-[160px] sm:h-[150px] lg:h-[160px] flex flex-col overflow-y-auto scrollbar-none">
-                          <p className="w-full my-auto text-slate-200">{currentReview.quote}</p>
-                        </blockquote>
-                      )}
+                      <span className="text-[11px] font-mono text-amber-400/80 uppercase tracking-wider">
+                        Depoimento Verificado
+                      </span>
                     </div>
 
+                    {/* Headline */}
+                    {currentReview.highlight && (
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug">
+                        {currentReview.highlight}
+                      </h3>
+                    )}
+
+                    {/* Editorial Pull Quote (Seamless & Harmonious) */}
+                    {currentReview.quote && (
+                      <div className="relative pl-4 sm:pl-5 border-l-2 border-amber-400/60 py-1">
+                        <p className="text-sm sm:text-base text-slate-300 italic font-normal leading-relaxed">
+                          {currentReview.quote}
+                        </p>
+                      </div>
+                    )}
+
                     {/* Dentist info footer */}
-                    <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2 mt-auto shrink-0">
-                      <div>
-                        <p className="text-xs sm:text-sm font-bold text-white">
-                          {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
-                        </p>
-                        <p className="text-[11px] text-slate-400">
-                          Parceria ativa com o laboratório
-                        </p>
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-8 h-8 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-xs">
+                          ★
+                        </div>
+                        <div>
+                          <p className="text-xs sm:text-sm font-bold text-white">
+                            {currentReview.dentistType || 'Cirurgião-Dentista Parceiro'}
+                          </p>
+                          <p className="text-[11px] text-slate-400">
+                            {currentReview.clinicCity || 'Goiás - GO'} • Parceria ativa de bancada
+                          </p>
+                        </div>
                       </div>
 
                       <button
                         type="button"
                         onClick={() => setActiveZoomImage(currentReview.image)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 py-1.5 px-3 rounded-lg hover:bg-white/5 transition-all cursor-pointer shrink-0"
                       >
-                        <span>Ver original</span>
+                        <span>Ver print original</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </button>
                     </div>
