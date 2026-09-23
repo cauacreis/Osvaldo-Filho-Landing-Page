@@ -86,10 +86,10 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
               className="group relative bg-[#0B0E14] p-7 sm:p-8 flex flex-col justify-between transition-colors duration-300 hover:bg-[#10141D]"
             >
               <div>
-                {/* Topo: Numeração técnica e especialidade limpa sem pílula */}
+                {/* Topo: Especialidade técnica limpa */}
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <span className="font-mono text-xs font-bold text-[#D4AF37] tracking-wider uppercase">
-                    {item.code} // {item.titleTag}
+                    {item.titleTag}
                   </span>
                   <span className="font-mono text-[11px] text-slate-500 uppercase tracking-wider">
                     {item.category}
