@@ -4,6 +4,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle2, ShieldCheck, ArrowDownRight } from 'lucide-react'
 
+import { LAB_CONFIG, getPricingTableWhatsAppLink } from '../config'
+
 interface HeroProps {
   onOpenTriage: () => void
 }
@@ -42,6 +44,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
           
           {/* Left Column: High Impact Headline & Action Area */}
           <div className="lg:col-span-7 flex flex-col items-start text-left pt-6 sm:pt-0">
+            {/* Editorial Eyebrow Tag */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs font-bold tracking-wide uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.15)]"
+            >
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span>Prótese Dental de Alta Precisão • B2B Clínico</span>
+            </motion.div>
+
             {/* Primary Editorial Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -65,34 +78,51 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
               Sem ajuste exaustivo na cadeira e sem atraso na entrega. Próteses fixas, cerâmicas e protocolos com alinhamento direto no WhatsApp do responsável técnico.
             </motion.p>
 
-            {/* Action Area: Primary Button-in-Button + Secondary Link */}
+            {/* Action Area: Dual-Tier CTAs (Nível 1 Imediato vs Nível 2 Descoberta) */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="w-full sm:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10"
+              className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6"
             >
+              {/* Nível 1: Decisão Imediata / Enviar Caso */}
               <button
                 type="button"
                 onClick={onOpenTriage}
-                className="group relative inline-flex items-center justify-between sm:justify-start gap-4 px-6 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-bold text-base sm:text-lg rounded-2xl shadow-[0_0_30px_rgba(245,158,11,0.35)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="group relative inline-flex items-center justify-between sm:justify-start gap-3 px-6 py-4 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-bold text-sm sm:text-base rounded-2xl shadow-[0_0_30px_rgba(245,158,11,0.35)] hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-amber-400 cursor-pointer"
               >
-                <span>Enviar caso para análise</span>
-                <span className="w-9 h-9 rounded-xl bg-slate-950/15 flex items-center justify-center transition-transform group-hover:translate-x-1">
+                <span>Enviar Caso / Arquivo STL</span>
+                <span className="w-8 h-8 rounded-xl bg-slate-950/15 flex items-center justify-center transition-transform group-hover:translate-x-1">
                   <Send className="w-4 h-4 text-slate-950" />
                 </span>
               </button>
 
+              {/* Nível 2: Descoberta / Tabela de Preços (Baixa Fricção) */}
               <a
-                href="#cases"
-                className="inline-flex items-center justify-center gap-2 px-5 py-4 text-sm font-semibold text-slate-200 hover:text-amber-300 bg-slate-900/60 hover:bg-slate-800/80 border border-amber-500/20 backdrop-blur-md rounded-2xl shadow-xs transition-colors"
+                href={getPricingTableWhatsAppLink('hero')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-5 py-4 text-xs sm:text-sm font-bold text-amber-300 hover:text-amber-200 bg-slate-900/80 hover:bg-slate-800/90 border border-amber-500/30 hover:border-amber-400/60 backdrop-blur-md rounded-2xl shadow-md transition-all cursor-pointer"
               >
-                <span>Ver casos clínicos reais</span>
+                <span>Solicitar Tabela de Valores e Prazos</span>
                 <ArrowDownRight className="w-4 h-4 text-amber-400" />
               </a>
             </motion.div>
 
-            {/* Microprova & Trust Metrics Bar */}
+            {/* Risk Reversal / Garantia de Entrada */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.35 }}
+              className="mb-8 p-3 px-4 rounded-xl bg-slate-900/60 border border-amber-500/25 flex items-center gap-2.5 text-xs text-amber-200/90 max-w-xl"
+            >
+              <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+              <span>
+                <strong className="text-amber-300 font-bold">Garantia Lourenço:</strong> {LAB_CONFIG.riskReversal}
+              </span>
+            </motion.div>
+
+            {/* Microprova & Trust Metrics Bar with Clear Logistics */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -112,18 +142,18 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTriage }) => {
                   </span>
                 </div>
                 <span className="font-semibold text-white">
-                  +1.000 próteses entregues • +30 dentistas parceiros
+                  {LAB_CONFIG.metrics.deliveredProstheses} próteses entregues • {LAB_CONFIG.metrics.partnerDentists} dentistas parceiros
                 </span>
               </div>
 
-              <div className="flex items-center gap-4 text-slate-400">
+              <div className="flex flex-wrap items-center gap-4 text-slate-400 text-xs">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-amber-400" />
-                  Fluxo Digital & Convencional
+                  <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                  Fluxo Digital STL & Convencional
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400" />
-                  Coleta e Entrega na Região
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                  Coleta Grande SP • Sedex Brasil
                 </span>
               </div>
             </motion.div>

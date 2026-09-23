@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Sparkles, ArrowRight, ChevronLeft, ChevronRight, Shield, Layers, Gem, Cpu, Activity, CircleDot } from 'lucide-react'
 import { TiltCard } from './ui/TiltCard'
+import { getPricingTableWhatsAppLink } from '../config'
 
 interface ServicesSectionProps {
   onSelectService: (serviceName: string) => void
@@ -13,9 +14,10 @@ interface ServiceCard {
   id: string
   title: string
   category: string
-  tagline: string
-  description: string
-  highlights: string[]
+  biomaterial: string
+  indication: string
+  benchCheck: string
+  leadTime: string
   icon: React.ElementType
 }
 
@@ -25,109 +27,109 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
 
   const services: ServiceCard[] = [
     {
-      id: 'zirconia',
-      title: 'Zircônia Multilayer',
-      category: 'ceramica',
-      tagline: 'Resistência mecânica e gradiente natural',
-      description:
-        'Para coroas unitárias e pontes fixas. Vedamento cervical rigoroso e polimento oclusal protetor.',
-      highlights: ['Alta resistência à fratura', 'Degradê natural de cor', 'Assentamento em troquel'],
-      icon: Gem,
-    },
-    {
       id: 'emax',
-      title: 'Dissilicato de Lítio (E.max)',
+      title: 'Dissilicato de Lítio (IPS e.max)',
       category: 'ceramica',
-      tagline: 'Mimetismo óptico e adesão máxima',
-      description:
-        'Facetas, lentes de contato e coroas anteriores ultrafinas com reflexão idêntica ao esmalte dental.',
-      highlights: ['Espessuras de 0.3mm a 0.5mm', 'Cimentação adesiva segura', 'Alta fidelidade de cor'],
+      biomaterial: 'Pastilhas Premium Ivoclar Vivadent',
+      indication: 'Facetas, lentes de contato e coroas anteriores ultrafinas.',
+      benchCheck: 'Estratificação refinada, fidelidade na escala e bordo incisal natural.',
+      leadTime: '3 a 5 dias úteis',
       icon: Sparkles,
     },
     {
-      id: 'metaloceramica',
-      title: 'Metalocerâmica Precisa',
+      id: 'zirconia',
+      title: 'Zircônia Multilayer 3D',
       category: 'ceramica',
-      tagline: 'Solidez estrutural clássica',
-      description:
-        'Para dentes posteriores e pontes com pilares curtos ou espaço oclusal reduzido.',
-      highlights: ['Ligas livres de berílio', 'Opacificação controlada', 'Previsibilidade oclusal'],
+      biomaterial: 'Blocos Aidite / Katana Multilayer',
+      indication: 'Coroas unitárias posteriores e pontes fixas de alta carga.',
+      benchCheck: 'Polimento mecânico oclusal de bancada (protege o dente antagonista).',
+      leadTime: '3 a 5 dias úteis',
+      icon: Gem,
+    },
+    {
+      id: 'metaloceramica',
+      title: 'Metalocerâmica de Precisão',
+      category: 'ceramica',
+      biomaterial: 'Liga Co-Cr certificada livre de berílio',
+      indication: 'Pilares curtos e reabilitações posteriores com espaço oclusal reduzido.',
+      benchCheck: 'Opacificação controlada e assentamento testado em troquel.',
+      leadTime: '4 a 6 dias úteis',
       icon: Layers,
     },
     {
       id: 'implantes',
       title: 'Prótese sobre Implante',
       category: 'implantes',
-      tagline: 'Pilares anatômicos e passividade',
-      description:
-        'Compatível com as principais plataformas. Ti-Base com perfil de emergência anatômico.',
-      highlights: ['Saúde peri-implantar', 'Assentamento sem tensão', 'Parafusadas e cimentadas'],
+      biomaterial: 'Ti-Base / UCLA compatível com todas as plataformas',
+      indication: 'Unitários e múltiplos parafusados ou cimentados.',
+      benchCheck: 'Perfil de emergência anatômico para saúde peri-implantar e assentamento passivo.',
+      leadTime: '4 a 6 dias úteis',
       icon: CircleDot,
     },
     {
       id: 'protocolos',
-      title: 'Protocolos de Carga Imediata',
+      title: 'Protocolo de Carga Imediata',
       category: 'implantes',
-      tagline: 'Agilidade cirúrgica e reforço estrutural',
-      description:
-        'Provisórios rápidos para o dia cirúrgico e definitivos em zircônia sobre barra.',
-      highlights: ['Entrega no dia da cirurgia', 'Barra interna reforçada', 'Caracterização realista'],
+      biomaterial: 'Barra usinada em Titânio ou Co-Cr + Zircônia/Acrílico',
+      indication: 'Provisório rápido para o dia cirúrgico e definitivo estratificado.',
+      benchCheck: 'Passividade milimétrica para proteger implantes em osseointegração.',
+      leadTime: 'Dia cirúrgico (sob agendamento) / 7 dias (definitivo)',
       icon: Activity,
     },
     {
       id: 'barras',
-      title: 'Barras Fresadas e Fundidas',
+      title: 'Barras Fresadas CAD/CAM',
       category: 'implantes',
-      tagline: 'Rigidez para distribuição de cargas',
-      description:
-        'Usinadas em titânio ou Co-Cr por CAD/CAM com teste rigoroso de passividade.',
-      highlights: ['Assentamento passivo', 'Distribuição harmônica', 'Usinagem micrométrica'],
+      biomaterial: 'Titânio Grau Médico / Co-Cr Fresado CNC',
+      indication: 'Estruturas para overdentures e protocolos sobre implantes.',
+      benchCheck: 'Usinagem micrométrica para distribuição uniforme de forças mastigatórias.',
+      leadTime: '5 a 7 dias úteis',
+      icon: Shield,
+    },
+    {
+      id: 'placas',
+      title: 'Placa Miorrelaxante de Bruxismo',
+      category: 'placas',
+      biomaterial: 'Resina Acrílica Cristal Prensada a Vácuo',
+      indication: 'Proteção oclusal, DTM e contenção pós-reabilitação.',
+      benchCheck: 'Alta densidade sem bolhas, guias caninas balanceadas e retenção estável.',
+      leadTime: '2 a 3 dias úteis',
       icon: Shield,
     },
     {
       id: 'ceromero',
-      title: 'Cerômeros e Resinas',
-      category: 'resinas',
-      tagline: 'Amortecimento mastigatório protetor',
-      description:
-        'Para provisórios de longa duração, mockups diagnósticos e inlays/onlays resilientes.',
-      highlights: ['Fácil ajuste e polimento', 'Módulo elástico protetor', 'Estabilidade de cor'],
+      title: 'Cerômeros e Resinas Laboratoriais',
+      category: 'placas',
+      biomaterial: 'Micropartículas de cerâmica em matriz polimérica',
+      indication: 'Inlays, onlays, mockups diagnósticos e provisórios de longa duração.',
+      benchCheck: 'Módulo de elasticidade próximo à dentina e fácil ajuste clínico.',
+      leadTime: '2 a 4 dias úteis',
       icon: Layers,
     },
     {
-      id: 'placas',
-      title: 'Placas de Bruxismo e Clareamento',
-      category: 'placas',
-      tagline: 'Acrílico cristal de alta densidade',
-      description:
-        'Placas miorrelaxantes prensadas e polidas com guias calibradas, além de moldeiras para clareamento.',
-      highlights: ['Acrílico cristal sem bolhas', 'Retenção sem bascular', 'Desoclusão balanceada'],
-      icon: Shield,
-    },
-    {
       id: 'digital',
-      title: 'Fluxo Digital (STL / PLY)',
+      title: 'Fluxo Digital Integrado (STL / PLY)',
       category: 'digital',
-      tagline: 'Compatível com qualquer scanner',
-      description:
-        'Envio ágil pelo WhatsApp ou nuvem. Desenho CAD 3D, fresagem CNC e modelo impresso com troquel.',
-      highlights: ['Sem distorção de moldagem', 'Agilidade de bancada', 'Arquivo 3D salvo em nuvem'],
+      biomaterial: 'Modelos impressos em 3D + Fresagem CNC de alta resolução',
+      indication: 'Recepção de escaneamento de qualquer scanner (iTero, Trios, Medit, etc.).',
+      benchCheck: 'Elimina distorção de moldagem física e acelera o tempo de bancada.',
+      leadTime: 'Agilidade direta no WhatsApp',
       icon: Cpu,
     },
   ]
 
   const categories = [
-    { id: 'todos', label: 'Todos os Trabalhos' },
-    { id: 'ceramica', label: 'Cerâmicas & Zircônia' },
+    { id: 'todos', label: 'Todos os Biomateriais' },
+    { id: 'ceramica', label: 'Cerâmicas & Estética' },
     { id: 'implantes', label: 'Implantes & Protocolos' },
-    { id: 'digital', label: 'Fluxo Digital' },
     { id: 'placas', label: 'Placas & Resinas' },
+    { id: 'digital', label: 'Fluxo Digital STL' },
   ]
 
   const filteredServices =
     activeCategory === 'todos'
       ? services
-      : services.filter((s) => s.category === activeCategory || (activeCategory === 'placas' && s.category === 'resinas'))
+      : services.filter((s) => s.category === activeCategory)
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -156,40 +158,52 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10"
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8"
         >
           <div className="max-w-2xl">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              A prótese certa para a necessidade do seu paciente.
+              Soluções de bancada com dados técnicos claros.
             </h2>
             <p className="mt-3 text-base text-slate-300 font-normal">
-              Do unitário anterior aos protocolos de carga imediata: biomateriais certificados e ajuste de bancada rigoroso.
+              Biomateriais certificados, usinagem CAD/CAM e checagem em troquel. Sem aula teórica: apenas o que você precisa prescrever.
             </p>
           </div>
 
-          {/* Carousel Arrows for Tablet/Desktop */}
+          {/* Quick Price List Button on Top Right */}
           <div className="hidden sm:flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => handleScroll('left')}
-              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-amber-400 transition-colors"
-              aria-label="Rolar para a esquerda"
+            <a
+              href={getPricingTableWhatsAppLink('servicos_topo')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 border border-amber-500/30 text-amber-300 hover:text-amber-200 text-xs font-bold hover:bg-slate-800 transition-colors"
             >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => handleScroll('right')}
-              className="p-3 rounded-full bg-slate-900/80 hover:bg-slate-800 border border-slate-700 shadow-md text-slate-300 hover:text-amber-400 transition-colors"
-              aria-label="Rolar para a direita"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
+              <span>Receber Tabela Completa</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+
+            <div className="flex items-center gap-1.5 ml-2">
+              <button
+                type="button"
+                onClick={() => handleScroll('left')}
+                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                aria-label="Rolar para a esquerda"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleScroll('right')}
+                className="p-2.5 rounded-full bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-amber-400 transition-colors cursor-pointer"
+                aria-label="Rolar para a direita"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </motion.div>
 
-        {/* Category Filter Pills */}
-        <div className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-8 scrollbar-none">
+        {/* Dynamic Category Tabs */}
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-3 mb-8 scrollbar-none">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id
             return (
@@ -197,7 +211,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isActive
                     ? 'bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 text-slate-950 font-bold shadow-[0_0_20px_rgba(245,158,11,0.35)]'
                     : 'bg-slate-900/80 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800/80'
@@ -209,7 +223,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           })}
         </div>
 
-        {/* Services Grid with 3D Tilt */}
+        {/* Services Compact Grid */}
         <div
           ref={scrollRef}
           className="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto sm:overflow-x-visible pb-6 sm:pb-0 snap-x snap-mandatory scrollbar-none"
@@ -221,54 +235,59 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
                 <motion.div
                   key={service.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.25 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2 }}
                   className="w-[85vw] sm:w-auto shrink-0 snap-start"
                 >
                   <TiltCard
-                    glowColor="rgba(245, 158, 11, 0.2)"
-                    className="h-full bg-slate-900/60 hover:bg-slate-900/90 rounded-3xl p-6 sm:p-7 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
+                    glowColor="rgba(245, 158, 11, 0.18)"
+                    className="h-full bg-slate-900/70 hover:bg-slate-900 rounded-3xl p-6 border border-slate-800/80 shadow-lg hover:border-amber-500/40 transition-all flex flex-col justify-between group"
                   >
                     <div>
-                      {/* Top Header with Icon */}
-                      <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all mb-4">
-                        <Icon className="w-5 h-5" />
+                      {/* Top Header with Icon & Lead Time Badge */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center group-hover:scale-105 group-hover:border-amber-400/40 transition-all">
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <span className="text-[11px] font-semibold text-amber-300 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-full">
+                          Prazo: {service.leadTime}
+                        </span>
                       </div>
 
-                      <h3 className="text-lg font-bold text-white mb-1.5 tracking-tight group-hover:text-amber-200 transition-colors">
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-xs font-medium text-amber-400 mb-2.5 leading-snug">
-                        {service.tagline}
-                      </p>
+                      {/* Technical Bench Sheet */}
+                      <div className="space-y-2 mb-5 text-xs">
+                        <div className="p-2.5 rounded-xl bg-slate-950/70 border border-slate-800/80">
+                          <span className="text-amber-400 font-bold block text-[10px] uppercase tracking-wider mb-0.5">
+                            Biomaterial de Bancada:
+                          </span>
+                          <span className="text-slate-200 font-medium">{service.biomaterial}</span>
+                        </div>
 
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-5 font-normal">
-                        {service.description}
-                      </p>
+                        <div className="text-slate-300 leading-relaxed">
+                          <strong className="text-slate-200 font-semibold">Indicação:</strong> {service.indication}
+                        </div>
 
-                      {/* Fast Highlights List */}
-                      <div className="space-y-1.5 mb-5">
-                        {service.highlights.map((h, i) => (
-                          <div key={i} className="flex items-center gap-2 text-xs text-slate-300">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                            <span>{h}</span>
-                          </div>
-                        ))}
+                        <div className="text-slate-400 leading-relaxed text-[11px] pt-1 border-t border-slate-800/60">
+                          <span className="text-amber-300/90 font-medium">Controle:</span> {service.benchCheck}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Preselect service in Triage Modal */}
-                    <div className="pt-3 border-t border-slate-800/80">
+                    {/* Action Area */}
+                    <div className="pt-3 border-t border-slate-800/80 flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => onSelectService(service.title)}
-                        className="w-full inline-flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 hover:bg-gradient-to-r hover:from-amber-400 hover:to-amber-500 text-slate-200 hover:text-slate-950 font-bold text-xs border border-slate-700/60 hover:border-amber-400 transition-all duration-200"
+                        className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-md transition-all cursor-pointer"
                       >
                         <span>Enviar este tipo de caso</span>
-                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   </TiltCard>
@@ -278,9 +297,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
           </AnimatePresence>
         </div>
 
-        {/* Mobile Swipe Hint */}
-        <div className="sm:hidden text-center mt-3 text-xs text-slate-400">
-          ← Deslize para ver todos os serviços →
+        {/* Mobile Action Banner */}
+        <div className="mt-8 sm:hidden text-center">
+          <a
+            href={getPricingTableWhatsAppLink('servicos_mobile')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-slate-900 border border-amber-500/30 text-amber-300 font-bold text-xs"
+          >
+            <span>Solicitar Tabela de Valores e Prazos</span>
+            <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
+          </a>
         </div>
 
       </div>

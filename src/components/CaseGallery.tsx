@@ -15,9 +15,12 @@ interface CaseItem {
   title: string
   category: string
   image: string
-  caption: string
-  description: string
-  technicalNotes: string[]
+  techSheet: {
+    material: string
+    system: string
+    indication: string
+    precision: string
+  }
 }
 
 export const CaseGallery: React.FC<CaseGalleryProps> = () => {
@@ -27,87 +30,75 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
   const cases: CaseItem[] = [
     {
       id: 'coroa-estetica',
-      title: 'Coroa Unitária em Cerâmica Pura',
+      title: 'Coroa Unitária em E.max',
       category: 'unitario',
       image: '/assets/case-coroa-estetica.webp',
-      caption: 'Adaptação marginal em modelo troquelado',
-      description:
-        'Adaptação cervical conferida sob magnificação. Sulcos oclusais anatômicos e vedamento passivo para saúde periodontal.',
-      technicalNotes: [
-        'Término em chanfro com vedamento passivo',
-        'Textura superficial e halo incisal natural',
-        'Ajuste oclusal verificado em articulador',
-      ],
+      techSheet: {
+        material: 'Dissilicato de Lítio (IPS e.max)',
+        system: 'Modelo troquelado & magnificação ótica',
+        indication: 'Linha anterior e pré-molares estéticos',
+        precision: 'Término em chanfro com vedamento micrométrico passivo',
+      },
     },
     {
       id: 'emax-macro',
-      title: 'Lentes e Facetas em Dissilicato (E.max)',
+      title: 'Lentes e Facetas Ultrafinas',
       category: 'unitario',
       image: '/assets/emax-ceramic-macro.jpg',
-      caption: 'Fluorescência e translucidez natural',
-      description:
-        'Cerâmica pura vítrea com estética anterior refinada. Espessuras finas que preservam estrutura dental sadia.',
-      technicalNotes: [
-        'Espessuras ultrafinas de 0.3mm a 0.5mm',
-        'Cimentação adesiva com selamento micrométrico',
-        'Reflexão de luz idêntica ao esmalte dental',
-      ],
+      techSheet: {
+        material: 'Cerâmica vítrea estratificada 0.3mm',
+        system: 'Estratificação em bancada & texturização',
+        indication: 'Facetas e reanatomização estética com preservação dental',
+        precision: 'Cimentação adesiva com reflexão de esmalte natural',
+      },
     },
     {
       id: 'zirconia-macro',
-      title: 'Ponte Fixa em Zircônia Multilayer',
+      title: 'Ponte Fixa em Zircônia 3D',
       category: 'unitario',
       image: '/assets/dental-zirconia-macro.jpg',
-      caption: 'Degradê natural e anatomia oclusal funcional',
-      description:
-        'Usinagem precisa com polimento mecânico glazeado que preserva dentes antagonistas e garante resistência mastigatória.',
-      technicalNotes: [
-        'Zircônia multilayer de alta translucidez',
-        'Pigmentação e caracterização anatômica',
-        'Assentamento passivo testado no troquel',
-      ],
+      techSheet: {
+        material: 'Zircônia Multilayer translúcida (Aidite / Katana)',
+        system: 'Fresagem CNC CAD/CAM',
+        indication: 'Reabilitação posterior de alta carga mastigatória',
+        precision: 'Polimento mecânico oclusal de bancada (zero desgaste do antagonista)',
+      },
     },
     {
       id: 'ponte-implante',
       title: 'Prótese Fixa sobre Implantes',
       category: 'implantes',
       image: '/assets/case-ponte-implante.webp',
-      caption: 'Assentamento passivo sobre análogos',
-      description:
-        'Prótese parafusada com assentamento livre de tensões mecânicas. Perfil de emergência desenhado para facilitar a higienização.',
-      technicalNotes: [
-        'Aparafusamento sem tensões mecânicas',
-        'Ponto de contato proximal calibrado',
-        'Emergência biológica para saúde peri-implantar',
-      ],
+      techSheet: {
+        material: 'Estrutura aparafusada sobre análogos',
+        system: 'Ti-Base calibrada / UCLA',
+        indication: 'Espaço edêntulo múltiplo sobre implantes',
+        precision: 'Assentamento passivo livre de tensões e perfil de emergência biológico',
+      },
     },
     {
       id: 'reabilitacao-anterior',
-      title: 'Reabilitação Múltipla Anterior sobre Implantes',
+      title: 'Reabilitação Múltipla Anterior',
       category: 'implantes',
       image: '/assets/case-reabilitacao-anterior.webp',
-      caption: 'Pilares protéticos e harmonia gengival',
-      description:
-        'Harmonia do zênite gengival e proporção dentofacial. Vedamento adequado nos intermediários transmucosos.',
-      technicalNotes: [
-        'Compatibilidade com pilares cônicos e Ti-Base',
-        'Eixo de inserção planejado para evitar sobrecarga',
-        'Contorno estético de zênite gengival',
-      ],
+      techSheet: {
+        material: 'Zircônia + Estratificação cerâmica',
+        system: 'Pilares transmucosos cônicos',
+        indication: 'Reabilitação estética do setor anterior',
+        precision: 'Harmonia do zênite gengival e vedamento cervical rigoroso',
+      },
     },
     {
       id: 'placa-bruxismo',
-      title: 'Placa Miorrelaxante de Alta Densidade',
+      title: 'Placa Miorrelaxante Cristal',
       category: 'placas',
       image: '/assets/case-placa-bruxismo.webp',
-      caption: 'Acrílico cristalino com polimento refinado',
-      description:
-        'Resina acrílica prensada com alta transparência e estabilidade dimensional. Guias funcionais balanceadas para proteção oclusal.',
-      technicalNotes: [
-        'Transparência óptica sem bolhas',
-        'Retenção sem basculamento',
-        'Desoclusão suave nos movimentos mandibulares',
-      ],
+      techSheet: {
+        material: 'Resina Acrílica Cristalina de alta densidade',
+        system: 'Prensagem a vácuo com polimento mecânico',
+        indication: 'Controle de bruxismo, DTM e proteção de facetas/implantes',
+        precision: 'Guias de desoclusão canina e anterior balanceadas sem basculamento',
+      },
     },
   ]
 
@@ -284,24 +275,28 @@ export const CaseGallery: React.FC<CaseGalleryProps> = () => {
                       </div>
                     </div>
 
-                    <div className="p-6">
-                      <h4 className="text-base sm:text-lg font-bold text-white mb-1.5 group-hover:text-amber-300 transition-colors">
+                    <div className="p-5 sm:p-6">
+                      <h4 className="text-base sm:text-lg font-bold text-white mb-3 group-hover:text-amber-300 transition-colors">
                         {item.title}
                       </h4>
-                      <p className="text-xs font-medium text-amber-400 mb-3">
-                        {item.caption}
-                      </p>
-                      <p className="text-xs text-slate-400 leading-relaxed mb-5 font-normal">
-                        {item.description}
-                      </p>
 
-                      <div className="space-y-1.5 pt-4 border-t border-slate-800">
-                        {item.technicalNotes.map((note, i) => (
-                          <div key={i} className="flex items-center gap-2 text-[11px] text-slate-300">
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                            <span>{note}</span>
-                          </div>
-                        ))}
+                      {/* Ficha Técnica Compacta de Bancada */}
+                      <div className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 text-xs">
+                        <div className="flex items-start gap-1.5">
+                          <span className="text-amber-400 font-bold shrink-0">Material:</span>
+                          <span className="text-slate-200">{item.techSheet.material}</span>
+                        </div>
+                        <div className="flex items-start gap-1.5">
+                          <span className="text-amber-400 font-bold shrink-0">Sistema:</span>
+                          <span className="text-slate-300">{item.techSheet.system}</span>
+                        </div>
+                        <div className="flex items-start gap-1.5">
+                          <span className="text-amber-400 font-bold shrink-0">Indicação:</span>
+                          <span className="text-slate-300">{item.techSheet.indication}</span>
+                        </div>
+                        <div className="pt-1.5 border-t border-slate-800/80 text-[11px] text-amber-300/90 font-medium">
+                          ✓ {item.techSheet.precision}
+                        </div>
                       </div>
                     </div>
                   </div>

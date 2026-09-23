@@ -10,27 +10,27 @@ interface PainPointsProps {
 }
 
 export const PainPoints: React.FC<PainPointsProps> = () => {
-  const pains = [
+  const painContrasts = [
     {
       icon: SlidersHorizontal,
-      title: 'Retrabalho e desgaste na cadeira',
-      description:
-        'Perder 30 a 40 minutos desgastando ponto de contato ou refazendo oclusão em peça que deveria vir perfeitamente adaptada.',
-      impact: 'Consome seu tempo clínico e atrasa todos os outros pacientes do dia.',
+      marketPain: 'Retrabalho e desgaste na cadeira',
+      solutionTitle: 'Zero desgaste de cadeira',
+      solutionText:
+        'Peças com assentamento passivo e pontos de contato calibrados no troquel e articulador. É descer da bancada e cimentar.',
     },
     {
       icon: Clock,
-      title: 'Atraso na entrega e paciente esperando',
-      description:
-        'A promessa de entrega não é cumprida. O paciente já está no consultório ou anestesiado e a prótese ainda não chegou.',
-      impact: 'Gera estresse imediato e queima a confiança que você levou anos para construir.',
+      marketPain: 'Atraso na entrega e paciente esperando',
+      solutionTitle: 'Cronograma de entrega rigoroso',
+      solutionText:
+        'Acompanhamento ativo da sua data clínica. O paciente senta na cadeira e o trabalho já está no consultório pronto para instalar.',
     },
     {
       icon: MessageSquareOff,
-      title: 'Falta de comunicação quando surge dúvida',
-      description:
-        'Dúvida de preparo, término cervical ou espaço interoclusal que o laboratório decide sozinho ou demora para responder.',
-      impact: 'Você só descobre o erro quando abre a caixa de entrega na frente do paciente.',
+      marketPain: 'Dúvidas decididas sem falar com você',
+      solutionTitle: 'Alinhamento direto no WhatsApp',
+      solutionText:
+        'Você conversa diretamente com o Osvaldo antes de qualquer fresagem para validar preparo, término e espaço interoclusal.',
     },
   ]
 
@@ -43,7 +43,7 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-10 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-full blur-[140px]"
+        className="pointer-events-none absolute top-10 right-0 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[140px]"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -54,21 +54,21 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl mb-14 sm:mb-16"
+          className="max-w-3xl mb-12 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Quando o laboratório falha, o prejuízo sobra para o seu consultório.
+            Quando o laboratório falha, o prejuízo sobra para o consultório.
           </h2>
           
-          <p className="mt-4 text-base sm:text-lg text-slate-400 leading-relaxed font-normal">
-            Na reabilitação oral, não há espaço para surpresas na hora de instalar. Cada ajuste inesperado custa horas de cadeira e desgasta a relação com o paciente.
+          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+            Na reabilitação oral, cada ajuste inesperado custa horas de cadeira. Veja como eliminamos essas fricções na bancada:
           </p>
         </motion.div>
 
-        {/* 3 Sharp Pain Cards Grid */}
+        {/* 3 Sharp Contrast Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10">
-          {pains.map((pain, index) => {
-            const Icon = pain.icon
+          {painContrasts.map((item, index) => {
+            const Icon = item.icon
             return (
               <motion.div
                 key={index}
@@ -78,56 +78,38 @@ export const PainPoints: React.FC<PainPointsProps> = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <TiltCard
-                  glowColor="rgba(239, 68, 68, 0.15)"
-                  className="h-full bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-red-500/40 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group shadow-lg"
+                  glowColor="rgba(245, 158, 11, 0.2)"
+                  className="h-full bg-slate-900/70 hover:bg-slate-900 border border-slate-800/80 hover:border-amber-500/40 rounded-3xl p-6 sm:p-7 flex flex-col justify-between group shadow-xl transition-all"
                 >
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 mb-5 group-hover:scale-105 transition-transform">
-                      <Icon className="w-6 h-6" />
+                    {/* Market Problem pill */}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-950/50 border border-red-500/30 text-red-300 text-xs font-semibold mb-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+                      <span>Dor comum: {item.marketPain}</span>
+                    </div>
+
+                    <div className="w-11 h-11 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-105 transition-transform">
+                      <Icon className="w-5 h-5" />
                     </div>
                     
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-3 tracking-tight group-hover:text-red-200 transition-colors">
-                      {pain.title}
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 tracking-tight group-hover:text-amber-200 transition-colors">
+                      {item.solutionTitle}
                     </h3>
                     
-                    <p className="text-sm text-slate-300 leading-relaxed mb-6 font-normal">
-                      {pain.description}
+                    <p className="text-sm text-slate-300 leading-relaxed font-normal">
+                      {item.solutionText}
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-800/80 flex items-start gap-2 text-xs font-medium text-amber-300/90">
-                    <span className="font-bold text-amber-400 shrink-0">Impacto:</span>
-                    <span>{pain.impact}</span>
+                  <div className="pt-4 mt-5 border-t border-slate-800/80 flex items-center gap-2 text-xs font-bold text-amber-400">
+                    <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Padrão Lourenço de Bancada</span>
                   </div>
                 </TiltCard>
               </motion.div>
             )
           })}
         </div>
-
-        {/* The Solution Pivot Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="rounded-3xl bg-gradient-to-r from-amber-950/30 via-slate-900 to-amber-950/30 border border-amber-500/30 p-6 sm:p-8 flex items-center gap-5 shadow-xl"
-        >
-          <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-            <ShieldCheck className="w-6 h-6" />
-          </div>
-          <div>
-            <span className="text-xs font-bold text-amber-400 uppercase tracking-wider block mb-1">
-              O Padrão Laboratório Lourenço
-            </span>
-            <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              Você conversa direto com o Osvaldo antes de qualquer fresagem.
-            </h3>
-            <p className="mt-1 text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-              Alinhamos preparo, oclusão e cronograma antes de produzir. O trabalho entra com assentamento passivo e sem surpresas na cadeira.
-            </p>
-          </div>
-        </motion.div>
 
       </div>
     </section>

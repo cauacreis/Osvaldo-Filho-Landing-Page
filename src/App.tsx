@@ -5,7 +5,6 @@ import { AnimatePresence } from 'framer-motion'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
 import { PainPoints } from './components/PainPoints'
-import { SolutionPillars } from './components/SolutionPillars'
 import { ServicesSection } from './components/ServicesSection'
 import { WorkflowTimeline } from './components/WorkflowTimeline'
 import { CaseGallery } from './components/CaseGallery'
@@ -59,10 +58,7 @@ export function App() {
         {/* 2. Dores do Cirurgião-Dentista */}
         <PainPoints onOpenTriage={() => handleOpenTriage()} />
 
-        {/* 3. Solução & Pilares */}
-        <SolutionPillars onOpenTriage={() => handleOpenTriage()} />
-
-        {/* 4. Serviços & Soluções Protéticas */}
+        {/* 3. Serviços & Soluções Protéticas */}
         <ServicesSection onSelectService={(service) => handleOpenTriage(service)} />
 
         {/* 5. Como Funciona (Linha do Tempo com Ícones 3D) */}

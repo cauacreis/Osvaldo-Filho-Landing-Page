@@ -5,16 +5,19 @@ export const LAB_CONFIG = {
   subtitle: 'Prótese Dental',
   founder: 'Osvaldo Lourenço Filho',
   founderRole: 'Responsável Técnico & Especialista Protético',
+  croTpd: 'Reg. TPD / CRO-SP',
   /**
    * WHATSAPP CONFIGURATION:
-   * Altere o número abaixo para o WhatsApp oficial do laboratório.
-   * Formato internacional com DDI e DDD sem caracteres especiais (ex: 55 + DDD + 9 dígitos).
+   * Formato internacional com DDI e DDD sem caracteres especiais.
    */
-  whatsappNumber: '5511999999999', // EDITÁVEL: Substitua pelo WhatsApp do Laboratório Lourenço
+  whatsappNumber: '5511999999999',
   whatsappDisplay: '(11) 99999-9999',
   instagram: '@laboratoriolourenco',
   location: 'São Paulo e Região Metropolitana',
+  logisticsShort: 'Coleta Própria na Região • Envio Nacional',
+  logisticsDetail: 'Coleta e entrega diária em São Paulo e Região Metropolitana • Envio via Sedex / Transportadora para todo o Brasil',
   coletaHorario: 'Segunda a Sexta: 08h às 18h',
+  riskReversal: 'Primeiro caso com alinhamento passo a passo por vídeo/WhatsApp para você testar nossa adaptação marginal sem risco.',
   metrics: {
     deliveredProstheses: '+1.000',
     partnerDentists: '+30',
@@ -65,18 +68,35 @@ Posso enviar fotos, arquivos ou mais detalhes do caso por aqui?`
 }
 
 /**
- * Link genérico direto para o WhatsApp do laboratório (para o CTA principal rápido)
+ * Link Nível 2 (Descoberta / Baixa Fricção): Solicitar Tabela de Valores e Prazos
  */
-export function getDirectWhatsAppLink(customIntro?: string): string {
-  const intro = customIntro || 'Olá, equipe do Laboratório Lourenço. Gostaria de enviar um caso para análise e tirar algumas dúvidas.'
+export function getPricingTableWhatsAppLink(source = 'site'): string {
+  const intro = `Olá Osvaldo, gostaria de receber a Tabela de Valores e Prazos do Laboratório Lourenço para cirurgiões-dentistas parceiros. [origem: ${source}]`
   const phone = getSanitizedWhatsAppNumber()
   return `https://wa.me/${phone}?text=${encodeURIComponent(intro)}`
 }
 
 /**
- * REVIEWS & PRINTS REAIS DO WHATSAPP
- * Para adicionar novos feedbacks quando receber prints do Osvaldo:
- * Basta adicionar um novo objeto neste array com o caminho da imagem salva em /assets/
+ * Link Nível 1 (Decisão Imediata / Envio de Arquivo STL ou Caso Direto)
+ */
+export function getCaseSubmissionWhatsAppLink(workType?: string, source = 'site'): string {
+  const typeText = workType ? ` de ${workType}` : ''
+  const intro = `Olá Osvaldo, tenho um caso${typeText} e gostaria de enviar os arquivos/fotos para alinhamento técnico de bancada. [origem: ${source}]`
+  const phone = getSanitizedWhatsAppNumber()
+  return `https://wa.me/${phone}?text=${encodeURIComponent(intro)}`
+}
+
+/**
+ * Link genérico direto para o WhatsApp do laboratório
+ */
+export function getDirectWhatsAppLink(customIntro?: string): string {
+  const intro = customIntro || 'Olá, equipe do Laboratório Lourenço. Gostaria de tirar dúvidas e alinhar um caso para análise.'
+  const phone = getSanitizedWhatsAppNumber()
+  return `https://wa.me/${phone}?text=${encodeURIComponent(intro)}`
+}
+
+/**
+ * REVIEWS & PRINTS REAIS DO WHATSAPP COM DESTAQUES GRIFADOS
  */
 export const FEEDBACK_REVIEWS: FeedbackReview[] = [
   {
@@ -86,6 +106,7 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
     clinicCity: 'São Paulo - SP',
     highlight: 'Instalação imediata sem nenhum retrabalho',
     quote: '“Já entregou e eu já instalei. Parabéns pelo seu trabalho! Gostei bastante! Vamos alinhar pra eu poder mandar mais trabalhos pra você...”',
+    keyPhrases: ['já entregou e eu já instalei', 'gostei bastante', 'mandar mais trabalhos'],
     stars: 5,
   },
   {
@@ -95,6 +116,7 @@ export const FEEDBACK_REVIEWS: FeedbackReview[] = [
     clinicCity: 'São Paulo - SP',
     highlight: 'Superou expectativas e entrega no prazo certo',
     quote: '“Quero deixar meu agradecimento a toda a equipe do laboratório Lourenço pelo excelente atendimento! Fiquei muito satisfeita com todo o processo, desde o atendimento até a qualidade final. As peças ficaram excelentes e superou as expectativas. Destaco principalmente a agilidade na execução e na entrega...”',
+    keyPhrases: ['excelente atendimento', 'peças ficaram excelentes', 'superou as expectativas', 'agilidade na execução e na entrega'],
     stars: 5,
   },
 ]

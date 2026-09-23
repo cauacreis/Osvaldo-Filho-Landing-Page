@@ -69,6 +69,7 @@ export interface FeedbackReview {
   clinicCity?: string
   highlight?: string
   quote?: string
+  keyPhrases?: string[]
   stars?: number
 }
 

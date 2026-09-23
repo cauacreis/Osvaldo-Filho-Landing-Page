@@ -221,10 +221,25 @@ export const ProofSection: React.FC<ProofSectionProps> = () => {
                         </h3>
                       )}
 
+                      {/* Key phrases grifados */}
+                      {currentReview.keyPhrases && (
+                        <div className="flex flex-wrap gap-1.5 shrink-0">
+                          {currentReview.keyPhrases.map((phrase, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-300 bg-amber-500/15 border border-amber-500/30 px-2.5 py-0.5 rounded-lg"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                              "{phrase}"
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
                       {/* Excerpt quote */}
                       {currentReview.quote && (
-                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/60 p-4 rounded-2xl border border-slate-800 h-[170px] sm:h-[150px] lg:h-[160px] flex flex-col overflow-y-auto scrollbar-none">
-                          <p className="w-full my-auto">{currentReview.quote}</p>
+                        <blockquote className="text-xs sm:text-sm text-slate-200 italic leading-relaxed bg-slate-950/70 p-4 rounded-2xl border border-slate-800 h-[140px] sm:h-[130px] lg:h-[135px] flex flex-col overflow-y-auto scrollbar-none">
+                          <p className="w-full my-auto text-slate-200">{currentReview.quote}</p>
                         </blockquote>
                       )}
                     </div>

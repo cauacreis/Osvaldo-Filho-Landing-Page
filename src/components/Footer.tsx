@@ -1,8 +1,8 @@
 'use client'
 
 import React from 'react'
-import { LAB_CONFIG } from '../config'
-import { MapPin, Phone, Clock, Send } from 'lucide-react'
+import { LAB_CONFIG, getPricingTableWhatsAppLink } from '../config'
+import { MapPin, Phone, Clock, Send, FileSpreadsheet, ShieldCheck } from 'lucide-react'
 
 interface FooterProps {
   onOpenTriage: () => void
@@ -34,15 +34,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed">
-              Transformamos o planejamento do dentista em próteses com foco em adaptação, estética e previsibilidade. Parceria especialista para consultórios da região.
+              Transformamos o planejamento do dentista em próteses com foco em adaptação passiva, estética natural e previsibilidade clínica.
             </p>
 
-            <div className="pt-1">
+            <div className="pt-1 space-y-0.5">
               <span className="text-[11px] font-semibold text-slate-300 block">
                 Responsável Técnico:
               </span>
-              <span className="text-xs text-amber-400 font-bold">
+              <span className="text-xs text-amber-400 font-bold block">
                 {LAB_CONFIG.founder}
+              </span>
+              <span className="text-[11px] text-slate-400 flex items-center gap-1">
+                <ShieldCheck className="w-3 h-3 text-amber-400" />
+                {LAB_CONFIG.croTpd}
               </span>
             </div>
           </div>
@@ -59,13 +63,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
                 </a>
               </li>
               <li>
-                <a href="#solucao" className="hover:text-amber-400 transition-colors">
-                  Nosso Padrão
-                </a>
-              </li>
-              <li>
                 <a href="#servicos" className="hover:text-amber-400 transition-colors">
-                  Catálogo de Próteses
+                  Catálogo & Biomateriais
                 </a>
               </li>
               <li>
@@ -85,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
               </li>
               <li>
                 <a href="#sobre" className="hover:text-amber-400 transition-colors">
-                  Sobre o Laboratório
+                  Responsável Técnico
                 </a>
               </li>
               <li>
@@ -99,12 +98,12 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
           {/* Col 3: Contact & Logistics */}
           <div>
             <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-4">
-              Contato & Coleta
+              Logística & Atendimento
             </h4>
             <ul className="space-y-3 text-xs">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                <span>{LAB_CONFIG.location}</span>
+                <span>{LAB_CONFIG.logisticsDetail}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-amber-400 shrink-0" />
@@ -117,22 +116,30 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTriage }) => {
             </ul>
           </div>
 
-          {/* Col 4: Action */}
-          <div>
-            <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-4">
-              Atendimento Imediato
+          {/* Col 4: Dual Action */}
+          <div className="space-y-3">
+            <h4 className="text-white text-xs font-bold uppercase tracking-wider mb-2">
+              Atendimento Técnico
             </h4>
-            <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-              Inicie a triagem técnica do seu caso agora mesmo para receber orientações e suporte direto.
-            </p>
+            
             <button
               type="button"
               onClick={onOpenTriage}
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all"
+              className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold text-xs shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all cursor-pointer"
             >
-              <span>Enviar caso para análise</span>
+              <span>Enviar Caso / Arquivo STL</span>
               <Send className="w-3.5 h-3.5 text-slate-950" />
             </button>
+
+            <a
+              href={getPricingTableWhatsAppLink('footer')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-300 hover:text-amber-200 border border-amber-500/30 text-xs font-semibold transition-colors cursor-pointer"
+            >
+              <FileSpreadsheet className="w-3.5 h-3.5 text-amber-400" />
+              <span>Solicitar Tabela de Preços</span>
+            </a>
           </div>
 
         </div>
